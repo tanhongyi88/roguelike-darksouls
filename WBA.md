@@ -2,6 +2,6 @@
 
 | Student  |  Deliverable | Review  | Date(Deliverable)  | Date(Review)  | 
 |---|---|---|---|---|
-| Tan Hong Yi  | testing  |   |   |   |
+| Tan Hong Yi  |   |   |   |   |
 |  Lee Jia Yi |   |   |   |   |
 | Afrida |   |   |   |   |
