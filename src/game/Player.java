@@ -1,11 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Soul;
@@ -36,6 +31,8 @@ public class Player extends Actor implements Soul {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")");
+		actions.add(new DrinkAction(this));
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
@@ -43,5 +40,20 @@ public class Player extends Actor implements Soul {
 	@Override
 	public void transferSouls(Soul soulObject) {
 		//TODO: transfer Player's souls to another Soul's instance.
+	}
+
+	@Override
+	public void heal(int points) {
+		double healPoints = points*0.4;
+		hitPoints += healPoints;
+		hitPoints = Math.min(hitPoints, maxHitPoints);
+	}
+
+	public int getMaxHitPoints(){
+		return maxHitPoints;
+	}
+
+	public int getHitPoints(){
+		return hitPoints;
 	}
 }
