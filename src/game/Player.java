@@ -56,4 +56,13 @@ public class Player extends Actor implements Soul {
 	public int getHitPoints(){
 		return hitPoints;
 	}
+
+	public EstusFlask getEstusFlask() {
+		for (Item item : inventory) {
+			if (item instanceof EstusFlask){
+				return (EstusFlask) item;
+			}
+		}
+		return null;
+	}
 }

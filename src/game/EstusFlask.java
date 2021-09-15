@@ -1,10 +1,13 @@
 package game;
 
-public class EstusFlask{
+import edu.monash.fit2099.engine.Item;
+
+public class EstusFlask extends Item {
     private int numOfEstusFlask;
     private final int MAX_NUM_OF_ESTUS_FLASK = 3;
 
-    public EstusFlask() {
+    public EstusFlask(String name, char displayChar, boolean portable) {
+        super(name, displayChar, false);
         this.numOfEstusFlask = MAX_NUM_OF_ESTUS_FLASK;
     }
 
