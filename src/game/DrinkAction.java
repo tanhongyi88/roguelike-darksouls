@@ -21,7 +21,7 @@ public class DrinkAction extends Action {
 
         EstusFlask estusFlask = player.getEstusFlask();
 
-        if(estusFlask.getNumOfEstusFlask() < estusFlask.getMaxNumOfEstusFlask()){
+        if(estusFlask.getNumOfEstusFlask() == 0){
             return "No available Estus Flask!";
         }
         else{
