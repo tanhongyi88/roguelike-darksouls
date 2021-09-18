@@ -11,6 +11,7 @@ import game.interfaces.Soul;
 public class Player extends Actor implements Soul {
 
 	private final Menu menu = new Menu();
+	private Souls soul;
 
 	/**
 	 * Constructor.
