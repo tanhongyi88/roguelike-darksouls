@@ -12,7 +12,7 @@ public class DrinkAction extends Action {
     //constructor
     public DrinkAction(Player player) {
         this.player = player;
-        this.estusFlask = new EstusFlask("Estus Flask", 'e', false);
+        this.estusFlask = new EstusFlask("Estus Flask");
         player.addItemToInventory(estusFlask);
     }
 
@@ -33,6 +33,11 @@ public class DrinkAction extends Action {
             }
         }
         return actor + "'s hitpoints is full!";
+    }
+
+    @Override
+    public String hotkey(){
+        return "a";
     }
 
     @Override
