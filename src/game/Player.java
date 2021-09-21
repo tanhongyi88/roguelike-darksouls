@@ -24,6 +24,7 @@ public class Player extends Actor implements Soul {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
+		this.addItemToInventory(soul);
 	}
 
 	@Override

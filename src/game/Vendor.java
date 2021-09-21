@@ -10,14 +10,17 @@ public class Vendor extends Action {
     private Item shopItem;
     private char displayChar;
     private String hotKey;
+    private Souls soul;
+    private MeleeWeapon broadSword;
+    private MeleeWeapon giantAxe;
 
-    /**
-    public void buyAction(String hotKey){
+
+    public void buyAction(String hotKey, Player player){
         if(hotKey == "a"){
-            player.souls.subtractSouls(500)
+            player.getInventory();
         }
     }
-    **/
+
 
     /**
      * Perform the Action.

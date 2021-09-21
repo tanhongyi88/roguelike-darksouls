@@ -27,5 +27,9 @@ public class Souls extends Item {
         numberOfSouls -= souls;
     }
 
-    //public void transferSouls(int souls){ }
+    public void transferSouls(int souls, Souls nextSoul){
+        int transfer = getNumberOfSouls() - souls;
+        nextSoul.addSouls(transfer);
+
+    }
 }
