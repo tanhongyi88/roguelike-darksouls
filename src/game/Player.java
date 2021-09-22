@@ -23,6 +23,7 @@ public class Player extends Actor implements Soul {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.ABLE_TO_ENTER_VALLEY);
+		this.addCapability(Status.ABLE_TO_STEP_ON_FLOOR);
 		this.addCapability(Abilities.REST);
 	}
 
