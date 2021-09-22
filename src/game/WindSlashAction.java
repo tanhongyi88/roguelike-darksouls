@@ -6,13 +6,10 @@ import edu.monash.fit2099.engine.WeaponAction;
 import edu.monash.fit2099.engine.WeaponItem;
 
 public class WindSlashAction extends WeaponAction {
-    /**
-     * Constructor
-     *
-     * @param weaponItem the weapon item that has capabilities
-     */
-    public WindSlashAction(WeaponItem weaponItem) {
-        super(weaponItem);
+    private MeleeWeapon stormRuler;
+
+    public WindSlashAction(WeaponItem stormRuler) {
+        super(stormRuler);
     }
 
     @Override

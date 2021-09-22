@@ -6,13 +6,10 @@ import edu.monash.fit2099.engine.WeaponAction;
 import edu.monash.fit2099.engine.WeaponItem;
 
 public class EmberFormAction extends WeaponAction {
-    /**
-     * Constructor
-     *
-     * @param weaponItem the weapon item that has capabilities
-     */
-    public EmberFormAction(WeaponItem weaponItem) {
-        super(weaponItem);
+    private MeleeWeapon greatMachete;
+
+    public EmberFormAction(WeaponItem greatMachete) {
+        super(greatMachete);
     }
 
     @Override
