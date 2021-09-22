@@ -6,5 +6,6 @@ package game.enums;
  */
 public enum Status {
     HOSTILE_TO_ENEMY, // use this capability to be hostile towards something (e.g., to be attacked by enemy)
-    ABLE_TO_ENTER_VALLEY
+    HOSTILE_TO_STORM_RULER,
+    ABLE_TO_ENTER_VALLEY,
 }
