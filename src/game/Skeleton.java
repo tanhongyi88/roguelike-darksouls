@@ -23,7 +23,7 @@ public class Skeleton extends Actor implements Soul{
      * @param player  Actor that represents the player to follow and attack
      */
     public Skeleton(String name, Actor player) {
-        super(name, 's', 10);
+        super(name, 's', 100);
         behaviours.add(new UndeadAttack(player));
         behaviours.add(new FollowBehaviour(player));
         behaviours.add(new WanderBehaviour());
@@ -49,23 +49,24 @@ public class Skeleton extends Actor implements Soul{
     }
 
     /**
-     * Select and return an action for Skeleton to perform on the current turn.
+     * Selects and returns an action for Skeleton to perform on the current turn.
      *
      * @param actions    collection of possible Actions for Skeleton
      * @param lastAction The Action Skeleton took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing Skeleton
      * @param display    the I/O object to which messages may be written
-     * @return The Action to be performed
+     * @return The Action to be performed by the Skeleton
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         skeletonLocation.add(map.locationOf(this));
-//        if (lastAction.getNextAction() != null)
-//            return lastAction.getNextAction();
 
         for(Behaviour Behaviour : behaviours) {
             Action action = Behaviour.getAction(this, map);
-            if (action != null)
+            if (lastAction.getNextAction() != null)
+                return lastAction.getNextAction();
+
+            else if (action != null)
                 return action;
         }
         return new WanderBehaviour();
