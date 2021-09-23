@@ -54,7 +54,7 @@ public class AttackAction extends Action {
 		target.hurt(damage);
 		if (!target.isConscious()) {
 			if (target instanceof Skeleton && target.hasCapability(Abilities.RESURRECT)){
-				if (((Skeleton) target).resurrect((Skeleton) target, map)){
+				if (((Skeleton) target).resurrect(map)){
 					result += System.lineSeparator() + target + " is resurrected.";
 				}
 				else{
