@@ -1,8 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.WeaponItem;
-
-public class GiantAxe extends WeaponItem {
+public class GiantAxe extends GameWeaponItem {
     /**
      * Constructor.
      */

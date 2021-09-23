@@ -6,6 +6,6 @@ public class Broadsword extends GameWeaponItem{
      **/
 
     public Broadsword() {
-        super("Broadsword", 'b', 30, "hits", 80);
+        super("Broadsword", 'b', 30, "slashes", 80);
     }
 }

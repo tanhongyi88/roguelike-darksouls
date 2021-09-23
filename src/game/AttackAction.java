@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.enums.Abilities;
 
 /**
  * Special Action for attacking other Actors.
@@ -52,18 +53,27 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			Actions dropActions = new Actions();
-			// drop all items
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			// remove actor
-			//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-			map.removeActor(target);
-			result += System.lineSeparator() + target + " is killed.";
+			if (target instanceof Skeleton && target.hasCapability(Abilities.RESURRECT)){
+				if (((Skeleton) target).resurrect((Skeleton) target, map)){
+					result += System.lineSeparator() + target + " is resurrected.";
+				}
+				else{
+					result += System.lineSeparator() + target + " is killed.";
+				}
+			}
+			else{
+				Actions dropActions = new Actions();
+				// drop all items
+				for (Item item : target.getInventory())
+					dropActions.add(item.getDropAction(actor));
+				for (Action drop : dropActions)
+					drop.execute(target, map);
+				// remove actor
+				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
+				map.removeActor(target);
+				result += System.lineSeparator() + target + " is killed.";
+			}
 		}
-
 		return result;
 	}
 
