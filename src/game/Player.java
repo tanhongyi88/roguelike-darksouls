@@ -1,19 +1,15 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
+import game.interfaces.Resettable;
 import game.interfaces.Soul;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements Soul {
+public class Player extends Actor implements Soul, Resettable {
 
 	private final Menu menu = new Menu();
 
@@ -28,6 +24,8 @@ public class Player extends Actor implements Soul {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
+		this.registerInstance();
+		ResetManager.getInstance().appendResetInstance(this);
 	}
 
 	@Override
@@ -43,5 +41,28 @@ public class Player extends Actor implements Soul {
 	@Override
 	public void transferSouls(Soul soulObject) {
 		//TODO: transfer Player's souls to another Soul's instance.
+	}
+
+	/**
+	 * Reset player's instance, including hitpoints, EstusFlask chargers and location.
+	 */
+	@Override
+	public void resetInstance() {
+		// reset hitpoints to max hitpoints
+		this.hitPoints = this.maxHitPoints;
+
+		// reset EstusFlask
+//		// find estus flask in inventory and reset
+//		for (Item item: this.inventory) {
+//			if (item == EstusFlask) {
+//				item.numOfEstusFlask = 3;
+//			}
+//		}
+
+	}
+
+	@Override
+	public boolean isExist() {
+		return true;
 	}
 }
