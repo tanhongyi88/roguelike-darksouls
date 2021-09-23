@@ -38,7 +38,7 @@ public class Undead extends Actor implements Soul{
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			behaviours.add(0, new UndeadAttack(otherActor));
+			behaviours.add(0, new AttackBehaviour(otherActor, direction));
 			behaviours.add(1, new FollowBehaviour(otherActor));
 			actions.add(new AttackAction(this,direction));
 		}

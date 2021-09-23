@@ -24,7 +24,6 @@ public class Skeleton extends Actor implements Soul{
      */
     public Skeleton(String name, Actor player) {
         super(name, 's', 100);
-        behaviours.add(new UndeadAttack(player));
         behaviours.add(new FollowBehaviour(player));
         behaviours.add(new WanderBehaviour());
         this.addCapability(Abilities.RESURRECT);
@@ -43,6 +42,7 @@ public class Skeleton extends Actor implements Soul{
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+            behaviours.add(0, new AttackBehaviour(otherActor, direction));
             actions.add(new AttackAction(this,direction));
         }
         return actions;
