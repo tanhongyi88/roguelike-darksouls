@@ -6,18 +6,22 @@ import edu.monash.fit2099.engine.GameMap;
 
 public class DrinkAction extends Action {
 
-    private EstusFlask estusFlask;
     private Player player;
+    private EstusFlask estusFlask;
 
     //constructor
     public DrinkAction(Player player) {
-        this.estusFlask = new EstusFlask();
         this.player = player;
+        this.estusFlask = new EstusFlask("Estus Flask");
+        player.addItemToInventory(estusFlask);
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        if(estusFlask.getNumOfEstusFlask() < estusFlask.getMaxNumOfEstusFlask()){
+
+        EstusFlask estusFlask = player.getEstusFlask();
+
+        if(estusFlask.getNumOfEstusFlask() == 0){
             return "No available Estus Flask!";
         }
         else{
@@ -32,7 +36,12 @@ public class DrinkAction extends Action {
     }
 
     @Override
+    public String hotkey(){
+        return "a";
+    }
+
+    @Override
     public String menuDescription(Actor actor) {
-        return "Unkindled drinks Estus Flask (" + estusFlask.getNumOfEstusFlask() + "/" + estusFlask.getMaxNumOfEstusFlask() +")";
+        return "Unkindled drinks Estus Flask (" + player.getEstusFlask().getNumOfEstusFlask() + "/" + player.getEstusFlask().getMaxNumOfEstusFlask() +")";
     }
 }
