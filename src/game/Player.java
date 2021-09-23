@@ -34,8 +34,7 @@ public class Player extends Actor implements Soul {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		Weapon playerWeapon = this.getWeapon();
-		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + playerWeapon);
+		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon());
 		actions.add(new DrinkAction(this));
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);

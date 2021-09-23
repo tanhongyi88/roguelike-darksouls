@@ -57,6 +57,7 @@ public class Application {
 			gameMap.at(7,25).addItem(new StormRuler());
 
 			// Place Skeleton in the map
+			gameMap.at(38,20).addActor(new Skeleton("Skeleton", player));
 			gameMap.at(12,17).addActor(new Skeleton("Skeleton", player));
 			gameMap.at(60,23).addActor(new Skeleton("Skeleton", player));
 			gameMap.at(42,3).addActor(new Skeleton("Skeleton", player));
@@ -65,12 +66,6 @@ public class Application {
 			gameMap.at(20,7).addActor(new Skeleton("Skeleton", player));
 			gameMap.at(2,1).addActor(new Skeleton("Skeleton", player));
 
-			// Place a Hollow in the the map
-			// FIXME: the Undead should be generated from the Cemetery
-//			Undead undead = new Undead("Undead");
-//			undead.addBehaviour(new FollowBehaviour(player));
-//			undead.addBehaviour(new NormalAttack(player));
-//			gameMap.at(32, 7).addActor(undead);
 			world.run();
 	}
 }
