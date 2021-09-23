@@ -5,19 +5,22 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
-public class Vendor extends Action {
+public class VendorAction extends Action {
     private Player player;
-    private Item shopItem;
-    private char displayChar;
     private String hotKey;
-    private Souls soul;
     private MeleeWeapon broadSword;
     private MeleeWeapon giantAxe;
+    private SwapWeaponAction weaponExchange;
 
 
-    public void buyAction(String hotKey, Player player){
+    public void buyAction(String hotKey, Player player, GameMap map){
         if(hotKey == "a"){
-            player.getInventory();
+            player.subtractSouls(500);
+            weaponExchange.execute(player,map);
+        }
+        if (hotKey == "b"){
+            player.subtractSouls(1000);
+            weaponExchange.execute(player, map);
         }
     }
 

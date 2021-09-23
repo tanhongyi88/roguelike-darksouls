@@ -3,12 +3,12 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
-import game.interfaces.Soul;
+import game.interfaces.Soul_I;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements Soul {
+public class Player extends Actor implements Soul_I {
 
 	private final Menu menu = new Menu();
 	private Souls soul;
@@ -18,12 +18,13 @@ public class Player extends Actor implements Soul {
 	 *
 	 * @param name        Name to call the player in the UI
 	 * @param displayChar Character to represent the player in the UI
-	 * @param hitPoints   Player's starting number of hitpoints
+	 * @param hitPoints   Player's starting number of hit points
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
+		this.soul = new Souls("PlayerSouls",'$',true,0);
 		this.addItemToInventory(soul);
 	}
 
@@ -40,8 +41,26 @@ public class Player extends Actor implements Soul {
 	}
 
 	@Override
-	public void transferSouls(Soul soulObject) {
-		//TODO: transfer Player's souls to another Soul's instance.
+	public void transferSouls(Souls soulObject) {
+		soul.transferSouls(soulObject);
+	}
+
+	@Override
+	public boolean addSouls(int soul_amount) {
+		boolean success=false;
+		if (soul.subtractSouls(soul_amount)){
+			success=true;
+		}
+		return success;
+	}
+
+	@Override
+	public boolean subtractSouls(int soul_amount) {
+		boolean success = false;
+		if (soul.subtractSouls(soul_amount)){
+			success=true;
+		}
+		return success;
 	}
 
 	@Override

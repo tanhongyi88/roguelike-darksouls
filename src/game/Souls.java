@@ -1,14 +1,14 @@
 package game;
 
 import edu.monash.fit2099.engine.Item;
+import game.interfaces.Soul_I;
 
-public class Souls extends Item {
+public class Souls extends Item implements Soul_I {
     private int numberOfSouls;
-    private final int startingSoul=0;
 
     /***
      * Constructor.
-     *  @param name the name of this Item
+     * @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
      * @param portable true if and only if the Item can be picked up
      */
@@ -19,17 +19,27 @@ public class Souls extends Item {
 
     public int getNumberOfSouls(){ return numberOfSouls; }
 
-    public void addSouls(int souls){
-        numberOfSouls += souls;
+    public boolean addSouls(int soul_amount){
+        boolean success=false;
+        numberOfSouls += soul_amount;
+        if (numberOfSouls == (numberOfSouls+soul_amount)){
+            success=true;
+        }
+        return success;
     }
 
-    public void subtractSouls(int souls){
-        numberOfSouls -= souls;
+    public boolean subtractSouls(int soul_amount){
+        boolean success=false;
+        int oldAmount = numberOfSouls;
+        numberOfSouls -= soul_amount;
+        if(numberOfSouls < (oldAmount)){
+            success=true;
+        }
+        return success;
     }
 
-    public void transferSouls(int souls, Souls nextSoul){
-        int transfer = getNumberOfSouls() - souls;
-        nextSoul.addSouls(transfer);
-
+    public void transferSouls(Souls nextSoul){
+        nextSoul.addSouls(this.getNumberOfSouls());
+        this.numberOfSouls=0;
     }
 }
