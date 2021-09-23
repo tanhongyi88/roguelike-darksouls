@@ -25,6 +25,7 @@ public class Player extends Actor implements Soul {
 		this.addCapability(Status.ABLE_TO_ENTER_VALLEY);
 		this.addCapability(Status.ABLE_TO_STEP_ON_FLOOR);
 		this.addCapability(Abilities.REST);
+		this.addItemToInventory(new Broadsword());
 	}
 
 	@Override
@@ -33,7 +34,8 @@ public class Player extends Actor implements Soul {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")");
+		Weapon playerWeapon = this.getWeapon();
+		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + playerWeapon);
 		actions.add(new DrinkAction(this));
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
