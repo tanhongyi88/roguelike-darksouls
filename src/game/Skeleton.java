@@ -19,8 +19,8 @@ public class Skeleton extends Actor implements Soul{
      * Constructor for the Skeleton class.
      * All Skeletons are represented by an 's' and have 100 hit points.
      *
-     * @param name          String that represents the name of the Skeleton
-     * @param player        Actor that represents the player to follow and attack
+     * @param name    String that represents the name of the Skeleton
+     * @param player  Actor that represents the player to follow and attack
      */
     public Skeleton(String name, Actor player) {
         super(name, 's', 10);
@@ -37,7 +37,7 @@ public class Skeleton extends Actor implements Soul{
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
-     * @return           a collection of Actions
+     * @return A collection of Actions
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
@@ -55,7 +55,7 @@ public class Skeleton extends Actor implements Soul{
      * @param lastAction The Action Skeleton took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing Skeleton
      * @param display    the I/O object to which messages may be written
-     * @return           the Action to be performed
+     * @return The Action to be performed
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -74,8 +74,8 @@ public class Skeleton extends Actor implements Soul{
     /**
      * Resurrect the Skeleton with a 50% probability
      *
-     * @param map       the map containing Skeleton
-     * @return          true if is resurrected; false otherwise
+     * @param map the map containing Skeleton
+     * @return True if is resurrected; false otherwise
      */
     public boolean resurrect(GameMap map){
         Random random = new Random();
@@ -98,7 +98,7 @@ public class Skeleton extends Actor implements Soul{
     /**
      * Transfers the souls to the player after Skeleton is killed
      *
-     * @param soul           Soul that represents the player's soul
+     * @param soul Soul that represents the player's soul
      */
     @Override
     public void transferSouls(Soul soul) {
@@ -108,7 +108,7 @@ public class Skeleton extends Actor implements Soul{
     /**
      * Randomly returns a Weapon for Skeleton to equip
      *
-     * @return           a random Weapon(Broadsword, GiantAxe)
+     * @return A random Weapon(Broadsword, GiantAxe)
      */
     public Item getRandomWeapon(){
         Random random = new Random();
@@ -119,7 +119,7 @@ public class Skeleton extends Actor implements Soul{
     /**
      * A toString method for the Skeleton's class
      *
-     * @return           String that represents the Skeleton's information(hitpoints and weapon)
+     * @return String that represents the Skeleton's information(hitpoints and weapon)
      */
     @Override
     public String toString(){
