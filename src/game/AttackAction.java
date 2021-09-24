@@ -77,6 +77,9 @@ public class AttackAction extends Action {
 				map.removeActor(target);
 				target.asSoul().transferSouls(actor.asSoul());
 				result += System.lineSeparator() + target + " is killed.";
+				if (target instanceof LordOfCinder){
+					result += System.lineSeparator() + "LORD OF CINDER FALLEN";
+				}
 			}
 		}
 		return result;
