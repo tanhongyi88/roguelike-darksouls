@@ -8,7 +8,7 @@ import game.Souls;
  * The instance can be Actor, Item, or even Ground.
  * @see DesignOSoulsAddOn
  */
-public interface Soul_I {
+public interface Soul {
 
     /**
      * Transfer current instance's souls to another Soul instance.

@@ -3,12 +3,12 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
-import game.interfaces.Soul_I;
+import game.interfaces.Soul;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements Soul_I {
+public class Player extends Actor implements Soul {
 
 	private final Menu menu = new Menu();
 	private Souls soul;

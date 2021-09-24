@@ -1,9 +1,9 @@
 package game;
 
 import edu.monash.fit2099.engine.Item;
-import game.interfaces.Soul_I;
+import game.interfaces.Soul;
 
-public class Souls extends Item implements Soul_I {
+public class Souls extends Item implements Soul {
     private int numberOfSouls;
 
     /***
