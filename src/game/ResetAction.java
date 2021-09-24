@@ -3,18 +3,23 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
 
 public class ResetAction extends Action {
 
-    protected String hotKey;
+    private Location previousLocation;
 
     /**
      * Constructor to create an Action that will reset the Player's hitpoints, EstusFlask's charges
      *
-     * @param hotkey the menu hotkey for this action
      */
-    public ResetAction (String hotkey) {
-        this.hotKey = hotkey;
+    public ResetAction (Location placeWherePlayerDied) {
+        this.previousLocation = placeWherePlayerDied;
+
+    }
+
+    public ResetAction() {
+
     }
 
     /**
@@ -47,6 +52,6 @@ public class ResetAction extends Action {
      */
     @Override
     public String hotkey() {
-        return hotKey;
+        return "R";
     }
 }
