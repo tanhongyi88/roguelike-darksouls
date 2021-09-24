@@ -11,6 +11,7 @@ import game.interfaces.Soul;
  */
 public class Player extends Actor implements Soul, Resettable {
 
+	private Location previousLocation;
 	private final Menu menu = new Menu();
 
 	/**
@@ -25,14 +26,29 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
 		this.registerInstance();
-		ResetManager.getInstance().appendResetInstance(this);
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		if(!this.isConscious()){
+			display.println("YYY     YYY   .0OO000.     UU       UU     DD\"\"\"Db     III   EEEEEEEEEEE  DD\"\"\"Db");
+			display.println(" YYY   YYY  00'      `00   UU       UU     DD    `Db.  III   EE           DD    `Db.");
+			display.println("  YYY YYY  OO          00  UU       UU     DD     `Db  III   EE           DD     `Db");
+			display.println("   'YYY'   OO          00  UU       UU     DD      DD  III   EEEEEEEEE    DD      DD");
+			display.println("    YYY    OO          00  UU       UU     DD      DD  III   EE           DD      DD");
+			display.println("    YYY     OO.      ,00   UU.     ,UU     DD    ,DP'  III   EE           DD    ,DP'");
+			display.println("    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'");
+			display.println("The world is resetting...");
+
+			map.moveActor(this, new Location(map, 38, 12));
+			return new ResetAction(this.previousLocation);
+		}
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+
+		// update the actor previous location every turn by injection
+		this.previousLocation = map.locationOf(this);
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
