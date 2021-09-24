@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.*;
 
+
 /**
  * The main class for the Jurassic World game.
  *
@@ -15,7 +16,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new Bonfire());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -29,7 +30,7 @@ public class Application {
 					".............................................................+++++++............",
 					"..................................###___###...c...............+++...............",
 					"..................................#_______#......................+++............",
-					"...........++.....................#_______#.......................+.............",
+					"...........++.....................#___B___#.......................+.............",
 					".........+++......................#_______#........................++...........",
 					"............+++...................####_####..........................+..........",
 					"..............+......................................................++.........",

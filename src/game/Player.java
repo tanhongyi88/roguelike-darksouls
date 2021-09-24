@@ -3,13 +3,15 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
+import game.interfaces.Resettable;
 import game.interfaces.Soul;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements Soul {
+public class Player extends Actor implements Soul, Resettable {
 
+	private Location previousLocation;
 	private final Menu menu = new Menu();
 
 	/**
@@ -26,6 +28,7 @@ public class Player extends Actor implements Soul {
 		this.addCapability(Status.ABLE_TO_STEP_ON_FLOOR);
 		this.addCapability(Abilities.REST);
 		this.addItemToInventory(new Broadsword());
+		this.registerInstance();
 	}
 
 	/**
@@ -39,11 +42,29 @@ public class Player extends Actor implements Soul {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		if(!this.isConscious()){
+			display.println("YYY     YYY   .0OO000.     UU       UU     DD\"\"\"Db     III   EEEEEEEEEEE  DD\"\"\"Db");
+			display.println(" YYY   YYY  00'      `00   UU       UU     DD    `Db.  III   EE           DD    `Db.");
+			display.println("  YYY YYY  OO          00  UU       UU     DD     `Db  III   EE           DD     `Db");
+			display.println("   'YYY'   OO          00  UU       UU     DD      DD  III   EEEEEEEEE    DD      DD");
+			display.println("    YYY    OO          00  UU       UU     DD      DD  III   EE           DD      DD");
+			display.println("    YYY     OO.      ,00   UU.     ,UU     DD    ,DP'  III   EE           DD    ,DP'");
+			display.println("    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'");
+			display.println("The world is resetting...");
+
+			map.moveActor(this, new Location(map, 38, 12));
+			return new ResetAction(this.previousLocation);
+		}
+		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
 		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon());
 		actions.add(new DrinkAction(this));
+
+		// update the actor previous location every turn by injection
+		this.previousLocation = map.locationOf(this);
+
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -99,5 +120,28 @@ public class Player extends Actor implements Soul {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Reset player's instance, including hitpoints, EstusFlask chargers and location.
+	 */
+	@Override
+	public void resetInstance() {
+		// reset hitpoints to max hitpoints
+		this.hitPoints = this.maxHitPoints;
+
+		// reset EstusFlask
+//		// find estus flask in inventory and reset
+//		for (Item item: this.inventory) {
+//			if (item == EstusFlask) {
+//				item.numOfEstusFlask = 3;
+//			}
+//		}
+
+	}
+
+	@Override
+	public boolean isExist() {
+		return true;
 	}
 }
