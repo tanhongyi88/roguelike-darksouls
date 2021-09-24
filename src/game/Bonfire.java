@@ -25,7 +25,7 @@ public class Bonfire extends Ground{
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
         if (actor.hasCapability(Abilities.REST)) {
-            actions.add(new ResetAction("R"));
+            actions.add(new ResetAction());
         }
         return actions;
     }
