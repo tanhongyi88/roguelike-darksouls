@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Undead extends Actor implements Soul{
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
-	private final static int UNDEAD_SOULS = 50;
+	private Souls soul;
 
 	/** 
 	 * Constructor for the Skeleton class.
@@ -23,6 +23,8 @@ public class Undead extends Actor implements Soul{
 	public Undead(String name) {
 		super(name, 'u', 50);
 		behaviours.add(new WanderBehaviour());
+		this.soul = new Souls("UndeadSouls",'$',true,50);
+		this.addItemToInventory(soul);
 	}
 
 	/**
@@ -67,16 +69,6 @@ public class Undead extends Actor implements Soul{
 	}
 
 	/**
-	 * Transfers the souls to the player after Undead is killed
-	 *
-	 * @param soul Soul that represents the player's soul
-	 */
-	@Override
-	public void transferSouls(Soul soul) {
-		soul.addSouls(UNDEAD_SOULS);
-	}
-
-	/**
 	 * A toString method for the Undead's class
 	 *
 	 * @return String that represents the Skeleton's information(hitpoints and weapon)
@@ -84,5 +76,28 @@ public class Undead extends Actor implements Soul{
 	@Override
 	public String toString(){
 		return name + " (" + hitPoints + "/" + maxHitPoints +")(no Weapon)";
+	}
+
+	@Override
+	public void transferSouls(Souls soulObject) {
+		soul.transferSouls(soulObject);
+	}
+
+	@Override
+	public boolean addSouls(int soul_amount) {
+		boolean success=false;
+		if (soul.subtractSouls(soul_amount)){
+			success=true;
+		}
+		return success;
+	}
+
+	@Override
+	public boolean subtractSouls(int soul_amount) {
+		boolean success = false;
+		if (soul.subtractSouls(soul_amount)){
+			success=true;
+		}
+		return success;
 	}
 }

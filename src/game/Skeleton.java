@@ -14,7 +14,7 @@ public class Skeleton extends Actor implements Soul{
     private ArrayList<Location> skeletonLocation = new ArrayList<>();
     private final static int RESURRECT_PROBABILITY = 50;
     private final static int SKELETON_SOULS = 250;
-
+    private Souls soul;
     /**
      * Constructor for the Skeleton class.
      * All Skeletons are represented by an 's' and have 100 hit points.
@@ -28,6 +28,8 @@ public class Skeleton extends Actor implements Soul{
         behaviours.add(new WanderBehaviour());
         this.addCapability(Abilities.RESURRECT);
         this.addItemToInventory(getRandomWeapon());
+        this.soul = new Souls("SkeletonSouls",'$',true,250);
+        this.addItemToInventory(soul);
     }
 
     /**
@@ -97,16 +99,6 @@ public class Skeleton extends Actor implements Soul{
     }
 
     /**
-     * Transfers the souls to the player after Skeleton is killed
-     *
-     * @param soul Soul that represents the player's soul
-     */
-    @Override
-    public void transferSouls(Soul soul) {
-        soul.addSouls(SKELETON_SOULS);
-    }
-
-    /**
      * Randomly returns a Weapon for Skeleton to equip
      *
      * @return A random Weapon(Broadsword, GiantAxe)
@@ -125,5 +117,28 @@ public class Skeleton extends Actor implements Soul{
     @Override
     public String toString(){
         return name + " (" + hitPoints + "/" + maxHitPoints +")(" + getWeapon() + ")";
+    }
+
+    @Override
+    public void transferSouls(Souls soulObject) {
+        soul.transferSouls(soulObject);
+    }
+
+    @Override
+    public boolean addSouls(int soul_amount) {
+        boolean success=false;
+        if (soul.subtractSouls(soul_amount)){
+            success=true;
+        }
+        return success;
+    }
+
+    @Override
+    public boolean subtractSouls(int soul_amount) {
+        boolean success = false;
+        if (soul.subtractSouls(soul_amount)){
+            success=true;
+        }
+        return success;
     }
 }
