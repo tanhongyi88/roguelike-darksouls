@@ -61,6 +61,8 @@ public class AttackAction extends Action {
 				}
 				else{
 					result += System.lineSeparator() + target + " is killed.";
+					target.asSoul().transferSouls(actor.asSoul());
+					System.out.println("Transfer done!");
 				}
 			}
 			else{
@@ -73,6 +75,7 @@ public class AttackAction extends Action {
 				// remove actor
 				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
 				map.removeActor(target);
+				target.asSoul().transferSouls(actor.asSoul());
 				result += System.lineSeparator() + target + " is killed.";
 			}
 		}
