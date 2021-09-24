@@ -50,20 +50,10 @@ public class AttackAction extends Action {
 			return actor + " misses " + target + ".";
 		}
 
-		if (actor instanceof Undead){
-			int damage = 20;
-			String[] s = {"punches", "thwacks"};
-			Random random = new Random();
-			int select = random.nextInt(s.length);
-			target.hurt(damage);
+		int damage = weapon.damage();
+		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		target.hurt(damage);
 
-			result = actor + " " + s[select] + " " + target + " for " + damage + " damage.";
-		}
-		else{
-			int damage = weapon.damage();
-			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-			target.hurt(damage);
-		}
 		if (!target.isConscious()) {
 			if (target instanceof Skeleton && target.hasCapability(Abilities.RESURRECT)){
 				if (((Skeleton) target).resurrect(map)){
@@ -71,6 +61,8 @@ public class AttackAction extends Action {
 				}
 				else{
 					result += System.lineSeparator() + target + " is killed.";
+					target.asSoul().transferSouls(actor.asSoul());
+					System.out.println("Transfer done!");
 				}
 			}
 			else{
@@ -83,7 +75,11 @@ public class AttackAction extends Action {
 				// remove actor
 				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
 				map.removeActor(target);
+				target.asSoul().transferSouls(actor.asSoul());
 				result += System.lineSeparator() + target + " is killed.";
+				if (target instanceof LordOfCinder){
+					result += System.lineSeparator() + "LORD OF CINDER FALLEN";
+				}
 			}
 		}
 		return result;

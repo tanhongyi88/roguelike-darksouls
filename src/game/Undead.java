@@ -6,16 +6,18 @@ import game.interfaces.Behaviour;
 import game.interfaces.Soul;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * An undead minion.
  */
 public class Undead extends Actor implements Soul{
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
+	private final static int UNDEAD_SOULS = 50;
 	private Souls soul;
 
 	/** 
-	 * Constructor for the Skeleton class.
+	 * Constructor for the Undead class.
 	 * All Undeads are represented by an 'u' and have 50 hit points.
 	 *
 	 * @param name the name of this Undead
@@ -66,6 +68,21 @@ public class Undead extends Actor implements Soul{
 			}
 		}
 		return new WanderBehaviour();
+	}
+
+	/**
+	 * Creates and returns an intrinsic weapon for Undead
+	 * Skeleton 'punches' or 'thwacks' for 20 damage.
+	 *
+	 * @return A freshly-instantiated IntrinsicWeapon
+	 */
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		String[] s = {"punches", "thwacks"};
+		Random random = new Random();
+		int select = random.nextInt(s.length);
+
+		return new IntrinsicWeapon(20, s[select]);
 	}
 
 	/**
