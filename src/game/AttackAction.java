@@ -50,20 +50,10 @@ public class AttackAction extends Action {
 			return actor + " misses " + target + ".";
 		}
 
-		if (actor instanceof Undead){
-			int damage = 20;
-			String[] s = {"punches", "thwacks"};
-			Random random = new Random();
-			int select = random.nextInt(s.length);
-			target.hurt(damage);
+		int damage = weapon.damage();
+		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		target.hurt(damage);
 
-			result = actor + " " + s[select] + " " + target + " for " + damage + " damage.";
-		}
-		else{
-			int damage = weapon.damage();
-			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-			target.hurt(damage);
-		}
 		if (!target.isConscious()) {
 			if (target instanceof Skeleton && target.hasCapability(Abilities.RESURRECT)){
 				if (((Skeleton) target).resurrect(map)){

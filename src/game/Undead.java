@@ -6,16 +6,17 @@ import game.interfaces.Behaviour;
 import game.interfaces.Soul;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * An undead minion.
  */
 public class Undead extends Actor implements Soul{
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
-	private Souls soul;
+	private final static int UNDEAD_SOULS = 50;
 
 	/** 
-	 * Constructor for the Skeleton class.
+	 * Constructor for the Undead class.
 	 * All Undeads are represented by an 'u' and have 50 hit points.
 	 *
 	 * @param name the name of this Undead
@@ -23,8 +24,6 @@ public class Undead extends Actor implements Soul{
 	public Undead(String name) {
 		super(name, 'u', 50);
 		behaviours.add(new WanderBehaviour());
-		this.soul = new Souls("UndeadSouls",'$',true,50);
-		this.addItemToInventory(soul);
 	}
 
 	/**
@@ -69,6 +68,31 @@ public class Undead extends Actor implements Soul{
 	}
 
 	/**
+	 * Creates and returns an intrinsic weapon for Undead
+	 * Skeleton 'punches' or 'thwacks' for 20 damage.
+	 *
+	 * @return A freshly-instantiated IntrinsicWeapon
+	 */
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		String[] s = {"punches", "thwacks"};
+		Random random = new Random();
+		int select = random.nextInt(s.length);
+
+		return new IntrinsicWeapon(20, s[select]);
+	}
+
+	/**
+	 * Transfers the souls to the player after Undead is killed
+	 *
+	 * @param soul Soul that represents the player's soul
+	 */
+	@Override
+	public void transferSouls(Soul soul) {
+		soul.addSouls(UNDEAD_SOULS);
+	}
+
+	/**
 	 * A toString method for the Undead's class
 	 *
 	 * @return String that represents the Skeleton's information(hitpoints and weapon)
@@ -76,28 +100,5 @@ public class Undead extends Actor implements Soul{
 	@Override
 	public String toString(){
 		return name + " (" + hitPoints + "/" + maxHitPoints +")(no Weapon)";
-	}
-
-	@Override
-	public void transferSouls(Souls soulObject) {
-		soul.transferSouls(soulObject);
-	}
-
-	@Override
-	public boolean addSouls(int soul_amount) {
-		boolean success=false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
-		}
-		return success;
-	}
-
-	@Override
-	public boolean subtractSouls(int soul_amount) {
-		boolean success = false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
-		}
-		return success;
 	}
 }
