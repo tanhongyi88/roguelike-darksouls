@@ -32,6 +32,13 @@ public class Player extends Actor implements Breathing {
 		oxygen-=1;
 		if(oxygen == 0){
 			//end the game when Player doesn't have any oxygen left.
+			display.println("YYY     YYY   .0OO000.     UU       UU     DD\"\"\"Db     III   EEEEEEEEEEE  DD\"\"\"Db");
+			display.println(" YYY   YYY  00'      `00   UU       UU     DD    `Db.  III   EE           DD    `Db.");
+			display.println("  YYY YYY  OO          00  UU       UU     DD     `Db  III   EE           DD     `Db");
+			display.println("   'YYY'   OO          00  UU       UU     DD      DD  III   EEEEEEEEE    DD      DD");
+			display.println("    YYY    OO          00  UU       UU     DD      DD  III   EE           DD      DD");
+			display.println("    YYY     OO.      ,00   UU.     ,UU     DD    ,DP'  III   EE           DD    ,DP'");
+			display.println("    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'");
 			map.removeActor(this);
 		}
 		// Check if it has previous action or not. If so, execute that last action.
