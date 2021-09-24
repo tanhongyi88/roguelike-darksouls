@@ -13,6 +13,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	private Location previousLocation;
 	private final Menu menu = new Menu();
+	private Souls soul;
 
 	/**
 	 * Constructor for the Player class.
@@ -29,6 +30,8 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.REST);
 		this.addItemToInventory(new Broadsword());
 		this.registerInstance();
+		this.soul = new Souls("PlayerSouls",'$',true,0);
+		this.addItemToInventory(soul);
 	}
 
 	/**
@@ -74,8 +77,26 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param soulObject a target souls.
 	 */
 	@Override
-	public void transferSouls(Soul soulObject) {
-		//TODO: transfer Player's souls to another Soul's instance.
+	public void transferSouls(Souls soulObject) {
+		soul.transferSouls(soulObject);
+	}
+
+	@Override
+	public boolean addSouls(int soul_amount) {
+		boolean success=false;
+		if (soul.subtractSouls(soul_amount)){
+			success=true;
+		}
+		return success;
+	}
+
+	@Override
+	public boolean subtractSouls(int soul_amount) {
+		boolean success = false;
+		if (soul.subtractSouls(soul_amount)){
+			success=true;
+		}
+		return success;
 	}
 
 	/**

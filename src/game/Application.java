@@ -16,7 +16,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new Bonfire());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new Bonfire(), new Fire_Keeper());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -31,7 +31,7 @@ public class Application {
 					"..................................###___###...c...............+++...............",
 					"..................................#_______#......................+++............",
 					"...........++.....................#___B___#.......................+.............",
-					".........+++......................#_______#........................++...........",
+					".........+++......................#F______#........................++...........",
 					"............+++...................####_####..........................+..........",
 					"..............+......................................................++.........",
 					"..............++.................................................++++++.........",
@@ -68,5 +68,6 @@ public class Application {
 			gameMap.at(2,1).addActor(new Skeleton("Skeleton", player));
 
 			world.run();
+
 	}
 }
