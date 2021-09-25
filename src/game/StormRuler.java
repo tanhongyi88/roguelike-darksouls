@@ -1,10 +1,9 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Location;
+import java.util.Random;
 
 public class StormRuler extends GameWeaponItem{
-
+    private static final int CRITICAL_STRIKE_PROBABILITY = 20;
     /**
      * Constructor.
      */
@@ -12,8 +11,13 @@ public class StormRuler extends GameWeaponItem{
         super("Storm Ruler", '7', 70, "hits", 60);
     }
 
-    public void changeHitRate(int hitRate){ this.hitRate = hitRate; }
+    @Override
+    public int damage(){
+        Random random = new Random();
 
-    public void changeDamage(int damage){ this.damage = damage; }
-
+        if(random.nextDouble()*100 <= CRITICAL_STRIKE_PROBABILITY){
+            return damage*2;
+        }
+        return damage;
+    }
 }
