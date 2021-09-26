@@ -2,6 +2,7 @@ package game.weapon;
 
 import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
+import game.weapon.action.EmberFormAction;
 
 /**
  * YhormsGreatMachete class represents the Yhorms Great Machete Weapon

@@ -9,24 +9,23 @@ public class BuyAxeAction extends Action {
     private Player player;
     private GiantAxe giantAxe;
     private SwapWeaponAction swapWeapon;
-    private int soulPrice;
+    private final int PRICE = 1000;
 
     public BuyAxeAction(Player player){
         this.player = player;
         this.giantAxe = new GiantAxe();
         this.swapWeapon = new SwapWeaponAction(giantAxe);
-        this.soulPrice = 1000;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
         int playerSouls = player.getSouls();
 
-        if (playerSouls!= soulPrice){
+        if (playerSouls!= PRICE){
             return "Purchase failed: Not enough souls!";
         }
         else{
-            player.subtractSouls(soulPrice);
+            player.subtractSouls(PRICE);
             swapWeapon.execute(player,map);
             return "Purchase successful: Giant Axe received!";
         }
@@ -37,6 +36,6 @@ public class BuyAxeAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Buy Giant Axe from Fire Keeper (" + soulPrice + " souls)";
+        return "Buy Giant Axe from Fire Keeper (" + PRICE + " souls)";
     }
 }

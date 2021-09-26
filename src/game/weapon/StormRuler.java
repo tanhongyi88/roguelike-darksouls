@@ -1,6 +1,11 @@
 package game.weapon;
 
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.WeaponAction;
 import game.enums.Abilities;
+import game.enums.Status;
+import game.weapon.action.ChargeAction;
+import game.weapon.action.WindSlashAction;
 
 import java.util.Random;
 
@@ -46,4 +51,13 @@ public class StormRuler extends GameWeaponItem {
         this.damage = damage;
     }
 
+    @Override
+    public WeaponAction getActiveSkill(Actor target, String direction) {
+        if(this.hasCapability(Status.CHARGED)){
+            return new WindSlashAction(this,target);
+        }
+        else{
+            return new ChargeAction(this);
+        }
+    }
 }

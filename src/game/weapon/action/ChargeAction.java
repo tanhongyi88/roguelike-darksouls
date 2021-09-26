@@ -7,21 +7,14 @@ import game.weapon.StormRuler;
 
 public class ChargeAction extends WeaponAction {
     private StormRuler stormRuler;
-    private Player player;
     private int weaponCharge;
     private final int MAX_CHARGE = 3;
 
-    public ChargeAction(WeaponItem stormRuler, Player player) {
+    public ChargeAction(WeaponItem stormRuler) {
         super(stormRuler);
-        this.player = player;
         this.weaponCharge = 0;
     }
-    public int getWeaponCharge(){
-        return weaponCharge;
-    }
-    public int getMAX_CHARGE(){
-        return MAX_CHARGE;
-    }
+
     public void increaseCharge(){ weaponCharge +=1; }
 
     @Override
@@ -30,16 +23,17 @@ public class ChargeAction extends WeaponAction {
         if(weaponCharge < MAX_CHARGE){
             if(weaponCharge ==0){
                 increaseCharge();
-                return actor + " begins to charge Storm Ruler";
+                return menuDescription(actor);
             }
             if(weaponCharge>0){
                 increaseCharge();
-                return actor + " continues to charge Storm Ruler";
+                return menuDescription(actor);
             }
             actor.addCapability(Status.DISARM);
         }
         if(weaponCharge==MAX_CHARGE){
             actor.removeCapability(Status.DISARM);
+            stormRuler.addCapability(Status.CHARGED);
             return "Charge complete!";
         }
         return null;
@@ -47,6 +41,6 @@ public class ChargeAction extends WeaponAction {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Unkindled charges Storm Ruler (" + weaponCharge + "/" + MAX_CHARGE + ")";
+        return actor + " charges Storm Ruler (" + weaponCharge + "/" + MAX_CHARGE + ")";
     }
 }

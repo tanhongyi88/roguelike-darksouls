@@ -10,5 +10,6 @@ public enum Status {
     ABLE_TO_ENTER_VALLEY,
     ABLE_TO_STEP_ON_FLOOR,
     DISARM,
-    STUN
+    STUN,
+    CHARGED
 }
