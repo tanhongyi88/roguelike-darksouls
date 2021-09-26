@@ -14,7 +14,7 @@ import java.util.Random;
 public class Undead extends Actor implements Soul{
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
 	private final static int UNDEAD_SOULS = 50;
-	private Souls soul;
+//	private Souls souls;
 
 	/** 
 	 * Constructor for the Undead class.
@@ -25,8 +25,8 @@ public class Undead extends Actor implements Soul{
 	public Undead(String name) {
 		super(name, 'u', 50);
 		behaviours.add(new WanderBehaviour());
-		this.soul = new Souls("UndeadSouls",'$',true,50);
-		this.addItemToInventory(soul);
+//		this.souls = new Souls("UndeadSouls",'$',true,50);
+//		this.addItemToInventory(souls);
 	}
 
 	/**
@@ -96,25 +96,25 @@ public class Undead extends Actor implements Soul{
 	}
 
 	@Override
-	public void transferSouls(Souls soulObject) {
-		soul.transferSouls(soulObject);
+	public void transferSouls(Soul soulObject) {
+		soulObject.addSouls(UNDEAD_SOULS);
 	}
 
-	@Override
-	public boolean addSouls(int soul_amount) {
-		boolean success=false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
-		}
-		return success;
-	}
-
-	@Override
-	public boolean subtractSouls(int soul_amount) {
-		boolean success = false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
-		}
-		return success;
-	}
+//	@Override
+//	public boolean addSouls(int soul_amount) {
+//		boolean success=false;
+//		if (soul.subtractSouls(soul_amount)){
+//			success=true;
+//		}
+//		return success;
+//	}
+//
+//	@Override
+//	public boolean subtractSouls(int soul_amount) {
+//		boolean success = false;
+//		if (soul.subtractSouls(soul_amount)){
+//			success=true;
+//		}
+//		return success;
+//	}
 }
