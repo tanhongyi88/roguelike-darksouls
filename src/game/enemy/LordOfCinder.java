@@ -1,6 +1,7 @@
 package game.enemy;
 
 import edu.monash.fit2099.engine.*;
+import game.behaviour.FollowBehaviour;
 import game.player.AttackAction;
 import game.behaviour.AttackBehaviour;
 import game.enums.Status;
@@ -42,6 +43,7 @@ public abstract class LordOfCinder extends Actor implements Soul{
         Actions actions = new Actions();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             behaviours.add(0, new AttackBehaviour(otherActor, direction));
+            behaviours.add(1, new FollowBehaviour(otherActor));
             actions.add(new AttackAction(this,direction));
         }
         return actions;
