@@ -55,7 +55,7 @@ public class Player extends Actor implements Soul, Resettable {
 			display.println("    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'");
 			display.println("The world is resetting...");
 
-			map.moveActor(this, new Location(map, 38, 12));
+			map.moveActor(this, map.at(38,12));
 			return new ResetAction(this.previousLocation);
 		}
 		// Handle multi-turn Actions
@@ -155,17 +155,16 @@ public class Player extends Actor implements Soul, Resettable {
 		this.hitPoints = this.maxHitPoints;
 
 		// reset EstusFlask
-//		// find estus flask in inventory and reset
-//		for (Item item: this.inventory) {
-//			if (item == EstusFlask) {
-//				item.numOfEstusFlask = 3;
-//			}
-//		}
-
+		getEstusFlask().refillEstusFlask();
 	}
 
 	@Override
 	public boolean isExist() {
 		return true;
+	}
+
+	@Override
+	public Soul asSoul() {
+		return this.soul;
 	}
 }
