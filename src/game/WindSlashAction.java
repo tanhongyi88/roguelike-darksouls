@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.enums.Status;
 
 public class WindSlashAction extends WeaponAction {
     private StormRuler stormRuler;
@@ -35,6 +36,7 @@ public class WindSlashAction extends WeaponAction {
                     if (destination.getActor() == boss) {
                         stormRuler.changeHitRate(100);
                         stormRuler.changeDamage(140);
+                        actor.addCapability(Status.STUN);
                         return menuDescription(boss);
                     }
                     stormRuler.changeHitRate(60);

@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.WeaponAction;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.enums.Status;
 
 public class ChargeAction extends WeaponAction {
     private StormRuler stormRuler;
@@ -36,8 +37,10 @@ public class ChargeAction extends WeaponAction {
                 increaseCharge();
                 return actor + " continues to charge Storm Ruler";
             }
+            actor.addCapability(Status.DISARM);
         }
         if(weaponCharge==MAX_CHARGE){
+            actor.removeCapability(Status.DISARM);
             return "Charge complete!";
         }
         return null;
