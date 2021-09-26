@@ -13,7 +13,9 @@ public class Player extends Actor implements Soul, Resettable {
 
 	private Location previousLocation;
 	private final Menu menu = new Menu();
-	private Souls soul;
+	private int numberOfSoul;
+	private Souls souls;
+
 	/**
 	 * Constructor for the Player class.
 	 *
@@ -27,11 +29,11 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.ABLE_TO_ENTER_VALLEY);
 		this.addCapability(Status.ABLE_TO_STEP_ON_FLOOR);
 		this.addCapability(Abilities.REST);
-		this.addCapability(Abilities.BUY);
 		this.addItemToInventory(new Broadsword());
 		this.registerInstance();
-		this.soul = new Souls("PlayerSouls",'$',false,0);
-		this.addItemToInventory(soul);
+		this.numberOfSoul = 0;
+		this.souls = new Souls("PlayerSouls",'$',true,numberOfSoul, previousLocation);
+		this.addItemToInventory(souls);
 	}
 
 	/**
@@ -55,23 +57,31 @@ public class Player extends Actor implements Soul, Resettable {
 			display.println("    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'");
 			display.println("The world is resetting...");
 
-			map.moveActor(this, map.at(38,12));
+			map.moveActor(this, new Location(map, 38, 12));
 			return new ResetAction(this.previousLocation);
 		}
+		Item currentWeapon = (Item) this.getWeapon();
+		Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
+
+		if(previousWeapon.hasCapability(Abilities.SWAP)){
+			this.removeItemFromInventory(currentWeapon);
+			SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
+			swap.execute(this, map);
+		}
+
 		// Handle multi-turn Actions
+		actions.add(new DrinkAction(this));
+
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon());
-		actions.add(new DrinkAction(this));
+		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
+
 
 		// update the actor previous location every turn by injection
 		this.previousLocation = map.locationOf(this);
 
 		return menu.showMenu(this, actions, display);
-	}
-	public int getSouls(){
-		return soul.getNumberOfSouls();
 	}
 
 	/**
@@ -79,27 +89,26 @@ public class Player extends Actor implements Soul, Resettable {
 	 *
 	 * @param soulObject a target souls.
 	 */
+
 	@Override
-	public void transferSouls(Souls soulObject) {
-		soul.transferSouls(soulObject);
+	public void transferSouls(Soul soulObject) {
+		soulObject.addSouls(numberOfSoul);
+		this.numberOfSoul = 0;
 	}
 
 	@Override
-	public boolean addSouls(int soul_amount) {
-		boolean success=false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
-		}
-		return success;
+	public boolean addSouls(int soulAmount) {
+		this.numberOfSoul += soulAmount;
+		return true;
 	}
 
 	@Override
-	public boolean subtractSouls(int soul_amount) {
-		boolean success = false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
+	public boolean subtractSouls(int soulAmount) {
+		if (soulAmount < numberOfSoul){
+			this.numberOfSoul -= soulAmount;
+			return true;
 		}
-		return success;
+		return false;
 	}
 
 	/**
@@ -155,7 +164,13 @@ public class Player extends Actor implements Soul, Resettable {
 		this.hitPoints = this.maxHitPoints;
 
 		// reset EstusFlask
-		getEstusFlask().refillEstusFlask();
+//		// find estus flask in inventory and reset
+//		for (Item item: this.inventory) {
+//			if (item == EstusFlask) {
+//				item.numOfEstusFlask = 3;
+//			}
+//		}
+
 	}
 
 	@Override
@@ -163,8 +178,12 @@ public class Player extends Actor implements Soul, Resettable {
 		return true;
 	}
 
-	@Override
-	public Soul asSoul() {
-		return this.soul;
+	public Souls getSoul() {
+		for (Item item : inventory) {
+			if (item instanceof Souls){
+				return (Souls) item;
+			}
+		}
+		return null;
 	}
 }
