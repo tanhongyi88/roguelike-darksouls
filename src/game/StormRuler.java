@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * StormRuler class represents the Storm Ruler Weapon
- * Can only be equippes by the Player
+ * Can only be equipped by the Player
  *
  * @author
  * @version 1.0.0
@@ -37,4 +37,13 @@ public class StormRuler extends GameWeaponItem{
         }
         return damage;
     }
+
+    public void changeHitRate(int hitRate){
+        this.hitRate = hitRate;
+    }
+
+    public void changeDamage(int damage){
+        this.damage = damage;
+    }
+
 }
