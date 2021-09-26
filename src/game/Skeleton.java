@@ -29,8 +29,6 @@ public class Skeleton extends Actor implements Soul{
         behaviours.add(new WanderBehaviour());
         this.addCapability(Abilities.RESURRECT);
         this.addItemToInventory(getRandomWeapon());
-//        this.soul = new Souls("SkeletonSouls",'$',false,250);
-//        this.addItemToInventory(soul);
     }
 
     /**

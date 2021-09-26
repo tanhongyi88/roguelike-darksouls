@@ -14,7 +14,6 @@ public class Player extends Actor implements Soul, Resettable {
 	private Location previousLocation;
 	private final Menu menu = new Menu();
 	private int numberOfSoul;
-	private Souls soul;
 
 	/**
 	 * Constructor for the Player class.
@@ -31,9 +30,6 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.REST);
 		this.addItemToInventory(new Broadsword());
 		this.registerInstance();
-		this.numberOfSoul = 0;
-		this.soul = new Souls("PlayerSouls",'$',false,0);
-		this.addItemToInventory(soul);
 		this.numberOfSoul = 0;
 	}
 
@@ -171,19 +167,5 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public boolean isExist() {
 		return true;
-	}
-
-	@Override
-	public Soul asSoul() {
-		return this.soul;
-	}
-
-	public Souls getSoul() {
-		for (Item item : inventory) {
-			if (item instanceof Souls){
-				return (Souls) item;
-			}
-		}
-		return null;
 	}
 }
