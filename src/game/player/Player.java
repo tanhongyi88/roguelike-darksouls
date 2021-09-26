@@ -9,6 +9,9 @@ import game.weapon.Broadsword;
 
 /**
  * Class representing the Player.
+ *
+ * @author
+ * @version 1.0.0
  */
 public class Player extends Actor implements Soul, Resettable {
 
@@ -59,51 +62,67 @@ public class Player extends Actor implements Soul, Resettable {
 			map.moveActor(this, map.at(38,12));
 			return new ResetAction(this.previousLocation);
 		}
-		Item currentWeapon = (Item) this.getWeapon();
-		Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
+		if(!this.hasCapability(Status.DISARM)){
+			Item currentWeapon = (Item) this.getWeapon();
+			Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
 
-		if(previousWeapon.hasCapability(Abilities.SWAP)){
-			this.removeItemFromInventory(currentWeapon);
-			SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
-			swap.execute(this, map);
+			if(previousWeapon.hasCapability(Abilities.SWAP)){
+				this.removeItemFromInventory(currentWeapon);
+				SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
+				swap.execute(this, map);
+			}
+
+			// Handle multi-turn Actions
+			actions.add(new DrinkAction(this));
+			actions.add(this.getWeapon().getActiveSkill(this,""));
+
+			if (lastAction.getNextAction() != null)
+				return lastAction.getNextAction();
+
+			display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
+
+
+			// update the actor previous location every turn by injection
+			this.previousLocation = map.locationOf(this);
+
+			return menu.showMenu(this, actions, display);
 		}
-
-		// Handle multi-turn Actions
-		actions.add(new DrinkAction(this));
-
-		if (lastAction.getNextAction() != null)
-			return lastAction.getNextAction();
-
-		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
-
-
-		// update the actor previous location every turn by injection
-		this.previousLocation = map.locationOf(this);
-
-		return menu.showMenu(this, actions, display);
+		return new DoNothingAction();
 	}
 
 	public int getSouls(){
 		return this.numberOfSoul;
 	}
+
 	/**
 	 * Transfers the souls to another Soul's instance after Player is killed
 	 *
 	 * @param soulObject a target souls.
 	 */
-
 	@Override
 	public void transferSouls(Soul soulObject) {
 		soulObject.addSouls(numberOfSoul);
 		this.numberOfSoul = 0;
 	}
 
+	/**
+	 * Adds the the number of souls
+	 *
+	 * @param soulAmount int that represents the number of souls to be added
+	 * @return true after the souls is added
+	 */
 	@Override
 	public boolean addSouls(int soulAmount) {
 		this.numberOfSoul += soulAmount;
 		return true;
 	}
 
+	/**
+	 * Subtract the number of souls
+	 *
+	 * @param soulAmount int that represents the number of souls to be subtracted
+	 * @return true if the number of souls to be deducted is lesser than the total soul; false otherwise
+	 */
 	@Override
 	public boolean subtractSouls(int soulAmount) {
 		if (soulAmount < numberOfSoul){
@@ -169,6 +188,11 @@ public class Player extends Actor implements Soul, Resettable {
 		getEstusFlask().refillEstusFlask();
 	}
 
+	/**
+	 * Checks for the existence of the player in the game
+	 *
+	 * @return true as the player always exist
+	 */
 	@Override
 	public boolean isExist() {
 		return true;
