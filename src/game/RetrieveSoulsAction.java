@@ -7,13 +7,15 @@ import edu.monash.fit2099.engine.PickUpItemAction;
 
 public class RetrieveSoulsAction extends PickUpItemAction {
 
+    private int soulAmountToRetrieve;
     /**
      * Constructor.
      *
      * @param souls the item(Souls) to pick up
      */
-    public RetrieveSoulsAction(Item souls) {
+    public RetrieveSoulsAction(Item souls, int soulAmountToRetrieve) {
         super(souls);
+        this.soulAmountToRetrieve = soulAmountToRetrieve;
     }
 
     /**
@@ -25,12 +27,19 @@ public class RetrieveSoulsAction extends PickUpItemAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        return super.execute(actor, map);
+        map.locationOf(actor).removeItem(item);
+        item.asSoul().transferSouls(actor.asSoul());
+        return "Retrieved " + soulAmountToRetrieve + " souls!";
     }
 
-
-    //    @Override
-//    public String menuDescription(Actor actor) {
-//        return "Retrieve lost souls (" + item.
-//    }
+    /**
+     * Description text to describe this action
+     *
+     * @param actor The actor performing the action.
+     * @return
+     */
+    @Override
+    public String menuDescription(Actor actor) {
+        return "Retrieve lost souls (" + soulAmountToRetrieve + " souls)";
+    }
 }
