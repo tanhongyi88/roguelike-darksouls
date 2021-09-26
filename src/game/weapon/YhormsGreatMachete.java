@@ -26,12 +26,8 @@ public class YhormsGreatMachete extends GameWeaponItem {
      *
      * @return int that represents the hit rate of the weapon
      */
-    public void increaseHitRate() {
-        this.hitRate += 30;
+    public void increaseHitRateWhenEmberFore() {
+        this.hitRate = 90;
     }
 
-    @Override
-    public WeaponAction getActiveSkill(Actor target, String direction){
-        return null;
-    }
 }
