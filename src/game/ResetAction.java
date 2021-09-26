@@ -1,14 +1,12 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
 public class ResetAction extends Action {
 
     private Location previousLocation;
-
+    private Location previousTokenLocation;
+    private Item soulsToken;
     /**
      * Constructor to create an Action that will reset the Player's hitpoints, EstusFlask's charges
      *
@@ -16,8 +14,12 @@ public class ResetAction extends Action {
     public ResetAction (Location placeWherePlayerDied) {
         this.previousLocation = placeWherePlayerDied;
 
+
     }
 
+    /**
+     * Constructor to create an Action that will reset the player without resetting the location
+     */
     public ResetAction() {
 
     }
@@ -33,7 +35,14 @@ public class ResetAction extends Action {
     public String execute(Actor actor, GameMap map) {
         ResetManager.getInstance().run();
         if (this.previousLocation != null) {
-            this.previousLocation.addItem(new TokenOfSouls("Token of Souls", '$', true, actor.asSoul()));
+            if (this.previousTokenLocation != null) {
+                this.previousTokenLocation.removeItem(this.soulsToken);
+            }
+            Item token = new TokenOfSouls("Token of Souls", '$', true, actor.asSoul());
+            this.previousLocation.addItem(token);
+            this.previousTokenLocation = this.previousLocation;
+            this.soulsToken = token;
+            System.out.println("actor.asSoul(): "+ actor.asSoul());
         }
         return actor + " is returned to Bonfire";
     }
