@@ -22,4 +22,8 @@ public class EstusFlask extends Item {
     public void decrementNumberOfEstusFlask(){
         numOfEstusFlask -= 1;
     }
+
+    public void refillEstusFlask() {
+        this.numOfEstusFlask = MAX_NUM_OF_ESTUS_FLASK;
+    }
 }

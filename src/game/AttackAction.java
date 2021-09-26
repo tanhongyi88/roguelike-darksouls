@@ -76,6 +76,12 @@ public class AttackAction extends Action {
 				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
 				map.removeActor(target);
 				target.asSoul().transferSouls(actor.asSoul());
+				if (target instanceof Player) {
+					// do nothing
+				} else {
+					map.removeActor(target);
+				}
+
 				result += System.lineSeparator() + target + " is killed.";
 				if (target instanceof LordOfCinder){
 					result += System.lineSeparator() + "LORD OF CINDER FALLEN";
