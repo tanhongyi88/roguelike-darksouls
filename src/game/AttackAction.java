@@ -71,6 +71,8 @@ public class AttackAction extends Action {
 				}
 				else{
 					result += System.lineSeparator() + target + " is killed.";
+					target.asSoul().transferSouls(actor.asSoul());
+					System.out.println("Transfer done!");
 				}
 			}
 			else{
@@ -82,6 +84,8 @@ public class AttackAction extends Action {
 					drop.execute(target, map);
 				// remove actor
 				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
+				map.removeActor(target);
+				target.asSoul().transferSouls(actor.asSoul());
 				if (target instanceof Player) {
 					// do nothing
 				} else {
@@ -89,6 +93,9 @@ public class AttackAction extends Action {
 				}
 
 				result += System.lineSeparator() + target + " is killed.";
+				if (target instanceof LordOfCinder){
+					result += System.lineSeparator() + "LORD OF CINDER FALLEN";
+				}
 			}
 		}
 		return result;
