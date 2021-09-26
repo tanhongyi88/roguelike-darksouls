@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.*;
+import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;
@@ -31,9 +32,22 @@ public class YhormTheGiant extends LordOfCinder{
             this.removeCapability(Status.STUN);
             return new DoNothingAction();
         }
+        if(this.getHitPoints() < this.getMaxHitPoints()/2) {
+            this.addCapability(Abilities.EMBER_FORM);
+            display.println("Raargh~!!");
+            return EmberFormAction();
+        }
+
         return super.playTurn(actions, lastAction, map, display);
     }
 
+    private int getHitPoints() {
+        return this.hitPoints;
+    }
+
+    private int getMaxHitPoints() {
+        return this.maxHitPoints;
+    }
     public String toString(){
         return name + " (" + hitPoints + "/" + maxHitPoints +")(" + getWeapon() + ")";
     }
