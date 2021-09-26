@@ -39,4 +39,8 @@ public class FireKeeper extends Ground {
         }
         return actions;
     }
+
+    public boolean canActorEnter(Actor actor) {
+        return true;
+    }
 }
