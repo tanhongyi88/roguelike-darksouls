@@ -23,4 +23,9 @@ public class StormRuler extends GameWeaponItem{
         }
         return damage;
     }
+
+    public void changeHitRate(int hitRate){ this.hitRate = hitRate; }
+
+    public void changeDamage(int damage){ this.damage = damage; }
+
 }
