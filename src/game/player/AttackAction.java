@@ -8,6 +8,9 @@ import game.enums.Abilities;
 
 /**
  * Special Action for attacking other Actors.
+ *
+ * @author
+ * @version 1.0.0
  */
 public class AttackAction extends Action {
 
@@ -27,7 +30,7 @@ public class AttackAction extends Action {
 	protected Random rand = new Random();
 
 	/**
-	 * Constructor.
+	 * Constructor for the AttackAction.
 	 * 
 	 * @param target the Actor to attack
 	 */
@@ -36,6 +39,13 @@ public class AttackAction extends Action {
 		this.direction = direction;
 	}
 
+	/**
+	 * Performs the AttackAction.
+	 *
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return String that represents the AttackAction
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -46,20 +56,10 @@ public class AttackAction extends Action {
 			return actor + " misses " + target + ".";
 		}
 
-		if (actor instanceof Undead){
-			int damage = 20;
-			String[] s = {"punches", "thwacks"};
-			Random random = new Random();
-			int select = random.nextInt(s.length);
-			target.hurt(damage);
+		int damage = weapon.damage();
+		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		target.hurt(damage);
 
-			result = actor + " " + s[select] + " " + target + " for " + damage + " damage.";
-		}
-		else{
-			int damage = weapon.damage();
-			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-			target.hurt(damage);
-		}
 		if (!target.isConscious()) {
 			if (target instanceof Skeleton && target.hasCapability(Abilities.RESURRECT)){
 				if (((Skeleton) target).resurrect(map)){
@@ -67,6 +67,7 @@ public class AttackAction extends Action {
 				}
 				else{
 					result += System.lineSeparator() + target + " is killed.";
+					target.asSoul().transferSouls(actor.asSoul());
 				}
 			}
 			else{
@@ -76,8 +77,6 @@ public class AttackAction extends Action {
 					dropActions.add(item.getDropAction(actor));
 				for (Action drop : dropActions)
 					drop.execute(target, map);
-
-				//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
 
 				if (!(target instanceof Player)) {
 					map.removeActor(target);
@@ -92,6 +91,12 @@ public class AttackAction extends Action {
 		return result;
 	}
 
+	/**
+	 * Returns a descriptive string to be displayed in the menu
+	 *
+	 * @param actor The actor performing the action.
+	 * @return String that describes the AttackAction
+	 */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;

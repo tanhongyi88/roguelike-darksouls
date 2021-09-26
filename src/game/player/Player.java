@@ -81,7 +81,6 @@ public class Player extends Actor implements Soul, Resettable {
 
 			display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
 
-
 			// update the actor previous location every turn by injection
 			this.previousLocation = map.locationOf(this);
 
@@ -90,6 +89,11 @@ public class Player extends Actor implements Soul, Resettable {
 		return new DoNothingAction();
 	}
 
+	/**
+	 * Returns the number of souls for Player
+	 *
+	 * @return int that represents the number of souls
+	 */
 	public int getSouls(){
 		return this.numberOfSoul;
 	}
