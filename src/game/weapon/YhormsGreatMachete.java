@@ -26,7 +26,7 @@ public class YhormsGreatMachete extends GameWeaponItem {
      *
      * @return int that represents the hit rate of the weapon
      */
-    public void increaseHitRateWhenEmberFore() {
+    public void increaseHitRateWhenEmberForm() {
         this.hitRate = 90;
     }
 

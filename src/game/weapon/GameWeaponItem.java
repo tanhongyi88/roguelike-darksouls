@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.*;
 
 public class GameWeaponItem extends WeaponItem {
     /**
-     * Constructor.
+     * Constructor for GameWeaponItem
      *
      * @param name        name of the item
      * @param displayChar character to use for display when item is on the ground
@@ -17,9 +17,10 @@ public class GameWeaponItem extends WeaponItem {
     }
 
     /**
-     * In this game,
+     * Drops the items from an actor.
+     *
      * @param actor an actor that will interact with this item
-     * @return null because
+     * @return null because weapons cannot be dropped
      */
     @Override
     public DropItemAction getDropAction(Actor actor) {

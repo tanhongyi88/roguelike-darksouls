@@ -34,7 +34,7 @@ public class EmberFormAction extends Action {
         
         if (!burnStart) {
             this.burningLocation = map.locationOf(actor);
-            this.greatMachete.increaseHitRateWhenEmberFore();
+            this.greatMachete.increaseHitRateWhenEmberForm();
             this.burnStart = true;
         }
         if (burnStart) {
