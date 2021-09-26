@@ -9,12 +9,17 @@ import game.weapon.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Skeleton class represents the skeleton in the game
+ *
+ * @author
+ * @version 1.0.0
+ */
 public class Skeleton extends Actor implements Soul{
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
     private ArrayList<Location> skeletonLocation = new ArrayList<>();
     private final static int RESURRECT_PROBABILITY = 50;
     private final static int SKELETON_SOULS = 250;
-//    private Souls soul;
     /**
      * Constructor for the Skeleton class.
      * All Skeletons are represented by an 's' and have 100 hit points.
@@ -117,6 +122,11 @@ public class Skeleton extends Actor implements Soul{
         return name + " (" + hitPoints + "/" + maxHitPoints +")(" + getWeapon() + ")";
     }
 
+    /**
+     * Transfers the souls (250 souls) to Player Soul's instance after Skeleton is killed
+     *
+     * @param soulObject a target souls.
+     */
     @Override
     public void transferSouls(Soul soulObject) {
         soulObject.addSouls(SKELETON_SOULS);

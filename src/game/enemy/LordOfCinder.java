@@ -10,14 +10,20 @@ import java.util.ArrayList;
 
 /**
  * The boss of Design o' Souls
- * FIXME: This boss is Boring. It does nothing. You need to implement features here.
- * TODO: Could it be an abstract class? If so, why and how?
+ * An abstract class where all the boss in the game can inherits from
+ *
+ * @author
+ * @version 1.0.0
  */
 public abstract class LordOfCinder extends Actor implements Soul{
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
 
     /**
-     * Constructor.
+     * Constructor for the Lord of CInder class
+     *
+     * @param name          the name of the boss
+     * @param displayChar   the character that will represent the boss in the display
+     * @param hitPoints     the boss's starting hit points
      */
     public LordOfCinder(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
@@ -42,6 +48,8 @@ public abstract class LordOfCinder extends Actor implements Soul{
     }
 
     /**
+     * Selects and returns an action for Lord of Cinder to perform on the current turn.
+     *
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor
