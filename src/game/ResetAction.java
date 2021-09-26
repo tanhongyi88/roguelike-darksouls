@@ -27,31 +27,25 @@ public class ResetAction extends Action {
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return null
+     * @return a String describes the action of resting is done
      */
     @Override
     public String execute(Actor actor, GameMap map) {
         ResetManager.getInstance().run();
-        return menuDescription(actor);
+        if (this.previousLocation != null) {
+            this.previousLocation.addItem(new TokenOfSouls("Token of Souls", '$', true, actor.asSoul()));
+        }
+        return actor + " is returned to Bonfire";
     }
 
     /**
      * A string describing the RestAction for displaying in the UI menu.
      * @param actor The actor performing the action.
-     * @return null
+     * @return a String that describes resting at shrine
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + "Rest at Shrine";
+        return "Rest at Firelink Shrine's Bonfire";
     }
 
-    /**
-     * Returns this Action's hotkey.
-     *
-     * @return the hotkey
-     */
-    @Override
-    public String hotkey() {
-        return "R";
-    }
 }
