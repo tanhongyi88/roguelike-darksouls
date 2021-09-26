@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class YhormTheGiant extends LordOfCinder {
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
     private final static int YHORM_THE_GIANT_SOULS = 5000;
+    private YhormsGreatMachete greatMachete;
 
     /**
      * Constructor for the Undead class.
@@ -30,8 +31,8 @@ public class YhormTheGiant extends LordOfCinder {
      */
     public YhormTheGiant(String name, char displayChar, int hitPoints, Actor player) {
         super(name, displayChar, hitPoints);
-        behaviours.add(new FollowBehaviour(player));
         this.addCapability(Status.WEAK_TO_STORM_RULER);
+        this.greatMachete = new YhormsGreatMachete();
         this.addItemToInventory(new YhormsGreatMachete());
     }
 
@@ -43,6 +44,11 @@ public class YhormTheGiant extends LordOfCinder {
     @Override
     public void transferSouls(Soul playerSoul) {
         playerSoul.addSouls(YHORM_THE_GIANT_SOULS);
+    }
+
+    @Override
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        return super.getAllowableActions(otherActor, direction, map);
     }
 
     /**
@@ -63,7 +69,7 @@ public class YhormTheGiant extends LordOfCinder {
         if(this.getHitPoints() < this.getMaxHitPoints()/2) {
             this.addCapability(Abilities.EMBER_FORM);
             display.println("Raargh~!!");
-            return new EmberFormAction();
+            return new EmberFormAction(this.greatMachete);
         }
 
         return super.playTurn(actions, lastAction, map, display);
@@ -76,6 +82,10 @@ public class YhormTheGiant extends LordOfCinder {
     private int getMaxHitPoints() {
         return this.maxHitPoints;
     }
+
+
+
+
 
     /**
      * A toString method for the Yhorm The Giant's class
