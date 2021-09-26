@@ -7,5 +7,6 @@ public enum Abilities {
     REST,
     RESURRECT,
     BUY,
-    SWAP
+    SWAP,
+    EMBER_FORM
 }
