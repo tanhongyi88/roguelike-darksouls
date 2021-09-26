@@ -3,10 +3,19 @@ import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.reset.ResetAction;
 
-
+/**
+ * The place for the Player to rest/reset.
+ *
+ * @author
+ * @version 1.0.0
+ */
 public class Bonfire extends Ground{
 
 
+    /**
+     * Constructor for the Bonfire class
+     * Represented on the game map as 'B'
+     */
     public Bonfire() {
         super('B');
     }

@@ -6,12 +6,30 @@ import game.player.Player;
 import game.vendor.BuyAxeAction;
 import game.vendor.BuySwordAction;
 
+/**
+ * The place for the Player to trade.
+ *
+ * @author
+ * @version 1.0.0
+ */
 public class FireKeeper extends Ground {
 
+    /**
+     * Constructor for the FireKeeper class
+     * Represented on the game map as 'F'
+     */
     public FireKeeper() {
         super('F');
     }
 
+    /**
+     * Returns the action that can be done in the FireKeeper.
+     *
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return actions that can be done related to the FireKeeper
+     */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();

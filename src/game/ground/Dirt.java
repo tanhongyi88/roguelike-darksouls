@@ -7,6 +7,10 @@ import edu.monash.fit2099.engine.Ground;
  */
 public class Dirt extends Ground {
 
+	/**
+	 * Constructor for the Dirt class
+	 * Represented on the game map as '.'
+	 */
 	public Dirt() {
 		super('.');
 	}
