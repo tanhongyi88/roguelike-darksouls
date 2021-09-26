@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Behaviour;
+import game.interfaces.Resettable;
 import game.interfaces.Soul;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Skeleton extends Actor implements Soul{
     private ArrayList<Location> skeletonLocation = new ArrayList<>();
     private final static int RESURRECT_PROBABILITY = 50;
     private final static int SKELETON_SOULS = 250;
-    private Souls soul;
+//    private Souls soul;
     /**
      * Constructor for the Skeleton class.
      * All Skeletons are represented by an 's' and have 100 hit points.
@@ -28,8 +29,8 @@ public class Skeleton extends Actor implements Soul{
         behaviours.add(new WanderBehaviour());
         this.addCapability(Abilities.RESURRECT);
         this.addItemToInventory(getRandomWeapon());
-        this.soul = new Souls("SkeletonSouls",'$',true,250);
-        this.addItemToInventory(soul);
+//        this.soul = new Souls("SkeletonSouls",'$',false,250);
+//        this.addItemToInventory(soul);
     }
 
     /**
@@ -120,25 +121,7 @@ public class Skeleton extends Actor implements Soul{
     }
 
     @Override
-    public void transferSouls(Souls soulObject) {
-        soul.transferSouls(soulObject);
-    }
-
-    @Override
-    public boolean addSouls(int soul_amount) {
-        boolean success=false;
-        if (soul.subtractSouls(soul_amount)){
-            success=true;
-        }
-        return success;
-    }
-
-    @Override
-    public boolean subtractSouls(int soul_amount) {
-        boolean success = false;
-        if (soul.subtractSouls(soul_amount)){
-            success=true;
-        }
-        return success;
+    public void transferSouls(Soul soulObject) {
+        soulObject.addSouls(SKELETON_SOULS);
     }
 }

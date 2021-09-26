@@ -13,6 +13,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	private Location previousLocation;
 	private final Menu menu = new Menu();
+	private int numberOfSoul;
 	private Souls soul;
 
 	/**
@@ -30,8 +31,10 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.REST);
 		this.addItemToInventory(new Broadsword());
 		this.registerInstance();
+		this.numberOfSoul = 0;
 		this.soul = new Souls("PlayerSouls",'$',false,0);
 		this.addItemToInventory(soul);
+		this.numberOfSoul = 0;
 	}
 
 	/**
@@ -58,12 +61,23 @@ public class Player extends Actor implements Soul, Resettable {
 			map.moveActor(this, map.at(38,12));
 			return new ResetAction(this.previousLocation);
 		}
+		Item currentWeapon = (Item) this.getWeapon();
+		Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
+
+		if(previousWeapon.hasCapability(Abilities.SWAP)){
+			this.removeItemFromInventory(currentWeapon);
+			SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
+			swap.execute(this, map);
+		}
+
 		// Handle multi-turn Actions
+		actions.add(new DrinkAction(this));
+
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
-		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon());
-		actions.add(new DrinkAction(this));
+		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
+
 
 		// update the actor previous location every turn by injection
 		this.previousLocation = map.locationOf(this);
@@ -76,27 +90,26 @@ public class Player extends Actor implements Soul, Resettable {
 	 *
 	 * @param soulObject a target souls.
 	 */
+
 	@Override
-	public void transferSouls(Souls soulObject) {
-		soul.transferSouls(soulObject);
+	public void transferSouls(Soul soulObject) {
+		soulObject.addSouls(numberOfSoul);
+		this.numberOfSoul = 0;
 	}
 
 	@Override
-	public boolean addSouls(int soul_amount) {
-		boolean success=false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
-		}
-		return success;
+	public boolean addSouls(int soulAmount) {
+		this.numberOfSoul += soulAmount;
+		return true;
 	}
 
 	@Override
-	public boolean subtractSouls(int soul_amount) {
-		boolean success = false;
-		if (soul.subtractSouls(soul_amount)){
-			success=true;
+	public boolean subtractSouls(int soulAmount) {
+		if (soulAmount < numberOfSoul){
+			this.numberOfSoul -= soulAmount;
+			return true;
 		}
-		return success;
+		return false;
 	}
 
 	/**
@@ -163,5 +176,14 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public Soul asSoul() {
 		return this.soul;
+	}
+
+	public Souls getSoul() {
+		for (Item item : inventory) {
+			if (item instanceof Souls){
+				return (Souls) item;
+			}
+		}
+		return null;
 	}
 }
