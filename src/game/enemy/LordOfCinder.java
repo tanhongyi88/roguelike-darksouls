@@ -20,7 +20,7 @@ public abstract class LordOfCinder extends Actor implements Soul{
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
 
     /**
-     * Constructor for the Lord of CInder class
+     * Constructor for the Lord of Cinder class
      *
      * @param name          the name of the boss
      * @param displayChar   the character that will represent the boss in the display
@@ -60,7 +60,7 @@ public abstract class LordOfCinder extends Actor implements Soul{
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        for(game.interfaces.Behaviour Behaviour : behaviours) {
+        for(Behaviour Behaviour : behaviours) {
             Action action = Behaviour.getAction(this, map);
 
             if (action != null)
