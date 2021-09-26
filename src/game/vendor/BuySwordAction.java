@@ -21,13 +21,13 @@ public class BuySwordAction extends Action {
     public String execute(Actor actor, GameMap map) {
         int playerSouls = player.getSouls();
 
-        if (playerSouls!= PRICE){
-            return "Purchase failed: Not enough souls!";
-        }
-        else{
+        if (playerSouls >= PRICE){
             player.subtractSouls(PRICE);
             swapWeapon.execute(player,map);
             return "Purchase successful: Broad Sword received!";
+        }
+        else{
+            return "Purchase failed: Not enough souls!";
         }
     }
 
