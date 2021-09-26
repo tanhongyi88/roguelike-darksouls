@@ -1,18 +1,10 @@
-package game.action;
+package game.player;
 
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Weapon;
-import game.enemy.LordOfCinder;
-import game.enemy.Skeleton;
-import game.enemy.Undead;
+import edu.monash.fit2099.engine.*;
+import game.enemy.*;
 import game.enums.Abilities;
-import game.player.Player;
 
 /**
  * Special Action for attacking other Actors.

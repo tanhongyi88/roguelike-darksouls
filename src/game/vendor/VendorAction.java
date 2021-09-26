@@ -1,8 +1,9 @@
-package game.action;
+package game.vendor;
 
 import edu.monash.fit2099.engine.*;
 import game.MeleeWeapon;
 import game.player.Player;
+import game.weapon.action.SwapWeaponAction;
 
 public class VendorAction extends Action {
     private Player player;

@@ -1,9 +1,7 @@
 package game.weapon;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.WeaponAction;
+import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
-import game.weapon.GameWeaponItem;
 
 /**
  * YhormsGreatMachete class represents the Yhorms Great Machete Weapon
@@ -34,7 +32,10 @@ public class YhormsGreatMachete extends GameWeaponItem {
         return this.hitRate;
     }
 
-    public void changeHitRate(int hitRate){ this.hitRate = hitRate; }
+    public void changeHitRate(int hitRate){
+        this.hitRate = hitRate;
+    }
+
     @Override
     public WeaponAction getActiveSkill(Actor target, String direction){
         return null;

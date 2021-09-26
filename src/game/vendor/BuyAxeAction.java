@@ -1,10 +1,9 @@
-package game.action;
+package game.vendor;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
 import game.player.Player;
 import game.weapon.GiantAxe;
+import game.weapon.action.SwapWeaponAction;
 
 public class BuyAxeAction extends Action {
     private Player player;

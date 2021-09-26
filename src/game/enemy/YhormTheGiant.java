@@ -5,7 +5,6 @@ import game.behaviour.FollowBehaviour;
 import game.weapon.YhormsGreatMachete;
 import game.enums.Status;
 import game.interfaces.*;
-
 import java.util.ArrayList;
 
 public class YhormTheGiant extends LordOfCinder {

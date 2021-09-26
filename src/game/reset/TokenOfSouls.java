@@ -1,9 +1,6 @@
 package game.reset;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.PickUpItemAction;
-import game.action.RetrieveSoulsAction;
+import edu.monash.fit2099.engine.*;
 import game.interfaces.Soul;
 
 public class TokenOfSouls extends Item implements Soul{

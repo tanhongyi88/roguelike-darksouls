@@ -1,9 +1,6 @@
-package game.action;
+package game.reset;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.PickUpItemAction;
+import edu.monash.fit2099.engine.*;
 
 public class RetrieveSoulsAction extends PickUpItemAction {
 

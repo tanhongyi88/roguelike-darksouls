@@ -1,7 +1,6 @@
-package game.action;
+package game.weapon.action;
 
 import edu.monash.fit2099.engine.*;
-import game.action.ChargeAction;
 import game.enums.Status;
 import game.player.Player;
 import game.weapon.StormRuler;

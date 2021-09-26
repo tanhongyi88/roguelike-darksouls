@@ -1,7 +1,6 @@
 package game.interfaces;
 
 import edu.monash.fit2099.engine.addons.DesignOSoulsAddOn;
-import game.Souls;
 
 /**
  * A contract for soul-able instance (in other words, object/instance that has souls).

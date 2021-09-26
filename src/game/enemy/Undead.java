@@ -1,14 +1,10 @@
 package game.enemy;
 
 import edu.monash.fit2099.engine.*;
-import game.action.AttackAction;
-import game.behaviour.AttackBehaviour;
-import game.behaviour.FollowBehaviour;
-import game.behaviour.WanderBehaviour;
+import game.player.AttackAction;
+import game.behaviour.*;
 import game.enums.Status;
-import game.interfaces.Behaviour;
-import game.interfaces.Soul;
-
+import game.interfaces.*;
 import java.util.ArrayList;
 import java.util.Random;
 

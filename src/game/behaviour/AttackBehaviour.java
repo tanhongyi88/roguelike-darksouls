@@ -1,7 +1,7 @@
 package game.behaviour;
 
 import edu.monash.fit2099.engine.*;
-import game.action.AttackAction;
+import game.player.AttackAction;
 import game.interfaces.Behaviour;
 
 public class AttackBehaviour implements Behaviour {
