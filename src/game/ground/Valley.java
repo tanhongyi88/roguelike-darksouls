@@ -6,7 +6,7 @@ import game.enums.Status;
 /**
  * The gorge or endless gap that is dangerous for the Player.
  *
- * @author
+ * @author Lee Jia Yi, Tan Hong Yi
  * @version 1.0.0
  */
 public class Valley extends Ground {

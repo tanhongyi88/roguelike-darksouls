@@ -7,7 +7,7 @@ import game.interfaces.Behaviour;
 /**
  * AttackBehaviour class represents the attack behaviour of an actor
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class AttackBehaviour implements Behaviour {

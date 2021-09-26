@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.*;
 /**
  * EstusFlask class represents the Estus Flask for the player
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class EstusFlask extends Item {

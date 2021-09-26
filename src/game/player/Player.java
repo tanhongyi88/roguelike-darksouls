@@ -10,7 +10,7 @@ import game.weapon.Broadsword;
 /**
  * Class representing the Player.
  *
- * @author
+ * @author Lee Jia Yi, Tan Hong Yi
  * @version 1.0.0
  */
 public class Player extends Actor implements Soul, Resettable {

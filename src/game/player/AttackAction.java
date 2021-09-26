@@ -9,7 +9,7 @@ import game.enums.Abilities;
 /**
  * Special Action for attacking other Actors.
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class AttackAction extends Action {

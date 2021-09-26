@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * YhormTheGiant class represents the first boss in the game
  *
- * @author
+ * @author Lee Jia Yi, Tan Hong Yi
  * @version 1.0.0
  */
 public class YhormTheGiant extends LordOfCinder {

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * The boss of Design o' Souls
  * An abstract class where all the boss in the game can inherits from
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public abstract class LordOfCinder extends Actor implements Soul{

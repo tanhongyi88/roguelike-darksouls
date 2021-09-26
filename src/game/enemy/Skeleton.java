@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * Skeleton class represents the skeleton in the game
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class Skeleton extends Actor implements Soul{

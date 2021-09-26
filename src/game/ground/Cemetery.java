@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * The place to spawn Skeleton.
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class Cemetery extends Ground {

@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.*;
 /**
  * DrinkAction class represents the action when Player drinks the Estus Flask
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class DrinkAction extends Action {

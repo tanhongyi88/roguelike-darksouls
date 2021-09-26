@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Undead class represents the undead minion in the game
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class Undead extends Actor implements Soul{
