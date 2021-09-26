@@ -1,5 +1,7 @@
 package game;
 
+import game.enums.Abilities;
+
 import java.util.Random;
 
 public class StormRuler extends GameWeaponItem{
@@ -9,6 +11,7 @@ public class StormRuler extends GameWeaponItem{
      */
     public StormRuler() {
         super("Storm Ruler", '7', 70, "hits", 60);
+        this.addCapability(Abilities.SWAP);
     }
 
     @Override
