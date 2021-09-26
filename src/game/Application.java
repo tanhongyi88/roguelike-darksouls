@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.*;
 
+
 /**
  * The main class for the Jurassic World game.
  *
@@ -15,7 +16,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new Bonfire(), new FireKeeper());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -29,8 +30,8 @@ public class Application {
 					".............................................................+++++++............",
 					"..................................###___###...c...............+++...............",
 					"..................................#_______#......................+++............",
-					"...........++.....................#_______#.......................+.............",
-					".........+++......................#_______#........................++...........",
+					"...........++.....................#___B___#.......................+.............",
+					".........+++......................#F______#........................++...........",
 					"............+++...................####_####..........................+..........",
 					"..............+......................................................++.........",
 					"..............++.................................................++++++.........",
@@ -51,7 +52,7 @@ public class Application {
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
-			gameMap.at(6, 25).addActor(new YhormTheGiant("Yhorm The Giant", 'Y', 500, player));
+			// gameMap.at(6, 25).addActor(new LordOfCinder());
 
 			// Place Storm Ruler near to boss in the map
 			gameMap.at(7,25).addItem(new StormRuler());
@@ -67,5 +68,6 @@ public class Application {
 			gameMap.at(2,1).addActor(new Skeleton("Skeleton", player));
 
 			world.run();
+
 	}
 }
