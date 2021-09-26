@@ -85,6 +85,9 @@ public class Player extends Actor implements Soul, Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	public int getSouls(){
+		return this.numberOfSoul;
+	}
 	/**
 	 * Transfers the souls to another Soul's instance after Player is killed
 	 *
