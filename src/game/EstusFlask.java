@@ -1,6 +1,7 @@
 package game;
 
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
+import game.interfaces.Resettable;
 
 public class EstusFlask extends Item {
     private int numOfEstusFlask;
