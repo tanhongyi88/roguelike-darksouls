@@ -1,7 +1,6 @@
 package game.enemy;
 
 import edu.monash.fit2099.engine.*;
-import game.behaviour.FollowBehaviour;
 import game.enums.Abilities;
 import game.weapon.YhormsGreatMachete;
 import game.enums.Status;
