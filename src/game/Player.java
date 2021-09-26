@@ -28,6 +28,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.ABLE_TO_ENTER_VALLEY);
 		this.addCapability(Status.ABLE_TO_STEP_ON_FLOOR);
 		this.addCapability(Abilities.REST);
+		this.addCapability(Abilities.BUY);
 		this.addItemToInventory(new Broadsword());
 		this.registerInstance();
 		this.numberOfSoul = 0;
@@ -81,6 +82,9 @@ public class Player extends Actor implements Soul, Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	public int getSouls(){
+		return this.numberOfSoul;
+	}
 	/**
 	 * Transfers the souls to another Soul's instance after Player is killed
 	 *

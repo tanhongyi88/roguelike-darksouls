@@ -12,6 +12,7 @@ public class YhormsGreatMachete extends GameWeaponItem{
         super("Yhorm's Great Machete", 'y', 95, "hit", 60);
     }
 
+    public void changeHitRate(int hitRate){ this.hitRate = hitRate; }
     @Override
     public WeaponAction getActiveSkill(Actor target, String direction){
         return null;

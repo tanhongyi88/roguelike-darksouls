@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;
@@ -22,6 +23,15 @@ public class YhormTheGiant extends LordOfCinder{
     @Override
     public void transferSouls(Soul playerSoul) {
         playerSoul.addSouls(YHORM_THE_GIANT_SOULS);
+    }
+
+    @Override
+    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        if(this.hasCapability(Status.STUN)){
+            this.removeCapability(Status.STUN);
+            return new DoNothingAction();
+        }
+        return super.playTurn(actions, lastAction, map, display);
     }
 
     public String toString(){

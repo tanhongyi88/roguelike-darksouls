@@ -71,7 +71,6 @@ public class AttackAction extends Action {
 				}
 				else{
 					result += System.lineSeparator() + target + " is killed.";
-					target.asSoul().transferSouls(actor.asSoul());
 				}
 			}
 			else{

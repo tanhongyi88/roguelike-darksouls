@@ -6,5 +6,6 @@ package game.enums;
 public enum Abilities {
     REST,
     RESURRECT,
+    BUY,
     SWAP
 }
