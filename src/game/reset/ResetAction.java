@@ -2,19 +2,25 @@ package game.reset;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * ResetAction that represents the reset action
+ *
+ * @author
+ * @version 1.0.0
+ */
 public class ResetAction extends Action {
 
     private Location previousLocation;
     private Location previousTokenLocation;
     private Item soulsToken;
+
     /**
      * Constructor to create an Action that will reset the Player's hitpoints, EstusFlask's charges
      *
+     * @param placeWherePlayerDied Location that represents the place where the player died
      */
     public ResetAction (Location placeWherePlayerDied) {
         this.previousLocation = placeWherePlayerDied;
-
-
     }
 
     /**

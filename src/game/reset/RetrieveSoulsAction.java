@@ -6,7 +6,7 @@ public class RetrieveSoulsAction extends PickUpItemAction {
 
     private int soulAmountToRetrieve;
     /**
-     * Constructor.
+     * Constructor for RetrieveSoulsAction
      *
      * @param souls the item(Souls) to pick up
      */
@@ -20,7 +20,7 @@ public class RetrieveSoulsAction extends PickUpItemAction {
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return
+     * @return String that describes the retrieve
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -30,10 +30,10 @@ public class RetrieveSoulsAction extends PickUpItemAction {
     }
 
     /**
-     * Description text to describe this action
+     * Description text to describe retrieve soul action.
      *
      * @param actor The actor performing the action.
-     * @return
+     * @return String that describes the action in menu
      */
     @Override
     public String menuDescription(Actor actor) {
