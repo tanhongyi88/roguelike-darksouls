@@ -6,13 +6,15 @@ import game.interfaces.Behaviour;
 /**
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
+ * @author
+ * @version 1.0.0
  */
 public class FollowBehaviour implements Behaviour {
 
 	private Actor target;
 
 	/**
-	 * Constructor.
+	 * Constructor for the FollowBehaviour.
 	 * 
 	 * @param subject the Actor to follow
 	 */
@@ -20,6 +22,13 @@ public class FollowBehaviour implements Behaviour {
 		this.target = subject;
 	}
 
+	/**
+	 * Creates the AttackAction if an actor has FollowBehaviour
+	 *
+	 * @param actor the Actor acting
+	 * @param map the GameMap containing the Actor
+	 * @return a MoveActorAction that follows the target
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))
@@ -38,7 +47,6 @@ public class FollowBehaviour implements Behaviour {
 				}
 			}
 		}
-
 		return null;
 	}
 

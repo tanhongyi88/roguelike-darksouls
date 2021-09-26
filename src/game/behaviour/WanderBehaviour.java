@@ -6,6 +6,12 @@ import java.util.Random;
 import edu.monash.fit2099.engine.*;
 import game.interfaces.Behaviour;
 
+/**
+ * WanderBehaviour class represents the wander behaviour of an actor
+ *
+ * @author
+ * @version 1.0.0
+ */
 public class WanderBehaviour extends Action implements Behaviour {
 	
 	private final Random random = new Random();
@@ -38,11 +44,24 @@ public class WanderBehaviour extends Action implements Behaviour {
 
 	}
 
+	/**
+	 * Returns the string when the actor wanders
+	 *
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return String that represents the wander action
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		return menuDescription(actor);
 	}
 
+	/**
+	 * Returns a descriptive string when the actor wanders
+	 *
+	 * @param actor The actor performing the action.
+	 * @return String that represents the wander action
+	 */
 	@Override
 	public String menuDescription(Actor actor) {
 		return "Raagrh...";
