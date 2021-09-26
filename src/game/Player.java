@@ -14,7 +14,6 @@ public class Player extends Actor implements Soul, Resettable {
 	private Location previousLocation;
 	private final Menu menu = new Menu();
 	private Souls soul;
-
 	/**
 	 * Constructor for the Player class.
 	 *
@@ -28,9 +27,10 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.ABLE_TO_ENTER_VALLEY);
 		this.addCapability(Status.ABLE_TO_STEP_ON_FLOOR);
 		this.addCapability(Abilities.REST);
+		this.addCapability(Abilities.BUY);
 		this.addItemToInventory(new Broadsword());
 		this.registerInstance();
-		this.soul = new Souls("PlayerSouls",'$',true,0);
+		this.soul = new Souls("PlayerSouls",'$',false,0);
 		this.addItemToInventory(soul);
 	}
 
@@ -69,6 +69,9 @@ public class Player extends Actor implements Soul, Resettable {
 		this.previousLocation = map.locationOf(this);
 
 		return menu.showMenu(this, actions, display);
+	}
+	public int getSouls(){
+		return soul.getNumberOfSouls();
 	}
 
 	/**

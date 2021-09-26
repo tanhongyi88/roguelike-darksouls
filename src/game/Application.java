@@ -16,7 +16,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new Bonfire(), new Fire_Keeper());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new Bonfire(), new FireKeeper());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -52,7 +52,7 @@ public class Application {
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
-			gameMap.at(6, 25).addActor(new LordOfCinder());
+			//gameMap.at(6, 25).addActor(new LordOfCinder());
 
 			// Place Storm Ruler near to boss in the map
 			gameMap.at(7,25).addItem(new StormRuler());

@@ -1,24 +1,33 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.WeaponAction;
-import edu.monash.fit2099.engine.WeaponItem;
+import edu.monash.fit2099.engine.*;
 
 public class EmberFormAction extends WeaponAction {
-    private MeleeWeapon greatMachete;
+    private YhormsGreatMachete greatMachete;
+    private Player player;
 
-    public EmberFormAction(WeaponItem greatMachete) {
+
+    public EmberFormAction(WeaponItem greatMachete, Player player) {
         super(greatMachete);
+        this.player = player;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
+        Location here = map.locationOf(actor);
+        for (Exit exit : here.getExits()) {
+            Location destination = exit.getDestination();
+            if (destination.getActor() == player) {
+                greatMachete.changeHitRate(90);
+                return menuDescription(player);
+            }
+            greatMachete.changeHitRate(60);
+        }
         return null;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Yhorm the Giant attacks " + actor+ " with active Ember Form!";
     }
 }
