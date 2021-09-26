@@ -2,9 +2,11 @@ package game.enemy;
 
 import edu.monash.fit2099.engine.*;
 import game.behaviour.FollowBehaviour;
+import game.enums.Abilities;
 import game.weapon.YhormsGreatMachete;
 import game.enums.Status;
 import game.interfaces.*;
+import game.weapon.action.EmberFormAction;
 import java.util.ArrayList;
 
 /**
@@ -58,7 +60,21 @@ public class YhormTheGiant extends LordOfCinder {
             this.removeCapability(Status.STUN);
             return new DoNothingAction();
         }
+        if(this.getHitPoints() < this.getMaxHitPoints()/2) {
+            this.addCapability(Abilities.EMBER_FORM);
+            display.println("Raargh~!!");
+            return new EmberFormAction();
+        }
+
         return super.playTurn(actions, lastAction, map, display);
+    }
+
+    private int getHitPoints() {
+        return this.hitPoints;
+    }
+
+    private int getMaxHitPoints() {
+        return this.maxHitPoints;
     }
 
     /**
