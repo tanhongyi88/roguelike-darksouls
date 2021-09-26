@@ -5,7 +5,6 @@ import game.reset.ResetManager;
 public interface Resettable {
     /**
      * Allows any classes that use this interface to reset abilities, attributes, and items.
-     * TODO: Use this method in a reset manager to run the soft-reset.
      */
     void resetInstance();
 
@@ -18,7 +17,6 @@ public interface Resettable {
 
     /**
      * a default interface method that register current instance to the Singleton manager.
-     * TODO: Use this method at the constructor of `this` instance.
      */
     default void registerInstance(){
         ResetManager.getInstance().appendResetInstance(this);
