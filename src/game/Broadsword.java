@@ -1,5 +1,7 @@
 package game;
 
+import game.enums.Abilities;
+
 import java.util.Random;
 
 public class Broadsword extends GameWeaponItem{
@@ -10,6 +12,7 @@ public class Broadsword extends GameWeaponItem{
 
     public Broadsword() {
         super("Broadsword", 'b', 30, "slashes", 80);
+        this.addCapability(Abilities.SWAP);
     }
 
     @Override
