@@ -5,14 +5,22 @@ import game.enums.Status;
 
 /**
  * The gorge or endless gap that is dangerous for the Player.
+ *
+ * @author
+ * @version 1.0.0
  */
 public class Valley extends Ground {
 
+	/**
+	 * Constructor for the Valley class
+	 * Represented on the game map as '+'
+	 */
 	public Valley() {
 		super('+');
 	}
 
 	/**
+	 * Returns the action that can be done in the Valley.
 	 *
 	 * @param actor the Actor acting
 	 * @param location the current Location
@@ -28,7 +36,8 @@ public class Valley extends Ground {
 	}
 
 	/**
-	 * Checks and only allowes the player to enter the valley
+	 * Checks and only allows the player to enter the valley
+	 *
 	 * @param actor the Actor to check
 	 * @return false or actor cannot enter.
 	 */
