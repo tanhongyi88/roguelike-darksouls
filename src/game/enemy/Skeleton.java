@@ -81,7 +81,7 @@ public class Skeleton extends Actor implements Soul{
      * Resurrect the Skeleton with a 50% probability
      *
      * @param map the map containing Skeleton
-     * @return True if is resurrected; false otherwise
+     * @return true if is resurrected; false otherwise
      */
     public boolean resurrect(GameMap map){
         Random random = new Random();

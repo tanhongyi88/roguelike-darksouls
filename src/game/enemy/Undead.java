@@ -30,7 +30,7 @@ public class Undead extends Actor implements Soul{
 	}
 
 	/**
-	 * Returns a collection of the Actions that the otherActor can do to Skeleton.
+	 * Returns a collection of the Actions that the otherActor can do to Undead.
 	 *
 	 * @param otherActor the Actor that might be performing attack
 	 * @param direction  String representing the direction of the other Actor

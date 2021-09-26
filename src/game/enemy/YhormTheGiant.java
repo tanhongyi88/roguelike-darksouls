@@ -46,6 +46,14 @@ public class YhormTheGiant extends LordOfCinder {
         playerSoul.addSouls(YHORM_THE_GIANT_SOULS);
     }
 
+    /**
+     * Returns a collection of the Actions that the otherActor can do to Yhorm The Giant.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return A collection of Actions
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         return super.getAllowableActions(otherActor, direction, map);
@@ -75,17 +83,23 @@ public class YhormTheGiant extends LordOfCinder {
         return super.playTurn(actions, lastAction, map, display);
     }
 
+    /**
+     * Returns the hitpoints for Yhorm The Giant
+     *
+     * @return int that represents the hitpoints
+     */
     private int getHitPoints() {
         return this.hitPoints;
     }
 
+    /**
+     * Returns the maximum hitpoints for Yhorm The Giant
+     *
+     * @return int that represents the maximum hitpoints
+     */
     private int getMaxHitPoints() {
         return this.maxHitPoints;
     }
-
-
-
-
 
     /**
      * A toString method for the Yhorm The Giant's class
