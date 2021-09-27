@@ -2,7 +2,7 @@ package game.enums;
 
 /**
  * Enum that represents an ability of Actor, Item, or Ground.
- * @author
+ * @author Afrida Jahin, Lee Jia Yi, Tan Hong Yi
  * @version 1.0.0
  */
 public enum Abilities {

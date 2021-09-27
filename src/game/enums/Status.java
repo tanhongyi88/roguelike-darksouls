@@ -3,7 +3,7 @@ package game.enums;
 /**
  * Use this enum class to give `buff` or `debuff`.
  * It is also useful to give a `state` to abilities or actions that can be attached-detached.
- * @author
+ * @author Afrida Jahin, Lee Jia Yi, Tan Hong Yi
  * @version 1.0.0
  */
 public enum Status {

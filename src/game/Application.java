@@ -13,7 +13,7 @@ import game.weapon.StormRuler;
 /**
  * The main class for the Jurassic World game.
  *
- * @author
+ * @author Afrida Jahin, Lee Jia Yi, Tan Hong Yi
  */
 public class Application {
 
