@@ -6,7 +6,7 @@ import game.weapon.YhormsGreatMachete;
 import game.player.Player;
 import game.ground.Dirt;
 
-public class EmberFormAction extends Action {
+public class BurnGroundAction extends Action {
     private final static int BURN_DAMAGE = 25;
     private final YhormsGreatMachete greatMachete;
     private Location burningLocation;
@@ -16,7 +16,7 @@ public class EmberFormAction extends Action {
     /**
      * Constructor
      */
-    public EmberFormAction(YhormsGreatMachete greatMachete) {
+    public BurnGroundAction(YhormsGreatMachete greatMachete) {
         this.greatMachete = greatMachete;
         this.burnStart = false;
     }
