@@ -13,6 +13,7 @@ import game.weapon.StormRuler;
 /**
  * The main class for the Jurassic World game.
  *
+ * @author
  */
 public class Application {
 

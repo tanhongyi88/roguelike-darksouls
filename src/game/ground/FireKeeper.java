@@ -9,7 +9,7 @@ import game.vendor.BuySwordAction;
 /**
  * The place for the Player to trade.
  *
- * @author
+ * @author Afrida Jahin
  * @version 1.0.0
  */
 public class FireKeeper extends Ground {
@@ -40,6 +40,12 @@ public class FireKeeper extends Ground {
         return actions;
     }
 
+    /**
+     * Actor is allowed to enter FireKeeper
+     *
+     * @param actor the Actor to check
+     * @return true if actor allowed to enter
+     */
     public boolean canActorEnter(Actor actor) {
         return true;
     }

@@ -8,7 +8,7 @@ import game.weapon.action.EmberFormAction;
  * YhormsGreatMachete class represents the Yhorms Great Machete Weapon
  * Can only be equipped by Yhorm the Giant
  *
- * @author
+ * @author Lee Jia Yi
  * @version 1.0.0
  */
 public class YhormsGreatMachete extends GameWeaponItem {

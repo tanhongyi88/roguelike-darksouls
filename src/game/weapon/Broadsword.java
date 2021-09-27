@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Broadsword class represents the Broadsword Weapon
  *
- * @author
+ * @author Lee Jia Yi, Afrida Jahin
  * @version 1.0.0
  */
 public class Broadsword extends GameWeaponItem {

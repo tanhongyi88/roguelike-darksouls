@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.*;
 /**
  * ResetAction that represents the reset action
  *
- * @author
+ * @author Tan Hong Yi
  * @version 1.0.0
  */
 public class ResetAction extends Action {

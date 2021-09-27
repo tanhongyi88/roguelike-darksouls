@@ -13,7 +13,7 @@ import java.util.Random;
  * StormRuler class represents the Storm Ruler Weapon
  * Can only be equipped by the Player
  *
- * @author
+ * @author Lee Jia Yi, Afrida Jahin
  * @version 1.0.0
  */
 public class StormRuler extends GameWeaponItem {
@@ -43,14 +43,31 @@ public class StormRuler extends GameWeaponItem {
         return damage;
     }
 
+    /**
+     * Change the weapon's hit rate
+     *
+     * @param hitRate the probability/chance to hit the target
+     */
     public void changeHitRate(int hitRate){
         this.hitRate = hitRate;
     }
 
+    /**
+     * Change the weapon's attack damage
+     *
+     * @param damage amount of damage this weapon does
+     */
     public void changeDamage(int damage){
         this.damage = damage;
     }
 
+    /**
+     * Returns the active skills Charge or Wind Slash used by the Storm Ruler
+     *
+     * @param target the target actor
+     * @param direction the direction of target, e.g. "north"
+     * @return The ChargeAction or WindSlashAction
+     */
     @Override
     public WeaponAction getActiveSkill(Actor target, String direction) {
         if(this.hasCapability(Status.CHARGED)){

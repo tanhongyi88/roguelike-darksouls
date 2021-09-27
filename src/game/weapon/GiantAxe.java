@@ -8,7 +8,7 @@ import game.weapon.action.SpinAttackAction;
 /**
  * GiantAxe class represents the Giant Axe Weapon
  *
- * @author
+ * @author Lee Jia Yi, Afrida Jahin
  * @version 1.0.0
  */
 public class GiantAxe extends GameWeaponItem {
@@ -21,6 +21,13 @@ public class GiantAxe extends GameWeaponItem {
         this.addCapability(Abilities.SWAP);
     }
 
+    /**
+     * Returns the active skill Spin Attack used by the axe
+     *
+     * @param target the target actor
+     * @param direction the direction of target, e.g. "north"
+     * @return The SpinAttackAction
+     */
     @Override
     public WeaponAction getActiveSkill(Actor target, String direction) {
         return new SpinAttackAction(this, target);
