@@ -12,7 +12,7 @@ import game.ground.Dirt;
  * @author Tan Hong Yi
  * @version 1.0.0
  */
-public class EmberFormAction extends Action {
+public class BurnGroundAction extends Action {
     private final static int BURN_DAMAGE = 25;
     private final YhormsGreatMachete greatMachete;
     private Location burningLocation;
@@ -20,11 +20,11 @@ public class EmberFormAction extends Action {
 
 
     /**
-     * Constructor for EmberFormAction
+     * Constructor for BurnGroundAction
      *
      * @param greatMachete The weapon using this action
      */
-    public EmberFormAction(YhormsGreatMachete greatMachete) {
+    public BurnGroundAction(YhormsGreatMachete greatMachete) {
         this.greatMachete = greatMachete;
         this.burnStart = false;
     }

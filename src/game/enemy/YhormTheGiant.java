@@ -5,7 +5,7 @@ import game.enums.Abilities;
 import game.weapon.YhormsGreatMachete;
 import game.enums.Status;
 import game.interfaces.*;
-import game.weapon.action.EmberFormAction;
+import game.weapon.action.BurnGroundAction;
 import java.util.ArrayList;
 
 /**
@@ -26,9 +26,8 @@ public class YhormTheGiant extends LordOfCinder {
      * @param name          the name of the boss
      * @param displayChar   the character that will represent the boss in the display
      * @param hitPoints     the boss's starting hit points
-     * @param player        Actor that represents the player to follow and attack
      */
-    public YhormTheGiant(String name, char displayChar, int hitPoints, Actor player) {
+    public YhormTheGiant(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.WEAK_TO_STORM_RULER);
         this.greatMachete = new YhormsGreatMachete();
@@ -76,7 +75,7 @@ public class YhormTheGiant extends LordOfCinder {
         if(this.getHitPoints() < this.getMaxHitPoints()/2) {
             this.addCapability(Abilities.EMBER_FORM);
             display.println("Raargh~!!");
-            return new EmberFormAction(this.greatMachete);
+            return new BurnGroundAction(this.greatMachete);
         }
 
         return super.playTurn(actions, lastAction, map, display);
