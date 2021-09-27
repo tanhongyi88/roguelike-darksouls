@@ -41,12 +41,12 @@ public class FireKeeper extends Ground {
     }
 
     /**
-     * Actor is allowed to enter FireKeeper
+     * Actor is not allowed to enter/stand on FireKeeper
      *
      * @param actor the Actor to check
-     * @return true if actor allowed to enter
+     * @return false if actor not allowed to enter
      */
     public boolean canActorEnter(Actor actor) {
-        return true;
+        return false;
     }
 }
