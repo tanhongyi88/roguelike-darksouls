@@ -4,13 +4,20 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
 /**
- * The burning dirt when Ember Form is activated.
+ * This class represents the temporary new ground, the burning dirt when Ember Form is activated.
  *
- * @author
+ * @author Tan Hong Yi
  * @version 1.0.0
  */
 public class BurningDirt extends Ground {
+    /**
+     * burningAge stores how many rounds the dirt has been burning
+     */
     private int burningAge = 0;
+
+    /**
+     * BURNING_ROUNDS stores the maximum rounds dirt ground can be burned
+     */
     private static final int BURNING_ROUNDS = 3;
 
     /**
@@ -22,9 +29,9 @@ public class BurningDirt extends Ground {
     }
 
     /**
-     * Dirt is only burned for 3 rounds
+     * Dirt starts burning
      *
-     * @param location The location of the burning dirt
+     * @param location The location of centre of burning area
      */
     public void tick(Location location) {
         burningAge++;

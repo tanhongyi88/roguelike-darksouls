@@ -7,15 +7,32 @@ import game.player.Player;
 import game.ground.Dirt;
 
 /**
- * The class representing the use of Ember Form by Yhorm The Giant while wielding his Great Machete
+ * BurnGroundAction represents the ability to burn surrounding dirt while YhormTheGiant is in EmberForm and
+ * wielding YhormsGreatMachete
  *
  * @author Tan Hong Yi
  * @version 1.0.0
  */
 public class BurnGroundAction extends Action {
+
+    /**
+     * BURN_DAMAGE is the damage dealt by burning
+     */
     private final static int BURN_DAMAGE = 25;
+
+    /**
+     * greatMachete stores the weapon that YhormTheGiant is wielding
+     */
     private final YhormsGreatMachete greatMachete;
+
+    /**
+     * burningLocation stores the location that burning happens around
+     */
     private Location burningLocation;
+
+    /**
+     * burningStart stores the burning has started or not
+     */
     private boolean burnStart;
 
 
@@ -35,7 +52,7 @@ public class BurnGroundAction extends Action {
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return  a string describing YhormTheGiant is engulfed with fire
+     * @return  a string describing YhormTheGiant's EmberForm is activated and it is engulfed with fire
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -62,7 +79,7 @@ public class BurnGroundAction extends Action {
     }
 
     /**
-     * Return a descriptive string to show the use of Ember Form
+     * Return a descriptive string to show the use of BurningGroundAction
      * @param actor The actor performing the action
      * @return A string to be displayed in the menu
      */

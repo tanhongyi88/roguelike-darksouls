@@ -4,13 +4,12 @@ import game.enums.Abilities;
 import game.reset.ResetAction;
 
 /**
- * The place for the Player to rest/reset.
+ * The place for the Player to trigger the reset action
  *
- * @author
+ * @author Tan Hong Yi
  * @version 1.0.0
  */
 public class Bonfire extends Ground{
-
 
     /**
      * Constructor for the Bonfire class
