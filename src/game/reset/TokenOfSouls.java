@@ -28,7 +28,6 @@ public class TokenOfSouls extends Item implements Soul{
     public PickUpItemAction getPickUpAction(Actor actor) {
         if(portable)
             return new RetrieveSoulsAction(this, this.soulAmount);
-
         return null;
     }
 
@@ -41,14 +40,8 @@ public class TokenOfSouls extends Item implements Soul{
     @Override
     public boolean addSouls(int soulAmount) {
         this.soulAmount += soulAmount;
-//        System.out.println("soulAmount: " + soulAmount);
-//        System.out.println("this.soulAmount: " + this.soulAmount);
         return true;
     }
 
-    @Override
-    public boolean subtractSouls(int soulAmount) {
-        return Soul.super.subtractSouls(soulAmount);
-    }
 }
 
