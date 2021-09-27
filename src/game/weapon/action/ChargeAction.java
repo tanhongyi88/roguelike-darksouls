@@ -44,11 +44,11 @@ public class ChargeAction extends WeaponAction {
         if(weaponCharge < MAX_CHARGE){
             if(weaponCharge ==0){
                 increaseCharge();
-                return menuDescription(actor);
+                return "Charging...(" + weaponCharge + "/" + MAX_CHARGE + ")";
             }
             if(weaponCharge>0){
                 increaseCharge();
-                return menuDescription(actor);
+                return "Charging...(" + weaponCharge + "/" + MAX_CHARGE + ")";
             }
             actor.addCapability(Status.DISARM);
         }
@@ -60,6 +60,11 @@ public class ChargeAction extends WeaponAction {
         return null;
     }
 
+    @Override
+    public String hotkey() {
+        return "C";
+    }
+
     /**
      * Return a descriptive string to show charging status
      *
@@ -68,6 +73,6 @@ public class ChargeAction extends WeaponAction {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " charges Storm Ruler (" + weaponCharge + "/" + MAX_CHARGE + ")";
+        return "Perform Charge (" + weaponCharge + "/" + MAX_CHARGE + ")";
     }
 }

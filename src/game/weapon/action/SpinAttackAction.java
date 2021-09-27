@@ -39,10 +39,15 @@ public class SpinAttackAction extends WeaponAction {
             Location destination = exit.getDestination();
             if (destination.getActor() == target) {
                 target.hurt(25);
-                return menuDescription(target);
+                return actor + "does Spin Attack on" + target;
             }
         }
         return null;
+    }
+
+    @Override
+    public String hotkey() {
+        return "A";
     }
 
     /**
@@ -53,6 +58,6 @@ public class SpinAttackAction extends WeaponAction {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " performs Spin Attack on " + target + "!";
+        return "Perform Spin Attack";
     }
 }

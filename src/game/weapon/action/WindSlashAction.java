@@ -18,11 +18,11 @@ public class WindSlashAction extends WeaponAction {
      * Constructor for WindSlashAction
      *
      * @param stormRuler The weapon using this action
-     * @param actor The weapon's target
+     * @param target The weapon's target
      */
-    public WindSlashAction(WeaponItem stormRuler, Actor actor) {
+    public WindSlashAction(WeaponItem stormRuler, Actor target) {
         super(stormRuler);
-        this.boss = actor;
+        this.boss = target;
     }
 
     /**
@@ -42,7 +42,7 @@ public class WindSlashAction extends WeaponAction {
                     stormRuler.changeHitRate(100);
                     stormRuler.changeDamage(140);
                     actor.addCapability(Status.STUN);
-                    return menuDescription(actor);
+                    return actor+" uses Wind Slash on Yhorm The Giant!";
                 }
                 stormRuler.changeHitRate(60);
                 stormRuler.changeDamage(70);
@@ -54,6 +54,11 @@ public class WindSlashAction extends WeaponAction {
         return null;
     }
 
+    @Override
+    public String hotkey() {
+        return "W";
+    }
+
     /**
      * Return a descriptive string to show Wind Slash Attack has been made
      *
@@ -62,6 +67,6 @@ public class WindSlashAction extends WeaponAction {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " performs Wind Slash on " + boss + "!";
+        return "Perform Wind Slash";
     }
 }
