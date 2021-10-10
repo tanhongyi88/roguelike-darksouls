@@ -1,5 +1,6 @@
 # designosouls
-This is FIT2099 S2 2021 Assignment from MA_Lab1Team2
+This is FIT2099 S2 2021 Assignment from MA_Lab1Team2. This game is inspired by the Dark Souls III and In this game, you 
+are a Player that has risen from the dead to slay enemies, get strong, and kill bosses (Lords of Cinders).
 
 ### Contributors
 1. Tan Hong Yi
@@ -39,7 +40,7 @@ This is FIT2099 S2 2021 Assignment from MA_Lab1Team2
 - Hit rate: 80%
 - Price: 500 souls
 
-**Giant Axe** `b`
+**Giant Axe** `g`
 - A weapon that can be equipped by the player.
 - Damage point: 50
 - Hit rate: 80%
@@ -79,13 +80,13 @@ This is FIT2099 S2 2021 Assignment from MA_Lab1Team2
 **Valley** `+`
 - Instantly kills player when stepped.
 
-**Wall** `+`
+**Wall** `#`
 - Blocks thrown object and character from entering.
 
-**Floor** `+`
+**Floor** `_`
 - Only allows the player to enter. 
 
-**Dirt** `+`
+**Dirt** `.`
 - All characters are allowed to enter. Can be burned by burn ground action.
 
 **Burning Dirt** `v`
@@ -94,7 +95,7 @@ This is FIT2099 S2 2021 Assignment from MA_Lab1Team2
 **Bonfire** `B`
 - The place for the player to rest. Refill player’s hit points to the maximum and Estus Flask to maximum charges.
 
-**Fire Keeper** `B`
+**Fire Keeper** `F`
 - The place for the player to trade. Can buy weapons and trade Cinder of The Lord.
 
 ### Maps
