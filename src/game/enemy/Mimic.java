@@ -8,22 +8,45 @@ import game.player.AttackAction;
 
 import java.util.ArrayList;
 
+/**
+ * Mimic class represents the mimic in the game
+ *
+ * @author Lee Jia Yi
+ * @version 1.0.0
+ */
 public class Mimic extends Actor implements Soul {
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
     private final static int MIMIC_SOULS = 200;
-    private final static int MAXIMUM_CHEST_TOKEN_OF_SOUL = 3;
+
     /**
-     * Constructor.
+     * Constructor for the Mimic class.
+     * All Mimics are represented by an 'M' and have 100 hit points.
      */
     public Mimic() {
         super("Mimic", 'M', 100);
     }
 
+    /**
+     * Creates and returns an intrinsic weapon for Undead
+     * Skeleton 'kicks' for 55 damage.
+     *
+     * @return A freshly-instantiated IntrinsicWeapon
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(55, "kicks");
     }
 
+    /**
+     * Selects and returns an action for Undead to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for Mimic
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return The Action to be performed by the Undead
+     * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         for(game.interfaces.Behaviour Behaviour : behaviours) {
@@ -49,12 +72,17 @@ public class Mimic extends Actor implements Soul {
         Actions actions = new Actions();
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             behaviours.add(0, new AttackBehaviour(otherActor, direction));
-            behaviours.add(0, new FollowBehaviour(otherActor));
+            behaviours.add(1, new FollowBehaviour(otherActor));
             actions.add(new AttackAction(this,direction));
         }
         return actions;
     }
 
+    /**
+     * Transfers the souls (200 souls) to Player Soul's instance after Mimic is killed
+     *
+     * @param soulObject a target souls.
+     */
     @Override
     public void transferSouls(Soul soulObject) {
         soulObject.addSouls(MIMIC_SOULS);
