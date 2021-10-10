@@ -85,7 +85,7 @@ public class Skeleton extends Actor implements Soul{
      */
     public boolean resurrect(GameMap map){
         Random random = new Random();
-        Boolean isResurrect = false;
+        boolean isResurrect = false;
 
         if(this.hasCapability(Abilities.RESURRECT)){
             if(random.nextDouble()*100 <= RESURRECT_PROBABILITY){
