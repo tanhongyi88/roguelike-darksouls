@@ -89,9 +89,9 @@ public abstract class LordOfCinder extends Actor implements Soul{
     }
 
     /**
-     * A toString method for the Yhorm The Giant's class
+     * A toString method for the Lord Of Cinder's class
      *
-     * @return String that represents the Yhorm The Giant's information(hitpoints and weapon)
+     * @return String that represents the Lord Of Cinder's information(hitpoints and weapon)
      */
     public String toString(){
         return name + " (" + hitPoints + "/" + maxHitPoints +")(" + getWeapon() + ")";
