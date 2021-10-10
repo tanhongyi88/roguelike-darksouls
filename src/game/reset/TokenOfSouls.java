@@ -20,13 +20,10 @@ public class TokenOfSouls extends Item implements Soul{
      * Constructor.
      * When this token is being created, the transfer of souls happens at the same time
      *
-     * @param name the name of this Item
-     * @param displayChar the character to use to represent this item if it is on the ground
-     * @param portable true if and only if the Item can be picked up
      * @param soulsObject soulsObject obtained to form this token (always from player)
      */
-    public TokenOfSouls(String name, char displayChar, boolean portable, Soul soulsObject) {
-        super(name, displayChar, portable);
+    public TokenOfSouls(Soul soulsObject) {
+        super("Token of Souls", '$', true);
         soulsObject.transferSouls(this);
     }
 

@@ -56,7 +56,7 @@ public class ResetAction extends Action {
             if (this.previousTokenLocation != null) {
                 this.previousTokenLocation.removeItem(this.soulsToken);
             }
-            Item token = new TokenOfSouls("Token of Souls", '$', true, actor.asSoul());
+            Item token = new TokenOfSouls(actor.asSoul());
             this.previousLocation.addItem(token);
             this.previousTokenLocation = this.previousLocation;
             this.soulsToken = token;

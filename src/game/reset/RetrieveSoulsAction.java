@@ -48,6 +48,6 @@ public class RetrieveSoulsAction extends PickUpItemAction {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Retrieve lost souls (" + soulAmountToRetrieve + " souls)";
+        return "Retrieve souls (" + soulAmountToRetrieve + " souls)";
     }
 }
