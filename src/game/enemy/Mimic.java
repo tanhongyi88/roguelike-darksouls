@@ -3,6 +3,7 @@ package game.enemy;
 import edu.monash.fit2099.engine.*;
 import game.behaviour.*;
 import game.enums.Status;
+import game.ground.Chest;
 import game.interfaces.*;
 import game.player.AttackAction;
 
@@ -14,16 +15,21 @@ import java.util.ArrayList;
  * @author Lee Jia Yi
  * @version 1.0.0
  */
-public class Mimic extends Actor implements Soul {
+public class Mimic extends Actor implements Soul, Resettable {
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
+    private Location initLocation;
+    private boolean isExist;
     private final static int MIMIC_SOULS = 200;
 
     /**
      * Constructor for the Mimic class.
      * All Mimics are represented by an 'M' and have 100 hit points.
      */
-    public Mimic() {
+    public Mimic(Location initLocation) {
         super("Mimic", 'M', 100);
+        this.initLocation = initLocation;
+        this.isExist = true;
+        this.registerInstance();
     }
 
     /**
@@ -45,7 +51,7 @@ public class Mimic extends Actor implements Soul {
      * @param map        the map containing the Actor
      * @param display    the I/O object to which messages may be written
      * @return The Action to be performed by the Undead
-     * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+     * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -96,5 +102,29 @@ public class Mimic extends Actor implements Soul {
     @Override
     public String toString(){
         return name + " (" + hitPoints + "/" + maxHitPoints +")(no Weapon)";
+    }
+
+    /**
+     * Reset Mimic into chest.
+     */
+    @Override
+    public void resetInstance() {
+        if(isExist){
+            this.hitPoints = maxHitPoints;
+            initLocation.map().moveActor(this, initLocation);
+            initLocation.map().removeActor(this);
+            initLocation.setGround(new Chest());
+            isExist = false;
+        }
+    }
+
+    /**
+     * Checks for the existence of Mimic in the game
+     *
+     * @return true is the Mimic exist; false otherwise
+     */
+    @Override
+    public boolean isExist() {
+        return this.isExist;
     }
 }

@@ -25,7 +25,6 @@ public class OpenChestAction extends Action {
      */
     public OpenChestAction(Location chestLocation) {
         this.chestLocation = chestLocation;
-        this.mimic = new Mimic();
     }
 
     /**
@@ -44,6 +43,7 @@ public class OpenChestAction extends Action {
             }
         }
         else{
+            this.mimic = new Mimic(chestLocation);
             chestLocation.addActor(mimic);
             for (int i = random.nextInt(MAXIMUM_CHEST_TOKEN_OF_SOUL); i < MAXIMUM_CHEST_TOKEN_OF_SOUL; i++){
                 mimic.addItemToInventory(new TokenOfSouls(chestLocation.getGround().asSoul()));
