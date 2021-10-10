@@ -14,10 +14,11 @@ import java.util.ArrayList;
  * An abstract class where all the boss in the game can inherits from
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.1.0
  */
 public abstract class LordOfCinder extends Actor implements Soul{
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
+    private final static int LORD_OF_CINDER_SOULS = 5000;
 
     /**
      * Constructor for the Lord of Cinder class
@@ -28,6 +29,15 @@ public abstract class LordOfCinder extends Actor implements Soul{
      */
     public LordOfCinder(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
+    }
+
+    /**
+     * Returns the name of the Lord Of Cinder
+     *
+     * @return String that represents the name
+     */
+    public String getName(){
+        return this.name;
     }
 
     /**
@@ -67,5 +77,23 @@ public abstract class LordOfCinder extends Actor implements Soul{
                 return action;
         }
         return new DoNothingAction();
+    }
+
+    /**
+     * Transfers the souls (5000 souls) to Player Soul's instance after Lord of Cinder is killed
+     *
+     * @param playerSoul the player souls.
+     */
+    public void transferSouls(Soul playerSoul) {
+        playerSoul.addSouls(LORD_OF_CINDER_SOULS);
+    }
+
+    /**
+     * A toString method for the Yhorm The Giant's class
+     *
+     * @return String that represents the Yhorm The Giant's information(hitpoints and weapon)
+     */
+    public String toString(){
+        return name + " (" + hitPoints + "/" + maxHitPoints +")(" + getWeapon() + ")";
     }
 }
