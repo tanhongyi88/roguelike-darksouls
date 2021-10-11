@@ -19,4 +19,8 @@ public class CinderOfTheLord extends Item {
         super("Cinder of " + lord.getName(), '%', true);
         this.addCapability(Abilities.TRADE);
     }
+
+    public String getName(){
+        return name;
+    }
 }
