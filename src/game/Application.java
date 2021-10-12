@@ -102,8 +102,8 @@ public class Application {
 			GameMap gameMap2 = new GameMap(groundFactory2, map2);
 			world.addGameMap(gameMap2);
 
-			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0)));
-			gameMap2.at(30,0).setGround(new FogDoor(gameMap2.at(38,25)));
+			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0), "Anor Londo"));
+			gameMap2.at(30,0).setGround(new FogDoor(gameMap.at(38,25), "Profane Capital"));
 
 			world.run();
 

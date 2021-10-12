@@ -1,9 +1,8 @@
 package game.ground;
 
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
+import game.enums.Abilities;
+import game.reset.ResetAction;
 
 /**
  * The place for the Player to go to the other map
@@ -16,20 +15,25 @@ public class FogDoor extends Ground {
     /**
      * Location connected to
      */
-    private Location location;
+    private Location locationToGo;
+    /**
+     * name of location connected to
+     */
+    private String direction;
 
     /**
      * Constructor for the FogDoor class
      * Represented on the game map as '='
      */
-    public FogDoor(Location location) {
+    public FogDoor(Location location, String direction) {
         super('=');
-        this.location = location;
+        this.locationToGo = location;
+        this.direction = direction;
     }
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        return super.allowableActions(actor, location, direction);
+        return new Actions(new MoveActorAction(this.locationToGo, this.direction));
     }
 
     @Override
