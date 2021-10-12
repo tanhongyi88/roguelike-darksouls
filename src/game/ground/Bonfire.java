@@ -12,11 +12,17 @@ import game.reset.ResetAction;
 public class Bonfire extends Ground{
 
     /**
+     * Name of the Bonfire
+     */
+    private String name;
+
+    /**
      * Constructor for the Bonfire class
      * Represented on the game map as 'B'
      */
-    public Bonfire() {
+    public Bonfire(String name) {
         super('B');
+        this.name = name;
     }
 
     /**
@@ -31,7 +37,7 @@ public class Bonfire extends Ground{
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
         if (actor.hasCapability(Abilities.REST)) {
-            actions.add(new ResetAction());
+            actions.add(new ResetAction(name));
         }
         return actions;
     }
