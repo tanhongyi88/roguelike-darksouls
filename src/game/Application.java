@@ -22,7 +22,7 @@ public class Application {
 			World world = new World(new Display());
 
 			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),
-					new Cemetery(), new Bonfire("Firelink Shrine"), new FireKeeper());
+					new Cemetery(), new FireKeeper());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -36,7 +36,7 @@ public class Application {
 					".............................................................+++++++............",
 					"..................................###___###...c...............+++...............",
 					"..................................#_______#......................+++............",
-					"...........++.....................#___B___#.......................+.............",
+					"...........++.....................#_______#.......................+.............",
 					".........+++......................#F______#........................++...........",
 					"............+++...................####_####..........................+..........",
 					"..............+......................................................++.........",
@@ -76,10 +76,10 @@ public class Application {
 
 			// initialise second map Anor Londo
 			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
-                    new Valley(), new Cemetery(), new Bonfire("Anor Londo"));
+                    new Valley(), new Cemetery());
 
 			List<String> map2 = Arrays.asList(
-					"..........+++..................=..B.....................+++........",
+					"..........+++...........................................+++........",
 					".......+..++..........................................+++++........",
 					"...........+++.........................................+++++.......",
 					"....c.....................................................++.......",
@@ -104,6 +104,8 @@ public class Application {
 
 			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0), "Anor Londo"));
 			gameMap2.at(30,0).setGround(new FogDoor(gameMap.at(38,25), "Profane Capital"));
+			gameMap.at(38, 11).setGround(new Bonfire("Firelink Shrine"));
+			gameMap2.at(35, 0).setGround(new Bonfire("Anor Londo"));
 
 			world.run();
 
