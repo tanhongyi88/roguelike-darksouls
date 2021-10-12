@@ -9,6 +9,10 @@ import edu.monash.fit2099.engine.*;
  * @version 1.0.0
  */
 public class ResetAction extends Action {
+    /**
+     * placeToRest stores the name of Bonfire to rest at
+     */
+    private String bonfireName;
 
     /**
      * previousLocation stores the location before being killed (Fall into valley or by enemies)
@@ -37,8 +41,8 @@ public class ResetAction extends Action {
      * Constructor to create an Action that will reset the player without resetting the location and
      * only be used when player interacts with Bonfire to reset
      */
-    public ResetAction() {
-
+    public ResetAction(String placeToRest) {
+        this.bonfireName = placeToRest;
     }
 
     /**
@@ -73,7 +77,7 @@ public class ResetAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Rest at Firelink Shrine's Bonfire";
+        return "Rest at " + bonfireName + "'s Bonfire";
     }
 
 }
