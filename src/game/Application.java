@@ -21,7 +21,8 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new Bonfire(), new FireKeeper());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),
+					new Cemetery(), new Bonfire("Firelink Shrine"), new FireKeeper());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -71,6 +72,38 @@ public class Application {
 			gameMap.at(35,15).addActor(new Skeleton("Skeleton", player));
 			gameMap.at(20,7).addActor(new Skeleton("Skeleton", player));
 			gameMap.at(2,1).addActor(new Skeleton("Skeleton", player));
+
+
+			// initialise second map Anor Londo
+			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(),
+                    new Valley(), new Cemetery(), new Bonfire("Anor Londo"));
+
+			List<String> map2 = Arrays.asList(
+					"..........+++..................=..B.....................+++........",
+					".......+..++..........................................+++++........",
+					"...........+++.........................................+++++.......",
+					"....c.....................................................++.......",
+					"...........................................................+++.....",
+					"............................................................+++....",
+					"...................................++++............................",
+					"...c..........................................++++.................",
+					"..............................................+++...+..............",
+					"................................................+++................",
+					"....................##___#####################.....................",
+					".............++.....#................#.......#.....................",
+					"....................#...#.....#.......+..#._.#.....................",
+					".......+.+..........#._......................#............c........",
+					"....................#...#................#...#.........++..........",
+					"................++..#.........#.......__.....#.....................",
+					"...............+....##___#####################.....................",
+					"...................................................++..............",
+					"...................................................................");
+
+			GameMap gameMap2 = new GameMap(groundFactory2, map2);
+			world.addGameMap(gameMap2);
+
+			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0)));
+			gameMap2.at(30,0).setGround(new FogDoor(gameMap2.at(38,25)));
 
 			world.run();
 
