@@ -13,11 +13,11 @@ import game.reset.ResetAction;
 public class FogDoor extends Ground {
 
     /**
-     * Location connected to
+     * Location that this door is connected to
      */
     private Location locationToGo;
     /**
-     * name of location connected to
+     * name of location that this door is connected to
      */
     private String direction;
 
