@@ -68,4 +68,7 @@ public abstract class LordOfCinder extends Actor implements Soul{
         }
         return new DoNothingAction();
     }
+    public String getName(){
+        return name;
+    }
 }
