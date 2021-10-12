@@ -11,5 +11,6 @@ public enum Abilities {
     BUY,
     SWAP,
     EMBER_FORM,
-    TRADE
+    TRADE,
+    TELEPORT
 }
