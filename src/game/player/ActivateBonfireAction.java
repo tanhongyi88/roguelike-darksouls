@@ -1,21 +1,18 @@
 package game.player;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.*;
 import game.enums.Status;
 
 public class ActivateBonfireAction extends Action {
 
-    private Ground bonfire;
+    private Location location;
     /**
      * Constructor
      *
-     * @param bonfire
+     * @param location
      */
-    public ActivateBonfireAction(Ground bonfire) {
-        this.bonfire = bonfire;
+    public ActivateBonfireAction(Location location) {
+        this.location = location;
     }
 
     /**
@@ -27,8 +24,8 @@ public class ActivateBonfireAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        this.bonfire.addCapability(Status.IS_LIT);
-        return menuDescription(actor);
+        this.location.getGround().addCapability(Status.IS_LIT);
+        return this.location.getGround() + " is lit";
     }
 
     /**
@@ -39,6 +36,6 @@ public class ActivateBonfireAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return bonfire + " has been lit.";
+        return "Lit " + this.location.getGround() + "'s bonfire";
     }
 }
