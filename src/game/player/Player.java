@@ -33,6 +33,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Status.ABLE_TO_STEP_ON_FLOOR);
 		this.addCapability(Abilities.REST);
 		this.addCapability(Abilities.BUY);
+		this.addCapability(Abilities.TELEPORT);
 		this.addItemToInventory(new Broadsword());
 		this.registerInstance();
 		this.numberOfSoul = 0;
