@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.engine.*;
 import game.enemy.*;
 import game.ground.*;
+import game.player.BonfireManager;
 import game.player.Player;
 import game.weapon.StormRuler;
 
@@ -102,10 +103,15 @@ public class Application {
 			GameMap gameMap2 = new GameMap(groundFactory2, map2);
 			world.addGameMap(gameMap2);
 
-			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0), "Anor Londo"));
-			gameMap2.at(30,0).setGround(new FogDoor(gameMap.at(38,25), "Profane Capital"));
-			gameMap.at(38, 11).setGround(new Bonfire("Firelink Shrine"));
-			gameMap2.at(35, 0).setGround(new Bonfire("Anor Londo"));
+			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0), "to Anor Londo"));
+			gameMap2.at(30,0).setGround(new FogDoor(gameMap.at(38,25), "to Profane Capital"));
+
+			BonfireManager bonfireManager = new BonfireManager();
+			bonfireManager.addLocation("to Firelink Shrine", gameMap.at(38, 11));
+			bonfireManager.addLocation("to Anor Londo", gameMap2.at(35, 0));
+
+			gameMap.at(38, 11).setGround(new Bonfire("Firelink Shrine", bonfireManager));
+			gameMap2.at(35, 0).setGround(new Bonfire("Anor Londo", bonfireManager));
 
 			world.run();
 
