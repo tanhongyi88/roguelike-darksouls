@@ -1,5 +1,9 @@
 package game.enemy;
 
+import edu.monash.fit2099.engine.*;
+import game.behaviour.RangedWeaponBehaviour;
+import game.weapon.DarkmoonLongbow;
+
 /**
  * AldrichTheDevourer class represents the second boss in the game
  *
@@ -17,6 +21,12 @@ public class AldrichTheDevourer extends LordOfCinder{
      */
     public AldrichTheDevourer(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-//        this.addItemToInventory(new DarkmoonLongbow);   // add weapon
+        this.addItemToInventory(new DarkmoonLongbow());
+    }
+
+    @Override
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        addBehaviour(new RangedWeaponBehaviour(otherActor));
+        return super.getAllowableActions(otherActor, direction, map);
     }
 }

@@ -59,7 +59,6 @@ public class BurnGroundAction extends Action {
         
         if (!burnStart) {
             this.burningLocation = map.locationOf(actor);
-            this.greatMachete.increaseHitRateWhenEmberForm();
             this.burnStart = true;
         }
         if (burnStart) {
