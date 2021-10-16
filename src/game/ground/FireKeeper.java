@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.player.Player;
 import game.vendor.BuyAxeAction;
+import game.vendor.BuyBowAction;
+import game.vendor.BuyMacheteAction;
 import game.vendor.BuySwordAction;
 
 /**
@@ -36,6 +38,8 @@ public class FireKeeper extends Ground {
         if (actor.hasCapability(Abilities.BUY)) {
             actions.add(new BuySwordAction((Player) actor));
             actions.add(new BuyAxeAction((Player) actor));
+            actions.add(new BuyMacheteAction((Player) actor));
+            actions.add(new BuyBowAction((Player) actor));
         }
         return actions;
     }
