@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.*;
  * Special Action for attacking other Actors.
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class AttackAction extends Action {
 
@@ -31,6 +31,7 @@ public class AttackAction extends Action {
 	 * Constructor for the AttackAction.
 	 * 
 	 * @param target the Actor to attack
+	 * @param direction the direction of attack
 	 */
 	public AttackAction(Actor target, String direction) {
 		this.target = target;
@@ -65,7 +66,7 @@ public class AttackAction extends Action {
 	}
 
 	/**
-	 * Returns a descriptive string to be displayed in the menu
+	 * Returns a descriptive string of AttackAction to be displayed in the menu
 	 *
 	 * @param actor The actor performing the action.
 	 * @return String that describes the AttackAction

@@ -4,13 +4,34 @@ import edu.monash.fit2099.engine.*;
 import game.enemy.*;
 import game.enums.Abilities;
 
+/**
+ * DeathAction class represents the death of an actor
+ *
+ * @author Lee Jia Yi
+ * @version 1.0.0
+ */
 public class DeathAction extends Action {
+    /**
+     * The Actor that kills the target
+     */
     protected Actor killer;
 
+    /**
+     * Constructor for the DeathAction.
+     *
+     * @param killer the Actor that kills the target
+     */
     public DeathAction(Actor killer) {
         this.killer = killer;
     }
 
+    /**
+     * Performs the DeathAction.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return String that represents the DeathAction
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         String result = "";
@@ -56,6 +77,12 @@ public class DeathAction extends Action {
         return result;
     }
 
+    /**
+     * Returns a descriptive string of DeathAction to be displayed in the menu
+     *
+     * @param actor The actor performing the action.
+     * @return String that describes the DeathAction
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " is killed.";
