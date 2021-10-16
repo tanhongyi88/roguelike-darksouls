@@ -1,5 +1,12 @@
 package game.weapon;
 
+import edu.monash.fit2099.engine.Action;
+import game.enums.Abilities;
+import game.weapon.action.BurnGroundAction;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * YhormsGreatMachete class represents the Yhorms Great Machete Weapon
  * Can only be equipped by Yhorm the Giant
@@ -22,8 +29,24 @@ public class YhormsGreatMachete extends GameWeaponItem {
      *
      * @return int that represents the hit rate of the weapon
      */
-    public void increaseHitRateWhenEmberForm() {
-        this.hitRate = 90;
+    @Override
+    public int chanceToHit() {
+        if(this.hasCapability(Abilities.EMBER_FORM)){
+            return this.hitRate + 30;
+        }
+        return this.hitRate;
+    }
+
+    /**
+     * Gets a list of allowable actions to the YhormsGreateMachete.
+     *
+     * @return a list of Actions
+     */
+    @Override
+    public List<Action> getAllowableActions() {
+        List<Action> actions = new ArrayList<>();
+        actions.add(new BurnGroundAction(this));
+        return actions;
     }
 
 }

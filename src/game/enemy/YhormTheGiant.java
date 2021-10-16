@@ -46,7 +46,7 @@ public class YhormTheGiant extends LordOfCinder {
             return new DoNothingAction();
         }
         if(this.getHitPoints() < this.getMaxHitPoints()/2) {
-            this.addCapability(Abilities.EMBER_FORM);
+            this.greatMachete.addCapability(Abilities.EMBER_FORM);
             display.println("Raargh~!!");
             return new BurnGroundAction(this.greatMachete);
         }
