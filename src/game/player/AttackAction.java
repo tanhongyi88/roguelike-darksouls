@@ -3,8 +3,6 @@ package game.player;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
-import game.enemy.*;
-import game.enums.Abilities;
 
 /**
  * Special Action for attacking other Actors.
@@ -57,49 +55,11 @@ public class AttackAction extends Action {
 		}
 
 		int damage = weapon.damage();
-		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		result += actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 
-		if (!target.isConscious()) {
-			if (target instanceof Skeleton && target.hasCapability(Abilities.RESURRECT)){
-				if (((Skeleton) target).resurrect(map)){
-					result += System.lineSeparator() + target + " is resurrected.";
-				}
-				else{
-					result += System.lineSeparator() + target + " is killed.";
-					target.asSoul().transferSouls(actor.asSoul());
-				}
-			}
-			else{
-				Actions dropActions = new Actions();
-				// drop all items
-				for (Item item : target.getInventory())
-					dropActions.add(item.getDropAction(actor));
-				for (Action drop : dropActions)
-					drop.execute(target, map);
-
-				if (!(target instanceof Player)) {
-					Location currentLocation = map.locationOf(target);
-					map.removeActor(target);
-					target.asSoul().transferSouls(actor.asSoul());
-					result += System.lineSeparator() + target + " is killed.";
-
-					if (target instanceof LordOfCinder) {
-						result += System.lineSeparator() + """
-									
-									
-								██╗      ██████╗ ██████╗ ██████╗      ██████╗ ███████╗     ██████╗██╗███╗   ██╗██████╗ ███████╗██████╗     ███████╗ █████╗ ██╗     ██╗     ███████╗███╗   ██╗
-								██║     ██╔═══██╗██╔══██╗██╔══██╗    ██╔═══██╗██╔════╝    ██╔════╝██║████╗  ██║██╔══██╗██╔════╝██╔══██╗    ██╔════╝██╔══██╗██║     ██║     ██╔════╝████╗  ██║
-								██║     ██║   ██║██████╔╝██║  ██║    ██║   ██║█████╗      ██║     ██║██╔██╗ ██║██║  ██║█████╗  ██████╔╝    █████╗  ███████║██║     ██║     █████╗  ██╔██╗ ██║
-								██║     ██║   ██║██╔══██╗██║  ██║    ██║   ██║██╔══╝      ██║     ██║██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗    ██╔══╝  ██╔══██║██║     ██║     ██╔══╝  ██║╚██╗██║
-								███████╗╚██████╔╝██║  ██║██████╔╝    ╚██████╔╝██║         ╚██████╗██║██║ ╚████║██████╔╝███████╗██║  ██║    ██║     ██║  ██║███████╗███████╗███████╗██║ ╚████║
-								╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝      ╚═════╝ ╚═╝          ╚═════╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝
-									
-								""";
-						currentLocation.addItem(new CinderOfTheLord((LordOfCinder) target));
-					}
-				}
-			}
+		if (!target.isConscious()){
+			result += System.lineSeparator() + new DeathAction(actor).execute(target, map);
 		}
 		return result;
 	}
