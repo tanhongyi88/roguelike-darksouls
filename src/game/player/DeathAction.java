@@ -3,6 +3,7 @@ package game.player;
 import edu.monash.fit2099.engine.*;
 import game.enemy.*;
 import game.enums.Abilities;
+import game.reset.ResetAction;
 
 /**
  * DeathAction class represents the death of an actor
@@ -72,6 +73,19 @@ public class DeathAction extends Action {
                             """;
                     currentLocation.addItem(new CinderOfTheLord((LordOfCinder) actor));
                 }
+            }
+            else{
+                result += System.lineSeparator() + "YYY     YYY   .0OO000.     UU       UU     DD\"\"\"Db     III   EEEEEEEEEEE  DD\"\"\"Db";
+                result += System.lineSeparator() + " YYY   YYY  00'      `00   UU       UU     DD    `Db.  III   EE           DD    `Db.";
+                result += System.lineSeparator() + "  YYY YYY  OO          00  UU       UU     DD     `Db  III   EE           DD     `Db";
+                result += System.lineSeparator() + "   'YYY'   OO          00  UU       UU     DD      DD  III   EEEEEEEEE    DD      DD";
+                result += System.lineSeparator() + "    YYY    OO          00  UU       UU     DD      DD  III   EE           DD      DD";
+                result += System.lineSeparator() + "    YYY     OO.      ,00   UU.     ,UU     DD    ,DP'  III   EE           DD    ,DP'";
+                result += System.lineSeparator() + "    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'";
+                result += System.lineSeparator() + "The world is resetting...";
+
+                map.moveActor(actor, map.at(38,12));
+                result += System.lineSeparator() + new ResetAction(((Player) actor).getPreviousLocation()).execute(actor, map);
             }
         }
         return result;

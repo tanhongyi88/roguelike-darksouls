@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.*;
 import game.weapon.action.SwapWeaponAction;
 import game.enums.*;
 import game.interfaces.*;
-import game.reset.ResetAction;
 import game.weapon.Broadsword;
 
 /**
@@ -50,19 +49,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		if(!this.isConscious()){
-			display.println("YYY     YYY   .0OO000.     UU       UU     DD\"\"\"Db     III   EEEEEEEEEEE  DD\"\"\"Db");
-			display.println(" YYY   YYY  00'      `00   UU       UU     DD    `Db.  III   EE           DD    `Db.");
-			display.println("  YYY YYY  OO          00  UU       UU     DD     `Db  III   EE           DD     `Db");
-			display.println("   'YYY'   OO          00  UU       UU     DD      DD  III   EEEEEEEEE    DD      DD");
-			display.println("    YYY    OO          00  UU       UU     DD      DD  III   EE           DD      DD");
-			display.println("    YYY     OO.      ,00   UU.     ,UU     DD    ,DP'  III   EE           DD    ,DP'");
-			display.println("    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'");
-			display.println("The world is resetting...");
-
-			map.moveActor(this, map.at(38,12));
-			return new ResetAction(this.previousLocation);
-		}
 		if(!this.hasCapability(Status.DISARM)){
 			Item currentWeapon = (Item) this.getWeapon();
 			Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
@@ -166,6 +152,16 @@ public class Player extends Actor implements Soul, Resettable {
 	public int getHitPoints(){
 		return hitPoints;
 	}
+
+	/**
+	 * Returns the previous location for the player
+	 *
+	 * @return Location that represents the player's previous location
+	 */
+	public Location getPreviousLocation() {
+		return previousLocation;
+	}
+
 
 	/**
 	 * Gets the Estus Flask for the Player from the inventory
