@@ -49,16 +49,6 @@ public class DrinkAction extends Action {
     }
 
     /**
-     * Returns the key used in the menu to trigger this Action.
-     *
-     * @return The key ("a") for DrinkAction in the menu
-     */
-    @Override
-    public String hotkey(){
-        return "a";
-    }
-
-    /**
      * Returns a descriptive string that the player drinks the Estus Flask
      *
      * @param actor The actor performing the action.

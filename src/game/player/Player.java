@@ -33,7 +33,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.REST);
 		this.addCapability(Abilities.BUY);
 		this.addItemToInventory(new Broadsword());
-		this.addItemToInventory(new EstusFlask());
+		this.addItemToInventory(new EstusFlask(this));
 		this.registerInstance();
 		this.numberOfSoul = 0;
 	}
@@ -62,10 +62,9 @@ public class Player extends Actor implements Soul, Resettable {
 				swap.execute(this, map);
 			}
 
-			// Handle multi-turn Actions
-			actions.add(new DrinkAction(this, this.getConsumable()));
 			actions.add(this.getWeapon().getActiveSkill(this,""));
 
+			// Handle multi-turn Actions
 			if (lastAction.getNextAction() != null)
 				return lastAction.getNextAction();
 
@@ -163,21 +162,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	public Location getPreviousLocation() {
 		return previousLocation;
-	}
-
-
-	/**
-	 * Gets the consumable for the Player from the inventory
-	 *
-	 * @return the player's EstusFlask
-	 */
-	public Consumable getConsumable() {
-		for (Item item : inventory) {
-			if (item instanceof Consumable){
-				return (Consumable) item;
-			}
-		}
-		return null;
 	}
 
 	/**

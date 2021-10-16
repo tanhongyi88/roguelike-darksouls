@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.*;
 import game.interfaces.Consumable;
 import game.interfaces.Resettable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * EstusFlask class represents the Estus Flask for the player
  *
@@ -13,14 +16,28 @@ import game.interfaces.Resettable;
 public class EstusFlask extends Item implements Resettable, Consumable {
     private int numOfEstusFlask;
     private final int MAX_NUM_OF_ESTUS_FLASK = 3;
+    private Player player;
 
     /**
      * Constructor for the Estus Flask.
      */
-    public EstusFlask() {
+    public EstusFlask(Player player) {
         super("Estus Flask", 'e', false);
         this.numOfEstusFlask = MAX_NUM_OF_ESTUS_FLASK;
+        this.player = player;
         this.registerInstance();
+    }
+
+    /**
+     * Gets a list of allowable actions to the Estus Flask.
+     *
+     * @return a list of Actions
+     */
+    @Override
+    public List<Action> getAllowableActions() {
+        List<Action> actions = new ArrayList<>();
+        actions.add(new DrinkAction(player, this));
+        return actions;
     }
 
     /**
