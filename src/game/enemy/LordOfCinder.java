@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @version 1.1.0
  */
 public abstract class LordOfCinder extends Enemy{
-    private ArrayList<Behaviour> behaviours = new ArrayList<>();
     private final static int LORD_OF_CINDER_SOULS = 5000;
 
     /**

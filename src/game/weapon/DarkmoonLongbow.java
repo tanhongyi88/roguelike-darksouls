@@ -1,7 +1,13 @@
 package game.weapon;
 
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actor;
+import game.behaviour.RangedWeaponBehaviour;
 import game.enums.Abilities;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class DarkmoonLongbow extends GameWeaponItem{
@@ -30,4 +36,16 @@ public class DarkmoonLongbow extends GameWeaponItem{
         }
         return damage;
     }
+
+//    /**
+//     * Gets a list of allowable actions to the YhormsGreateMachete.
+//     *
+//     * @return a list of Actions
+//     */
+//    @Override
+//    public List<Action> getAllowableActions() {
+//        List<Action> actions = new ArrayList<>();
+//        actions.add(new RangedWeaponBehaviour());
+//        return actions;
+//    }
 }
