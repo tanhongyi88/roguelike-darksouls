@@ -67,7 +67,7 @@ public class BuyMacheteAction extends Action {
      * @return The key for BuyMacheteAction in the menu
      */
     @Override
-    public String hotkey() { return "M"; }
+    public String hotkey() { return "e"; }
 
     /**
      * Returns a descriptive string

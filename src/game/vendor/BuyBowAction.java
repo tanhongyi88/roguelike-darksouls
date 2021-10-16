@@ -67,7 +67,7 @@ public class BuyBowAction extends Action {
      */
     @Override
     public String hotkey() {
-        return "D";
+        return "f";
     }
 
     /**
