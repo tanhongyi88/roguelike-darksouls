@@ -4,18 +4,43 @@ import edu.monash.fit2099.engine.*;
 import game.interfaces.Behaviour;
 import game.player.AttackAction;
 
+/**
+ * RangeWeaponBehaviour class represents the range attack of a weapon
+ *
+ * @author Lee Jia Yi
+ * @version 1.0.0
+ */
 public class RangedWeaponBehaviour extends Action implements Behaviour {
     private Actor target;
 
+    /**
+     * Constructor for the RangedWeaponBehaviour.
+     *
+     * @param target the Actor to attack
+     */
     public RangedWeaponBehaviour(Actor target){
         this.target = target;
     }
 
+    /**
+     * Performs the AttackAction.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return String that represents the AttackAction
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         return System.lineSeparator() + new AttackAction(target, "").execute(actor, map);
     }
 
+    /**
+     * Creates the AttackAction if an actor has RangedWeaponBehaviour
+     *
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return an AttackAction
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
@@ -46,6 +71,12 @@ public class RangedWeaponBehaviour extends Action implements Behaviour {
         return null;
     }
 
+    /**
+     * Returns a descriptive string of AttackAction to be displayed in the menu
+     *
+     * @param actor The actor performing the action.
+     * @return String that describes the AttackAction
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " attacks " + target;

@@ -1,7 +1,6 @@
 package game.weapon;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.*;
 import game.behaviour.RangedWeaponBehaviour;
 import game.enums.Abilities;
 
@@ -45,7 +44,7 @@ public class DarkmoonLongbow extends GameWeaponItem{
 //    @Override
 //    public List<Action> getAllowableActions() {
 //        List<Action> actions = new ArrayList<>();
-//        actions.add(new RangedWeaponBehaviour());
+//        actions.add(new RangedWeaponBehaviour());     // adds the action to the weapon
 //        return actions;
 //    }
 }
