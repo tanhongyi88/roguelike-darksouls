@@ -1,25 +1,25 @@
 package game.player;
 
 import edu.monash.fit2099.engine.*;
+import game.interfaces.Resettable;
 
 /**
  * EstusFlask class represents the Estus Flask for the player
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.0.1
  */
-public class EstusFlask extends Item {
+public class EstusFlask extends Item implements Resettable {
     private int numOfEstusFlask;
     private final int MAX_NUM_OF_ESTUS_FLASK = 3;
 
     /**
      * Constructor for the Estus Flask.
-     *
-     * @param name The name of the Estus Flask
      */
-    public EstusFlask(String name) {
-        super(name, 'e', false);
+    public EstusFlask() {
+        super("Estus Flask", 'e', false);
         this.numOfEstusFlask = MAX_NUM_OF_ESTUS_FLASK;
+        this.registerInstance();
     }
 
     /**
@@ -48,10 +48,13 @@ public class EstusFlask extends Item {
         numOfEstusFlask -= 1;
     }
 
-    /**
-     * Refills the number of Estus Flask to the maximum number of Estus Flask.
-     */
-    public void refillEstusFlask() {
+    @Override
+    public void resetInstance() {
         this.numOfEstusFlask = MAX_NUM_OF_ESTUS_FLASK;
+    }
+
+    @Override
+    public boolean isExist() {
+        return true;
     }
 }

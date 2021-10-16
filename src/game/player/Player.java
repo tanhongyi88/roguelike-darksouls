@@ -34,6 +34,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.REST);
 		this.addCapability(Abilities.BUY);
 		this.addItemToInventory(new Broadsword());
+		this.addItemToInventory(new EstusFlask());
 		this.registerInstance();
 		this.numberOfSoul = 0;
 	}
@@ -181,15 +182,11 @@ public class Player extends Actor implements Soul, Resettable {
 	}
 
 	/**
-	 * Reset player's instance, including hitpoints, EstusFlask chargers and location.
+	 * Reset player's instance, including hitpoints and location.
 	 */
 	@Override
 	public void resetInstance() {
-		// reset hitpoints to max hitpoints
 		this.hitPoints = this.maxHitPoints;
-
-		// reset EstusFlask
-		getEstusFlask().refillEstusFlask();
 	}
 
 	/**

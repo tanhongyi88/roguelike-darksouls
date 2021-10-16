@@ -6,12 +6,11 @@ import edu.monash.fit2099.engine.*;
  * DrinkAction class represents the action when Player drinks the Estus Flask
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class DrinkAction extends Action {
 
     private Player player;
-    private EstusFlask estusFlask;
 
     /**
      * Constructor for the DrinkAction
@@ -20,8 +19,6 @@ public class DrinkAction extends Action {
      */
     public DrinkAction(Player player) {
         this.player = player;
-        this.estusFlask = new EstusFlask("Estus Flask");
-        player.addItemToInventory(estusFlask);
     }
 
     /**
