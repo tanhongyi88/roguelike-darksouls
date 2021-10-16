@@ -108,7 +108,7 @@ public class Application {
 			gameMap2.at(35, 0).setGround(new Bonfire("Anor Londo"));
 
 			// Place AldrichTheDevourer/boss in the map
-			gameMap2.at(32, 13).addActor(new AldrichTheDevourer("Yhorm The Giant", 'A', 350));
+			gameMap2.at(32, 13).addActor(new AldrichTheDevourer("Aldrich The Devourer", 'A', 350));
 
 			// Place Skeleton in the map
 			gameMap2.at(38,15).addActor(new Skeleton("Skeleton", player));
