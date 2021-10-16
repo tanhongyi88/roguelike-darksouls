@@ -1,27 +1,27 @@
 package game.player;
 
 import edu.monash.fit2099.engine.*;
+import game.interfaces.Consumable;
 
 /**
  * DrinkAction class represents the action when Player drinks the Estus Flask
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class DrinkAction extends Action {
 
     private Player player;
-    private EstusFlask estusFlask;
+    private Consumable consumable;
 
     /**
      * Constructor for the DrinkAction
      *
      * @param player the player drinking the Estus Flask
      */
-    public DrinkAction(Player player) {
+    public DrinkAction(Player player, Consumable consumable) {
         this.player = player;
-        this.estusFlask = new EstusFlask("Estus Flask");
-        player.addItemToInventory(estusFlask);
+        this.consumable = consumable;
     }
 
     /**
@@ -34,30 +34,18 @@ public class DrinkAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        EstusFlask estusFlask = player.getEstusFlask();
-
-        if(estusFlask.getNumOfEstusFlask() == 0){
-            return "No available Estus Flask!";
+        if(consumable.getNumberOfConsumable() == 0){
+            return "No available " + consumable + "!";
         }
         else{
             if(player.getHitPoints() < player.getMaxHitPoints()){
                 int points = player.getMaxHitPoints();
                 player.heal(points);
-                estusFlask.decrementNumberOfEstusFlask();
-                return actor + " drinks Estus Flask!";
+                consumable.useConsumable();
+                return actor + " drinks " + consumable + "!";
             }
         }
         return actor + "'s hitpoints is full!";
-    }
-
-    /**
-     * Returns the key used in the menu to trigger this Action.
-     *
-     * @return The key ("a") for DrinkAction in the menu
-     */
-    @Override
-    public String hotkey(){
-        return "a";
     }
 
     /**
@@ -68,6 +56,6 @@ public class DrinkAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Unkindled drinks Estus Flask (" + player.getEstusFlask().getNumOfEstusFlask() + "/" + player.getEstusFlask().getMaxNumOfEstusFlask() +")";
+        return "Unkindled drinks " + consumable + "(" + consumable.getNumberOfConsumable() + "/" + consumable.getMaximumConsumable() +")";
     }
 }
