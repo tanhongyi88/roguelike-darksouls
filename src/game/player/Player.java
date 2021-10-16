@@ -63,7 +63,7 @@ public class Player extends Actor implements Soul, Resettable {
 			}
 
 			// Handle multi-turn Actions
-			actions.add(new DrinkAction(this));
+			actions.add(new DrinkAction(this, this.getConsumable()));
 			actions.add(this.getWeapon().getActiveSkill(this,""));
 
 			if (lastAction.getNextAction() != null)
@@ -167,14 +167,14 @@ public class Player extends Actor implements Soul, Resettable {
 
 
 	/**
-	 * Gets the Estus Flask for the Player from the inventory
+	 * Gets the consumable for the Player from the inventory
 	 *
 	 * @return the player's EstusFlask
 	 */
-	public EstusFlask getEstusFlask() {
+	public Consumable getConsumable() {
 		for (Item item : inventory) {
-			if (item instanceof EstusFlask){
-				return (EstusFlask) item;
+			if (item instanceof Consumable){
+				return (Consumable) item;
 			}
 		}
 		return null;
