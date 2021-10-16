@@ -12,7 +12,6 @@ import game.weapon.StormRuler;
  * @version 1.0.0
  */
 public class ChargeAction extends WeaponAction {
-    private StormRuler stormRuler;
     private int weaponCharge;
     private final int MAX_CHARGE = 3;
 
@@ -54,7 +53,7 @@ public class ChargeAction extends WeaponAction {
         }
         if(weaponCharge==MAX_CHARGE){
             actor.removeCapability(Status.DISARM);
-            stormRuler.addCapability(Status.CHARGED);
+            weapon.addCapability(Status.CHARGED);
             return "Charge complete!";
         }
         return null;

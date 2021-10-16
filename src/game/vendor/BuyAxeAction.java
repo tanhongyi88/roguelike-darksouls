@@ -55,7 +55,7 @@ public class BuyAxeAction extends Action {
      * @return The key for BuyAxeAction in the menu
      */
     @Override
-    public String hotkey() { return "G"; }
+    public String hotkey() { return "d"; }
 
     /**
      * Return a descriptive string to show Player can buy Giant Axe from Fire Keeper

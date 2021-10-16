@@ -28,37 +28,41 @@ public class StormRuler extends GameWeaponItem {
     }
 
     /**
-     * Passive skill (Critical Strike) for the Storm Ruler.
-     * Has a 20% probability to double the damage
+     * Method for increasing Storm Ruler damage
+     *
+     * Passive skill (Critical Strike),has a 20% probability to double the damage.
+     * Active skill (Wind Slash), double the original damage.
      *
      * @return int that represents the damage
      */
     @Override
     public int damage(){
-        Random random = new Random();
-
-        if(random.nextDouble()*100 <= CRITICAL_STRIKE_PROBABILITY){
-            return damage*2;
+        if(this.hasCapability(Status.CHARGED)){
+            return this.damage = 140;
         }
-        return damage;
+        else{
+            Random random = new Random();
+
+            if(random.nextDouble()*100 <= CRITICAL_STRIKE_PROBABILITY){
+                return damage*2;
+            }
+            return damage;
+        }
     }
 
     /**
-     * Change the weapon's hit rate
+     * Change the hit rate of Storm Ruler based on use of Charge
      *
-     * @param hitRate the probability/chance to hit the target
+     * @return hitRate, updated hit rate
      */
-    public void changeHitRate(int hitRate){
-        this.hitRate = hitRate;
-    }
-
-    /**
-     * Change the weapon's attack damage
-     *
-     * @param damage amount of damage this weapon does
-     */
-    public void changeDamage(int damage){
-        this.damage = damage;
+    @Override
+    public int chanceToHit() {
+        if(this.hasCapability(Status.CHARGED)){
+            return this.hitRate=100;
+        }
+        else{
+            return this.hitRate=60;
+        }
     }
 
     /**
