@@ -49,6 +49,9 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		if (!isConscious()){
+			return new DeathAction();
+		}
 		if(!this.hasCapability(Status.DISARM)){
 			Item currentWeapon = (Item) this.getWeapon();
 			Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);

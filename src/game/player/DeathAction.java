@@ -27,6 +27,12 @@ public class DeathAction extends Action {
     }
 
     /**
+     * Constructor for the DeathAction.
+     */
+    public DeathAction(){
+    }
+
+    /**
      * Performs the DeathAction.
      *
      * @param actor The actor performing the action.
