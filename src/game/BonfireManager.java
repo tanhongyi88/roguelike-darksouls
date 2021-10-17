@@ -59,11 +59,20 @@ public class BonfireManager {
     public Actions getTeleportActions(Location currentLocation) {
         Actions actions = new Actions();
         for (int i = 0; i < getSize(); i++) {
-            if (!currentLocation.equals(locToTeleport.get(i)) && locToTeleport.get(i).getGround().hasCapability(Status.IS_LIT)) {
+            if (!currentLocation.equals(locToTeleport.get(i)) && bonfireIsLit(locToTeleport.get(i))) {
                 actions.add(new MoveActorAction(locToTeleport.get(i), directionName.get(i)));
             }
         }
         return actions;
     }
 
+    /**
+     * Determine whether the bonfire at a location is Lit or not
+     *
+     * @param location that contains the bonfire
+     * @return True if bonfire is Lit, false otherwise
+     */
+    private boolean bonfireIsLit(Location location) {
+        return location.getGround().hasCapability(Status.IS_LIT);
+    }
 }
