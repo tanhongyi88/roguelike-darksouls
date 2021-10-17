@@ -55,7 +55,7 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
-			Actor player = new Player("Unkindled (Player)", '@', 100);
+			Actor player = new Player("Unkindled (Player)", '@', 100, gameMap.at(38,11));
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
@@ -103,10 +103,15 @@ public class Application {
 			GameMap gameMap2 = new GameMap(groundFactory2, map2);
 			world.addGameMap(gameMap2);
 
-			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0), "Anor Londo"));
-			gameMap2.at(30,0).setGround(new FogDoor(gameMap.at(38,25), "Profane Capital"));
-			gameMap.at(38, 11).setGround(new Bonfire("Firelink Shrine"));
-			gameMap2.at(35, 0).setGround(new Bonfire("Anor Londo"));
+			gameMap.at(38,25).setGround(new FogDoor(gameMap2.at(30,0), "to Anor Londo"));
+			gameMap2.at(30,0).setGround(new FogDoor(gameMap.at(38,25), "to Profane Capital"));
+
+			BonfireManager bonfireManager = new BonfireManager();
+			bonfireManager.addLocation("to Firelink Shrine", gameMap.at(38, 11));
+			bonfireManager.addLocation("to Anor Londo", gameMap2.at(35, 0));
+
+			gameMap.at(38, 11).setGround(new Bonfire("Firelink Shrine", bonfireManager));
+			gameMap2.at(35, 0).setGround(new Bonfire("Anor Londo", bonfireManager));
 
 			// Place AldrichTheDevourer/boss in the map
 			gameMap2.at(32, 13).addActor(new AldrichTheDevourer("Aldrich The Devourer", 'A', 350));

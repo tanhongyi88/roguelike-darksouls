@@ -13,5 +13,6 @@ public enum Status {
     ABLE_TO_STEP_ON_FLOOR,
     DISARM,
     STUN,
-    CHARGED
+    CHARGED,
+    IS_LIT
 }

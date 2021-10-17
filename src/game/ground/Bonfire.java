@@ -1,6 +1,9 @@
 package game.ground;
 import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
+import game.enums.Status;
+import game.player.ActivateBonfireAction;
+import game.BonfireManager;
 import game.reset.ResetAction;
 
 /**
@@ -17,12 +20,18 @@ public class Bonfire extends Ground{
     private String name;
 
     /**
+     * BonfireManager that stores the location of bonfires that can be teleported
+     */
+    private BonfireManager bonfireManager;
+
+    /**
      * Constructor for the Bonfire class
      * Represented on the game map as 'B'
      */
-    public Bonfire(String name) {
+    public Bonfire(String name, BonfireManager bonfireManager) {
         super('B');
         this.name = name;
+        this.bonfireManager = bonfireManager;
     }
 
     /**
@@ -36,8 +45,13 @@ public class Bonfire extends Ground{
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
-        if (actor.hasCapability(Abilities.REST)) {
-            actions.add(new ResetAction(name));
+        if (!this.hasCapability(Status.IS_LIT)) {
+            actions.add(new ActivateBonfireAction(location));
+            return actions;
+        }
+        else if (actor.hasCapability(Abilities.REST) && actor.hasCapability(Abilities.TELEPORT)) {
+            actions.add(new ResetAction(name, location));
+            actions.add(bonfireManager.getTeleportActions(location));
         }
         return actions;
     }
@@ -51,5 +65,11 @@ public class Bonfire extends Ground{
     @Override
     public boolean canActorEnter(Actor actor) {
         return true;
+    }
+
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
