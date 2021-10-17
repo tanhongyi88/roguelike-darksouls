@@ -1,11 +1,8 @@
 package game.enemy;
 
 import edu.monash.fit2099.engine.*;
-import game.player.AttackAction;
 import game.behaviour.*;
-import game.enums.Status;
 import game.interfaces.*;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -14,8 +11,7 @@ import java.util.Random;
  * @author Lee Jia Yi
  * @version 1.0.0
  */
-public class Undead extends Actor implements Soul{
-	private ArrayList<Behaviour> behaviours = new ArrayList<>();
+public class Undead extends Enemy{
 	private final static int UNDEAD_SOULS = 50;
 
 	/** 
@@ -26,48 +22,7 @@ public class Undead extends Actor implements Soul{
 	 */
 	public Undead(String name) {
 		super(name, 'u', 50);
-		behaviours.add(new WanderBehaviour());
-	}
-
-	/**
-	 * Returns a collection of the Actions that the otherActor can do to Undead.
-	 *
-	 * @param otherActor the Actor that might be performing attack
-	 * @param direction  String representing the direction of the other Actor
-	 * @param map        current GameMap
-	 * @return list of actions
-	 * @see Status#HOSTILE_TO_ENEMY
-	 */
-	@Override
-	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		Actions actions = new Actions();
-		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			behaviours.add(0, new AttackBehaviour(otherActor, direction));
-			behaviours.add(1, new FollowBehaviour(otherActor));
-			actions.add(new AttackAction(this,direction));
-		}
-		return actions;
-	}
-
-	/**
-	 * Selects and returns an action for Undead to perform on the current turn.
-	 *
-	 * @param actions    collection of possible Actions for Undead
-	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
-	 * @param map        the map containing the Actor
-	 * @param display    the I/O object to which messages may be written
-	 * @return The Action to be performed by the Undead
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-	 */
-	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		for(Behaviour Behaviour : behaviours) {
-			Action action = Behaviour.getAction(this, map);
-			if (action != null){
-				return action;
-			}
-		}
-		return new WanderBehaviour();
+		addBehaviour(new WanderBehaviour());
 	}
 
 	/**

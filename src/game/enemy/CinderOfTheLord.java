@@ -20,6 +20,11 @@ public class CinderOfTheLord extends Item {
         this.addCapability(Abilities.TRADE);
     }
 
+    /**
+     * Returns the name of the Cinder of The Lord
+     *
+     * @return String that represents the name
+     */
     public String getName(){
         return name;
     }

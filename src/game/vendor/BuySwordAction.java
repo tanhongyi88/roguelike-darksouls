@@ -55,7 +55,7 @@ public class BuySwordAction extends Action {
      * @return The key for BuySwordAction in the menu
      */
     @Override
-    public String hotkey() { return "B"; }
+    public String hotkey() { return "c"; }
 
     /**
      * Return a descriptive string to show Player can buy Broad Sword from Fire Keeper

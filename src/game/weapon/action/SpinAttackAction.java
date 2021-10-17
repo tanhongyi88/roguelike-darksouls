@@ -10,7 +10,6 @@ import game.weapon.GiantAxe;
  * @version 1.0.0
  */
 public class SpinAttackAction extends WeaponAction {
-    private GiantAxe giantAxe;
     private Actor target;
 
     /**

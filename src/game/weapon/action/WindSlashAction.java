@@ -11,7 +11,6 @@ import game.weapon.StormRuler;
  * @version 1.0.0
  */
 public class WindSlashAction extends WeaponAction {
-    private StormRuler stormRuler;
     private Actor boss;
 
     /**
@@ -34,18 +33,17 @@ public class WindSlashAction extends WeaponAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if(stormRuler.hasCapability(Status.CHARGED)){
+        if(weapon.hasCapability(Status.CHARGED)){
             Location here = map.locationOf(actor);
             for (Exit exit : here.getExits()) {
                 Location destination = exit.getDestination();
                 if (destination.getActor() == boss) {
-                    stormRuler.changeHitRate(100);
-                    stormRuler.changeDamage(140);
-                    actor.addCapability(Status.STUN);
+                    weapon.chanceToHit();
+                    weapon.damage();
+                    boss.addCapability(Status.STUN);
                     return actor+" uses Wind Slash on Yhorm The Giant!";
                 }
-                stormRuler.changeHitRate(60);
-                stormRuler.changeDamage(70);
+                weapon.removeCapability(Status.CHARGED);
             }
         }
         else{
