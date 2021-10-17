@@ -1,9 +1,9 @@
 package game.weapon.action;
 
 import edu.monash.fit2099.engine.*;
+import game.enemy.YhormTheGiant;
 import game.enums.Status;
-import game.player.Player;
-import game.weapon.StormRuler;
+
 /**
  * The class representing the use of Wind Slash Action when wielding Storm Ruler
  *
@@ -17,11 +17,9 @@ public class WindSlashAction extends WeaponAction {
      * Constructor for WindSlashAction
      *
      * @param stormRuler The weapon using this action
-     * @param target The weapon's target
      */
-    public WindSlashAction(WeaponItem stormRuler, Actor target) {
+    public WindSlashAction(WeaponItem stormRuler) {
         super(stormRuler);
-        this.boss = target;
     }
 
     /**
@@ -37,24 +35,15 @@ public class WindSlashAction extends WeaponAction {
             Location here = map.locationOf(actor);
             for (Exit exit : here.getExits()) {
                 Location destination = exit.getDestination();
-                if (destination.getActor() == boss) {
-                    weapon.chanceToHit();
-                    weapon.damage();
+                if (destination.getActor() instanceof YhormTheGiant) {
+                    boss = destination.getActor();
                     boss.addCapability(Status.STUN);
-                    return actor+" uses Wind Slash on Yhorm The Giant!";
+                    weapon.removeCapability(Status.CHARGED);
+                    return actor + " uses Wind Slash on Yhorm The Giant!";
                 }
-                weapon.removeCapability(Status.CHARGED);
             }
         }
-        else{
-            return "Not fully charged yet!";
-        }
-        return null;
-    }
-
-    @Override
-    public String hotkey() {
-        return "W";
+        return "Not fully charged yet";
     }
 
     /**

@@ -75,7 +75,7 @@ public class StormRuler extends GameWeaponItem {
     @Override
     public WeaponAction getActiveSkill(Actor target, String direction) {
         if(this.hasCapability(Status.CHARGED)){
-            return new WindSlashAction(this,target);
+            return new WindSlashAction(this);
         }
         else{
             return new ChargeAction(this);
