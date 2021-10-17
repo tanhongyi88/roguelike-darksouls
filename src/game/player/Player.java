@@ -55,7 +55,26 @@ public class Player extends Actor implements Soul, Resettable {
 		if (!isConscious()){
 			return new DeathAction();
 		}
+		swapWeapon(map);
 
+		actions.add(this.getWeapon().getActiveSkill(this, ""));
+		// Handle multi-turn Actions
+		if (lastAction.getNextAction() != null)
+			return lastAction.getNextAction();
+
+		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
+		// update the actor previous location every turn by injection
+		updatePlayerLocation(map.locationOf(this));
+
+		return menu.showMenu(this, actions, display);
+	}
+
+	/**
+	 * Swap Weapon after the player has picked up any weapon(Storm Ruler)
+	 *
+	 * @param map map that contains player
+	 */
+	private void swapWeapon(GameMap map) {
 		Item currentWeapon = (Item) this.getWeapon();
 		Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
 
@@ -64,18 +83,6 @@ public class Player extends Actor implements Soul, Resettable {
 			SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
 			swap.execute(this, map);
 		}
-
-		actions.add(this.getWeapon().getActiveSkill(this, ""));
-		// Handle multi-turn Actions
-		if (lastAction.getNextAction() != null)
-			return lastAction.getNextAction();
-
-		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
-
-		// update the actor previous location every turn by injection
-		this.previousLocation = map.locationOf(this);
-
-		return menu.showMenu(this, actions, display);
 	}
 
 	/**
@@ -180,6 +187,14 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public boolean isExist() {
 		return true;
+	}
+
+	/**
+	 * Update the player previous location
+	 * @param newLocation
+	 */
+	private void updatePlayerLocation(Location newLocation) {
+		this.previousLocation = newLocation;
 	}
 
 	/**
