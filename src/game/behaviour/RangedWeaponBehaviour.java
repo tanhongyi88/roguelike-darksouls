@@ -59,6 +59,7 @@ public class RangedWeaponBehaviour extends WeaponAction implements Behaviour {
                         xs = new NumberRange(Math.min(here.x(), there.x()), Math.abs(here.x() - there.x()) + 1);
                         ys = new NumberRange(Math.min(here.y(), there.y()), Math.abs(here.y() - there.y()) + 1);
 
+                        // find if there is any object that can block the attack, nullify the attack if there is
                         for (int x : xs) {
                             for (int y : ys) {
                                 if (map.at(x, y).getGround().blocksThrownObjects())
