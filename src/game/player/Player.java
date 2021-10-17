@@ -56,15 +56,6 @@ public class Player extends Actor implements Soul, Resettable {
 			return new DeathAction();
 		}
 		if(!this.hasCapability(Status.DISARM)){
-			Item currentWeapon = (Item) this.getWeapon();
-			Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
-
-			if(previousWeapon.hasCapability(Abilities.SWAP)){
-				this.removeItemFromInventory(currentWeapon);
-				SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
-				swap.execute(this, map);
-			}
-
 			actions.add(this.getWeapon().getActiveSkill(this,""));
 
 			// Handle multi-turn Actions
