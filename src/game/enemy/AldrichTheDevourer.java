@@ -11,6 +11,7 @@ import game.weapon.DarkmoonLongbow;
  * @version 1.0.0
  */
 public class AldrichTheDevourer extends LordOfCinder{
+    private DarkmoonLongbow darkmoonLongbow = new DarkmoonLongbow();
 
     /**
      * Constructor for the Aldrich The Devourer class
@@ -21,7 +22,7 @@ public class AldrichTheDevourer extends LordOfCinder{
      */
     public AldrichTheDevourer(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        this.addItemToInventory(new DarkmoonLongbow());
+        this.addItemToInventory(darkmoonLongbow);
     }
 
     /**
@@ -34,7 +35,7 @@ public class AldrichTheDevourer extends LordOfCinder{
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        addBehaviour(new RangedWeaponBehaviour(otherActor));
+        addBehaviour(new RangedWeaponBehaviour(otherActor, this.darkmoonLongbow));
         return super.getAllowableActions(otherActor, direction, map);
     }
 }

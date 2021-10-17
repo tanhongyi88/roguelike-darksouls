@@ -3,6 +3,7 @@ package game.behaviour;
 import edu.monash.fit2099.engine.*;
 import game.interfaces.Behaviour;
 import game.player.AttackAction;
+import game.weapon.DarkmoonLongbow;
 
 /**
  * RangeWeaponBehaviour class represents the range attack of a weapon
@@ -10,7 +11,7 @@ import game.player.AttackAction;
  * @author Lee Jia Yi
  * @version 1.0.0
  */
-public class RangedWeaponBehaviour extends Action implements Behaviour {
+public class RangedWeaponBehaviour extends WeaponAction implements Behaviour {
     private Actor target;
 
     /**
@@ -18,7 +19,8 @@ public class RangedWeaponBehaviour extends Action implements Behaviour {
      *
      * @param target the Actor to attack
      */
-    public RangedWeaponBehaviour(Actor target){
+    public RangedWeaponBehaviour(Actor target, DarkmoonLongbow darkmoonLongbow){
+        super(darkmoonLongbow);
         this.target = target;
     }
 
