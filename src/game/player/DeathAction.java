@@ -90,7 +90,7 @@ public class DeathAction extends Action {
                 result += System.lineSeparator() + "    YYY       'OO0000'      'UUUUUUU'      DDmm,DP'    III   EEEEEEEEEEE  DDmm,DP'";
                 result += System.lineSeparator() + "The world is resetting...";
 
-                map.moveActor(actor, map.at(38,12));
+                map.moveActor(actor,((Player) actor).getSpawnLocation());
                 result += System.lineSeparator() + new ResetAction(((Player) actor).getPreviousLocation()).execute(actor, map);
             }
         }
