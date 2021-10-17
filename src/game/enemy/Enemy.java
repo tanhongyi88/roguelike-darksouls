@@ -29,7 +29,7 @@ public abstract class Enemy extends Actor implements Soul {
     }
 
     /**
-     * Returns a collection of the Actions that the otherActor can do to Undead.
+     * Returns a collection of the Actions that the otherActor can do to Enemy.
      *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor

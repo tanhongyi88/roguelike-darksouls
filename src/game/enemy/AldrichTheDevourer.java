@@ -24,6 +24,14 @@ public class AldrichTheDevourer extends LordOfCinder{
         this.addItemToInventory(new DarkmoonLongbow());
     }
 
+    /**
+     * Returns a collection of the Actions that the otherActor can do to Aldrich The Devourer.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return list of actions
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         addBehaviour(new RangedWeaponBehaviour(otherActor));

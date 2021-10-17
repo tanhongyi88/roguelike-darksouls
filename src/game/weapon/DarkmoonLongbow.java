@@ -43,7 +43,7 @@ public class DarkmoonLongbow extends GameWeaponItem{
     }
 
 //    /**
-//     * Gets a list of allowable actions to the YhormsGreateMachete.
+//     * Gets a list of allowable actions to the DarkmoonLongbow.
 //     *
 //     * @return a list of Actions
 //     */
