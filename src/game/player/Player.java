@@ -17,6 +17,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private Location previousLocation;
 	private final Menu menu = new Menu();
 	private int numberOfSoul;
+	private Location spawnLocation;
 
 	/**
 	 * Constructor for the Player class.
@@ -25,7 +26,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
-	public Player(String name, char displayChar, int hitPoints) {
+	public Player(String name, char displayChar, int hitPoints, Location spawnLocation) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.ABLE_TO_ENTER_VALLEY);
@@ -37,6 +38,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addItemToInventory(new EstusFlask(this));
 		this.registerInstance();
 		this.numberOfSoul = 0;
+		this.spawnLocation = spawnLocation;
 	}
 
 	/**
@@ -181,5 +183,23 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public boolean isExist() {
 		return true;
+	}
+
+	/**
+	 * Update the bonfire that player last interacts with
+	 *
+	 * @param newLocation
+	 */
+	public void updateSpawnLocation(Location newLocation) {
+		this.spawnLocation = newLocation;
+	}
+
+	/**
+	 * Getter of spawnLocation
+	 *
+	 * @return this.spawnLocation
+	 */
+	public Location getSpawnLocation() {
+		return this.spawnLocation;
 	}
 }
