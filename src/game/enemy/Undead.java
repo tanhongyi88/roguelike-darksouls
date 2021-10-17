@@ -9,7 +9,7 @@ import java.util.Random;
  * Undead class represents the undead minion in the game
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class Undead extends Enemy{
 	private final static int UNDEAD_SOULS = 50;

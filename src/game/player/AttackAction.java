@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.*;
  * Special Action for attacking other Actors.
  *
  * @author Lee Jia Yi
- * @version 1.0.1
+ * @version 1.1.0
  */
 public class AttackAction extends Action {
 

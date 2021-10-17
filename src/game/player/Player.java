@@ -1,7 +1,6 @@
 package game.player;
 
 import edu.monash.fit2099.engine.*;
-import game.weapon.action.SwapWeaponAction;
 import game.enums.*;
 import game.interfaces.*;
 import game.weapon.Broadsword;
@@ -10,7 +9,7 @@ import game.weapon.Broadsword;
  * Class representing the Player.
  *
  * @author Lee Jia Yi, Tan Hong Yi
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class Player extends Actor implements Soul, Resettable {
 

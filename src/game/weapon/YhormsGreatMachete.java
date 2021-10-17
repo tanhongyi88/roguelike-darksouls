@@ -12,7 +12,7 @@ import java.util.List;
  * Can only be equipped by Yhorm the Giant
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class YhormsGreatMachete extends GameWeaponItem {
 

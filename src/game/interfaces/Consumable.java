@@ -3,6 +3,9 @@ package game.interfaces;
 /**
  * A contract for consumable instance (in other words, items that can be consumed by player).
  * The instance must be an Item.
+ *
+ * @author Lee Jia Yi
+ * @version 1.0.0
  */
 public interface Consumable {
 

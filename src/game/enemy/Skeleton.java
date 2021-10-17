@@ -12,7 +12,7 @@ import java.util.Random;
  * Skeleton class represents the skeleton in the game
  *
  * @author Lee Jia Yi
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class Skeleton extends Enemy{
     private ArrayList<Location> skeletonLocation = new ArrayList<>();
