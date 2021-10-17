@@ -55,29 +55,27 @@ public class Player extends Actor implements Soul, Resettable {
 		if (!isConscious()){
 			return new DeathAction();
 		}
-		if(!this.hasCapability(Status.DISARM)){
-			Item currentWeapon = (Item) this.getWeapon();
-			Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
 
-			if(previousWeapon.hasCapability(Abilities.SWAP)) {
-				this.removeItemFromInventory(currentWeapon);
-				SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
-				swap.execute(this, map);
-			}
+		Item currentWeapon = (Item) this.getWeapon();
+		Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
 
-			actions.add(this.getWeapon().getActiveSkill(this, ""));
-			// Handle multi-turn Actions
-			if (lastAction.getNextAction() != null)
-				return lastAction.getNextAction();
-
-			display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
-
-			// update the actor previous location every turn by injection
-			this.previousLocation = map.locationOf(this);
-
-			return menu.showMenu(this, actions, display);
+		if(previousWeapon.hasCapability(Abilities.SWAP)) {
+			this.removeItemFromInventory(currentWeapon);
+			SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
+			swap.execute(this, map);
 		}
-		return new DoNothingAction();
+
+		actions.add(this.getWeapon().getActiveSkill(this, ""));
+		// Handle multi-turn Actions
+		if (lastAction.getNextAction() != null)
+			return lastAction.getNextAction();
+
+		display.println(name + " (" + hitPoints + "/" + maxHitPoints + ")" + ", holding " + getWeapon() +  ", " + numberOfSoul + " souls");
+
+		// update the actor previous location every turn by injection
+		this.previousLocation = map.locationOf(this);
+
+		return menu.showMenu(this, actions, display);
 	}
 
 	/**

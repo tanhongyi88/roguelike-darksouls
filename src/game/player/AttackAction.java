@@ -3,6 +3,7 @@ package game.player;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
+import game.enums.Status;
 
 /**
  * Special Action for attacking other Actors.
@@ -47,9 +48,12 @@ public class AttackAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-
 		Weapon weapon = actor.getWeapon();
 		String result = "";
+
+		if (actor.hasCapability(Status.DISARM)){
+			return "Player is disarmed!";
+		}
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";

@@ -38,6 +38,7 @@ public class ChargeAction extends WeaponAction {
         if(weaponCharge < MAX_CHARGE){
             this.weaponCharge += 1;
             stormRuler.setCharge(weaponCharge);
+            actor.addCapability(Status.DISARM);
             result = "Charging...(" + weaponCharge + "/" + MAX_CHARGE + ")";
         }
 
