@@ -9,7 +9,7 @@ import game.weapon.StormRuler;
  * The class representing the use of Charge Action when wielding Storm Ruler
  *
  * @author Afrida Jahin
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class ChargeAction extends WeaponAction {
     private int weaponCharge;

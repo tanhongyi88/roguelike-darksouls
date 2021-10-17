@@ -14,6 +14,7 @@ import game.weapon.StormRuler;
  * The main class for the Jurassic World game.
  *
  * @author Afrida Jahin, Lee Jia Yi, Tan Hong Yi
+ * @version 1.1.0
  */
 public class Application {
 

@@ -12,7 +12,7 @@ import game.vendor.BuySwordAction;
  * The place for the Player to trade.
  *
  * @author Afrida Jahin
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class FireKeeper extends Ground {
 

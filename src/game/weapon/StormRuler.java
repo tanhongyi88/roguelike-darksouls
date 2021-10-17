@@ -14,7 +14,7 @@ import java.util.Random;
  * Can only be equipped by the Player
  *
  * @author Lee Jia Yi, Afrida Jahin
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class StormRuler extends GameWeaponItem {
     private static final int CRITICAL_STRIKE_PROBABILITY = 20;

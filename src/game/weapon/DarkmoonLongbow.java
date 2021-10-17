@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * This class represents the Longbow Weapon
+ *
+ * @author Lee Jia Yi, Afrida Jahin
+ * @version 1.0.0
+ */
 public class DarkmoonLongbow extends GameWeaponItem{
     private static final int CRITICAL_STRIKE_PROBABILITY = 15;
 

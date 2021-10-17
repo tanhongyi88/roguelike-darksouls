@@ -7,7 +7,7 @@ import game.weapon.GiantAxe;
  * The class representing the use of Spin Attack Action when wielding a Giant Axe
  *
  * @author Afrida Jahin
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class SpinAttackAction extends WeaponAction {
     private Actor target;
