@@ -50,7 +50,7 @@ public class Bonfire extends Ground{
             return actions;
         }
         else if (actor.hasCapability(Abilities.REST) && actor.hasCapability(Abilities.TELEPORT)) {
-            actions.add(new ResetAction(name));
+            actions.add(new ResetAction(name, location));
             actions.add(bonfireManager.getTeleportActions(location));
         }
         return actions;
