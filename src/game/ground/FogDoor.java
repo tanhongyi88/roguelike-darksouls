@@ -1,8 +1,6 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
-import game.enums.Abilities;
-import game.reset.ResetAction;
 
 /**
  * The place for the Player to go to the other map
