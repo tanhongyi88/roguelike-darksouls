@@ -4,8 +4,6 @@ import edu.monash.fit2099.engine.*;
 import game.ground.Chest;
 import game.interfaces.*;
 
-import java.util.ArrayList;
-
 /**
  * Mimic class represents the mimic in the game
  *
@@ -13,7 +11,6 @@ import java.util.ArrayList;
  * @version 1.0.0
  */
 public class Mimic extends Enemy implements Resettable {
-    private ArrayList<Behaviour> behaviours = new ArrayList<>();
     private Location initLocation;
     private boolean isExist;
     private final static int MIMIC_SOULS = 200;

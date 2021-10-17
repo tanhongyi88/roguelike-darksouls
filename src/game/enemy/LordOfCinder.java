@@ -2,8 +2,6 @@ package game.enemy;
 
 import game.interfaces.*;
 
-import java.util.ArrayList;
-
 /**
  * The boss of Design o' Souls
  * An abstract class where all the boss in the game can inherits from
