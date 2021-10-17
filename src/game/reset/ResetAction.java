@@ -1,6 +1,7 @@
 package game.reset;
 
 import edu.monash.fit2099.engine.*;
+import game.player.Player;
 
 /**
  * ResetAction class that represents the reset action during interaction with Bonfire or Player dies
@@ -23,6 +24,10 @@ public class ResetAction extends Action {
      */
     private Location previousTokenLocation;
     /**
+     * playerSpawnLocation keeps tracks of player spawn location
+     */
+    private Location playerSpawnLocation;
+    /**
      * soulsToken stores the token of souls dropped when player dies
      */
     private Item soulsToken;
@@ -40,8 +45,11 @@ public class ResetAction extends Action {
     /**
      * Constructor to create an Action that will reset the player without resetting the location and
      * only be used when player interacts with Bonfire to reset
+     *
+     * @param placeToRest name of bonfire that player interacts with
+     * @param spawnLocation spawnLocation that player will be respawned if dead
      */
-    public ResetAction(String placeToRest) {
+    public ResetAction(String placeToRest, Location spawnLocation) {
         this.bonfireName = placeToRest;
     }
 
@@ -65,6 +73,8 @@ public class ResetAction extends Action {
             this.previousTokenLocation = this.previousLocation;
             this.soulsToken = token;
         }
+        Player player = (Player) actor;
+        player.updateSpawnLocation(this.playerSpawnLocation);
         return actor + " is returned to Bonfire";
     }
 

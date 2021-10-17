@@ -25,6 +25,8 @@ public class ActivateBonfireAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         this.location.getGround().addCapability(Status.IS_LIT);
+        Player player = (Player) actor;
+        player.updateSpawnLocation(this.location);
         return this.location.getGround() + " is lit";
     }
 
