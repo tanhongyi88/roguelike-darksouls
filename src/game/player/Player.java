@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.enums.*;
 import game.interfaces.*;
 import game.weapon.Broadsword;
+import game.weapon.action.SwapWeaponAction;
 
 /**
  * Class representing the Player.
@@ -55,8 +56,16 @@ public class Player extends Actor implements Soul, Resettable {
 			return new DeathAction();
 		}
 		if(!this.hasCapability(Status.DISARM)){
-			actions.add(this.getWeapon().getActiveSkill(this,""));
+			Item currentWeapon = (Item) this.getWeapon();
+			Item previousWeapon = this.getInventory().get(this.getInventory().size()-1);
 
+			if(previousWeapon.hasCapability(Abilities.SWAP)) {
+				this.removeItemFromInventory(currentWeapon);
+				SwapWeaponAction swap = new SwapWeaponAction(previousWeapon);
+				swap.execute(this, map);
+			}
+
+			actions.add(this.getWeapon().getActiveSkill(this, ""));
 			// Handle multi-turn Actions
 			if (lastAction.getNextAction() != null)
 				return lastAction.getNextAction();
