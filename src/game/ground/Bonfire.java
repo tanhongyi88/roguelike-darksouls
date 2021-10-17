@@ -3,7 +3,7 @@ import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.player.ActivateBonfireAction;
-import game.player.BonfireManager;
+import game.BonfireManager;
 import game.reset.ResetAction;
 
 /**
@@ -51,7 +51,7 @@ public class Bonfire extends Ground{
         }
         else if (actor.hasCapability(Abilities.REST) && actor.hasCapability(Abilities.TELEPORT)) {
             actions.add(new ResetAction(name));
-            actions.add(bonfireManager.getMoveActions(location));
+            actions.add(bonfireManager.getTeleportActions(location));
         }
         return actions;
     }

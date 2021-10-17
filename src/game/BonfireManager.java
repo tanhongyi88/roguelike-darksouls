@@ -1,4 +1,4 @@
-package game.player;
+package game;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Location;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class BonfireManager {
 
-    private ArrayList<Location> locToTeleport = new ArrayList<>();
-    private ArrayList<String> directionName = new ArrayList<>();
+    private final ArrayList<Location> locToTeleport = new ArrayList<>();
+    private final ArrayList<String> directionName = new ArrayList<>();
 
     public BonfireManager() {
     }
@@ -34,7 +34,7 @@ public class BonfireManager {
         return this.locToTeleport.size();
     }
 
-    public Actions getMoveActions(Location currentLocation) {
+    public Actions getTeleportActions(Location currentLocation) {
         Actions actions = new Actions();
         for (int i = 0; i < getSize(); i++) {
             if (!currentLocation.equals(locToTeleport.get(i)) && locToTeleport.get(i).getGround().hasCapability(Status.IS_LIT)) {

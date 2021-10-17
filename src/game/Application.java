@@ -6,7 +6,6 @@ import java.util.List;
 import edu.monash.fit2099.engine.*;
 import game.enemy.*;
 import game.ground.*;
-import game.player.BonfireManager;
 import game.player.Player;
 import game.weapon.StormRuler;
 
