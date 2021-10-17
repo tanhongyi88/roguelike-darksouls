@@ -117,9 +117,9 @@ public class Application {
 			gameMap2.at(32, 13).addActor(new AldrichTheDevourer("Aldrich The Devourer", 'A', 350));
 
 			// Place Skeleton in the map
-			gameMap2.at(38,15).addActor(new Skeleton("Skeleton", player));
+			gameMap2.at(38,10).addActor(new Skeleton("Skeleton", player));
 			gameMap2.at(12,17).addActor(new Skeleton("Skeleton", player));
-			gameMap2.at(60,3).addActor(new Skeleton("Skeleton", player));
+			gameMap2.at(60,2).addActor(new Skeleton("Skeleton", player));
 
 			world.run();
 
