@@ -27,6 +27,9 @@ public class Bonfire extends Ground{
     /**
      * Constructor for the Bonfire class
      * Represented on the game map as 'B'
+     *
+     * @param name name of Bonfire
+     * @param bonfireManager a manager that stores the all the locations of bonfire
      */
     public Bonfire(String name, BonfireManager bonfireManager) {
         super('B');
@@ -47,7 +50,6 @@ public class Bonfire extends Ground{
         Actions actions = new Actions();
         if (!this.hasCapability(Status.IS_LIT)) {
             actions.add(new ActivateBonfireAction(location));
-            return actions;
         }
         else if (actor.hasCapability(Abilities.REST) && actor.hasCapability(Abilities.TELEPORT)) {
             actions.add(new ResetAction(name, location));
@@ -68,6 +70,10 @@ public class Bonfire extends Ground{
     }
 
 
+    /**
+     * Get name of bonfire using toString method
+     * @return name of bonfire
+     */
     @Override
     public String toString() {
         return name;

@@ -3,13 +3,22 @@ package game.player;
 import edu.monash.fit2099.engine.*;
 import game.enums.Status;
 
+/**
+ * The action to lit the bonfire before the bonfire is able to function
+ *
+ * @author Tan Hong Yi
+ * @version 1.0.0
+ */
 public class ActivateBonfireAction extends Action {
 
+    /**
+     * location that contains Bonfire
+     */
     private Location location;
     /**
      * Constructor
      *
-     * @param location
+     * @param location location that contains Bonfire
      */
     public ActivateBonfireAction(Location location) {
         this.location = location;

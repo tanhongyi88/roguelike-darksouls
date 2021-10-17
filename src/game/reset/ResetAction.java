@@ -51,6 +51,7 @@ public class ResetAction extends Action {
      */
     public ResetAction(String placeToRest, Location spawnLocation) {
         this.bonfireName = placeToRest;
+        this.playerSpawnLocation = spawnLocation;
     }
 
     /**

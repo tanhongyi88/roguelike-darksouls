@@ -24,6 +24,8 @@ public class FogDoor extends Ground {
     /**
      * Constructor for the FogDoor class
      * Represented on the game map as '='
+     * @param location location that this door is connected to
+     * @param direction direction name when player enters the door
      */
     public FogDoor(Location location, String direction) {
         super('=');
@@ -31,6 +33,13 @@ public class FogDoor extends Ground {
         this.direction = direction;
     }
 
+    /**
+     * Get allowable actions from FogDoor when the player gets near or stands on the FogDoor
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return MoveActorAction
+     */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         return new Actions(new MoveActorAction(this.locationToGo, this.direction));
