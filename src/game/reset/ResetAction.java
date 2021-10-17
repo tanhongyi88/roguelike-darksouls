@@ -66,13 +66,8 @@ public class ResetAction extends Action {
     public String execute(Actor actor, GameMap map) {
         ResetManager.getInstance().run();
         if (this.previousLocation != null) {
-            if (this.previousTokenLocation != null) {
-                this.previousTokenLocation.removeItem(this.soulsToken);
-            }
-            Item token = new TokenOfSouls(actor.asSoul());
-            this.previousLocation.addItem(token);
-            this.previousTokenLocation = this.previousLocation;
-            this.soulsToken = token;
+            removeToken();
+            placeNewToken(actor);
         }
         Player player = (Player) actor;
         player.updateSpawnLocation(this.playerSpawnLocation);
@@ -91,4 +86,22 @@ public class ResetAction extends Action {
         return "Rest at " + bonfireName + "'s Bonfire";
     }
 
+    /**
+     * Remove token from ground if there is one
+     */
+    private void removeToken() {
+        if (this.previousTokenLocation != null) {
+            this.previousTokenLocation.removeItem(this.soulsToken);
+        }
+    }
+
+    /**
+     * Place new token of soul onto ground when player died
+     */
+    private void placeNewToken(Actor actor) {
+        Item token = new TokenOfSouls(actor.asSoul());
+        this.previousLocation.addItem(token);
+        this.previousTokenLocation = this.previousLocation;
+        this.soulsToken = token;
+    }
 }
