@@ -1,9 +1,12 @@
 package game.weapon;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponAction;
 import game.enums.Abilities;
 import game.weapon.action.SpinAttackAction;
+
+import java.util.List;
 
 /**
  * GiantAxe class represents the Giant Axe Weapon
@@ -30,6 +33,6 @@ public class GiantAxe extends GameWeaponItem {
      */
     @Override
     public WeaponAction getActiveSkill(Actor target, String direction) {
-        return new SpinAttackAction(this, target);
+        return new SpinAttackAction(this);
     }
 }

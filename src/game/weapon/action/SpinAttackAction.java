@@ -1,7 +1,6 @@
 package game.weapon.action;
 
 import edu.monash.fit2099.engine.*;
-import game.weapon.GiantAxe;
 
 /**
  * The class representing the use of Spin Attack Action when wielding a Giant Axe
@@ -16,11 +15,9 @@ public class SpinAttackAction extends WeaponAction {
      * Constructor for ChargeAction
      *
      * @param giantAxe The weapon using this action
-     * @param target The weapon's target
      */
-    public SpinAttackAction(WeaponItem giantAxe, Actor target) {
+    public SpinAttackAction(WeaponItem giantAxe) {
         super(giantAxe);
-        this.target = target;
     }
 
     /**
@@ -32,21 +29,18 @@ public class SpinAttackAction extends WeaponAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        String result = actor + " performs Spin Attack";
 
         Location here = map.locationOf(actor);
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.getActor() == target) {
+            if(destination.containsAnActor()){
+                target = destination.getActor();
                 target.hurt(25);
-                return actor + "does Spin Attack on" + target;
+                result += System.lineSeparator() + actor + "does Spin Attack on " + target;
             }
         }
-        return null;
-    }
-
-    @Override
-    public String hotkey() {
-        return "A";
+        return result;
     }
 
     /**
