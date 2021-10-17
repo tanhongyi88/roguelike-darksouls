@@ -38,12 +38,13 @@ public class WindSlashAction extends WeaponAction {
                 if (destination.getActor() instanceof YhormTheGiant) {
                     boss = destination.getActor();
                     boss.addCapability(Status.STUN);
+                    weapon.damage();
                     weapon.removeCapability(Status.CHARGED);
                     return actor + " uses Wind Slash on Yhorm The Giant!";
                 }
             }
         }
-        return "Not fully charged yet";
+        return "Yhorm The Giant is not in surrounding!";
     }
 
     /**

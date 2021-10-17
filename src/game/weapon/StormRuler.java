@@ -18,6 +18,7 @@ import java.util.Random;
  */
 public class StormRuler extends GameWeaponItem {
     private static final int CRITICAL_STRIKE_PROBABILITY = 20;
+    private int charge = 0;
 
     /**
      * Constructor for the StormRuler Weapon.
@@ -80,5 +81,23 @@ public class StormRuler extends GameWeaponItem {
         else{
             return new ChargeAction(this);
         }
+    }
+
+    /**
+     * Returns the number of charge for Storm Ruler
+     *
+     * @return int that represents the charge
+     */
+    public int getCharge() {
+        return charge;
+    }
+
+    /**
+     * Set the number of charge for Storm Ruler
+     *
+     * @param newCharge the new number of charge
+     */
+    public void setCharge(int newCharge) {
+        this.charge = newCharge;
     }
 }

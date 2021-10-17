@@ -2,7 +2,6 @@ package game.weapon.action;
 
 import edu.monash.fit2099.engine.*;
 import game.enums.Status;
-import game.player.Player;
 import game.weapon.StormRuler;
 
 /**
@@ -20,15 +19,10 @@ public class ChargeAction extends WeaponAction {
      *
      * @param stormRuler The weapon using this action
      */
-    public ChargeAction(WeaponItem stormRuler) {
+    public ChargeAction(StormRuler stormRuler) {
         super(stormRuler);
-        this.weaponCharge = 0;
+        this.weaponCharge = stormRuler.getCharge();
     }
-
-    /**
-     * Increase the charge number of the weapon
-     */
-    public void increaseCharge(){ weaponCharge +=1; }
 
     /**
      * Performs the Charge Action
@@ -39,29 +33,21 @@ public class ChargeAction extends WeaponAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-
+        String result = "";
+        StormRuler stormRuler = (StormRuler) weapon;
         if(weaponCharge < MAX_CHARGE){
-            if(weaponCharge ==0){
-                increaseCharge();
-                return "Charging...(" + weaponCharge + "/" + MAX_CHARGE + ")";
-            }
-            if(weaponCharge>0){
-                increaseCharge();
-                return "Charging...(" + weaponCharge + "/" + MAX_CHARGE + ")";
-            }
-            actor.addCapability(Status.DISARM);
+            this.weaponCharge += 1;
+            stormRuler.setCharge(weaponCharge);
+            result = "Charging...(" + weaponCharge + "/" + MAX_CHARGE + ")";
         }
-        if(weaponCharge==MAX_CHARGE){
+
+        if (weaponCharge==MAX_CHARGE){
             actor.removeCapability(Status.DISARM);
             weapon.addCapability(Status.CHARGED);
+            stormRuler.setCharge(0);
             return "Charge complete!";
         }
-        return null;
-    }
-
-    @Override
-    public String hotkey() {
-        return "C";
+        return result;
     }
 
     /**
