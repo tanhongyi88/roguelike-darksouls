@@ -1,11 +1,8 @@
-# designosouls
-This is FIT2099 S2 2021 Assignment from MA_Lab1Team2. This game is inspired by the Dark Souls III and In this game, you 
-are a Player that has risen from the dead to slay enemies, get strong, and kill bosses (Lords of Cinders).
+# Dark Souls
+This is a text-based "rogue-like" game. It mimics the behaviours of a game named Dark Souls III.
 
-### Contributors
-1. Tan Hong Yi
-2. Afrida Jahin
-3. Lee Jia Yi
+## Purpose
+It is to practice object-oriented programming and apply SOLID and other design principles.
 
 ## Gameplay
 ### Characters
@@ -102,6 +99,3 @@ are a Player that has risen from the dead to slay enemies, get strong, and kill 
 There are two different maps in this game:
 1. Profane Capital
 2. Anor Londo
-
-## Credits
-Game engine code is provided by Nawfal.
